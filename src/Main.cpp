@@ -9,12 +9,18 @@
 
 #include "ExceptionHandler.hpp"
 #include "REFramework.hpp"
+#include "I18n.hpp"
+#include <fstream>
+#include <filesystem>
+#include <memory>
+namespace fs = std::filesystem;
 
 HMODULE g_dinput = 0;
 std::mutex g_load_mutex{};
+std::unique_ptr<char[]> g_translateData;
 
 void failed() {
-    MessageBox(0, "REFramework: Unable to load the original dinput8.dll. Please report this to the developer.", "REFramework", 0);
+    MessageBox(0, _("REFramework: Unable to load the original dinput8.dll. Please report this to the developer."), "REFramework", 0);
     ExitProcess(0);
 }
 
@@ -53,10 +59,38 @@ __declspec(dllexport) HRESULT WINAPI
 }
 }
 
+void i18n_init() {
+    std::string modpath{};
+
+    modpath.resize(1024, 0);
+    modpath.resize(GetModuleFileName(nullptr, modpath.data(), modpath.size()));
+
+    //  auto i18n_config_path = fs::path{modpath}.parent_path() / "reframework" / "i18n" / "config.txt";
+    //  
+    //  std::ifstream config_file(i18n_config_path.string());
+    //  std::string translate;
+    //  if (config_file) {
+    //      config_file >> translate;
+    //      config_file.close();
+    //  }
+    // auto i18n_path = fs::path{modpath}.parent_path() / "reframework" / "i18n" /  "zh_CN.ymo";
+    auto i18n_path = fs::path{modpath}.parent_path() / "zh_CN.ymo";
+    std::ifstream file(i18n_path.string(), std::ios::binary | std::ios::ate);
+    if (file) {
+        std::streamsize size = file.tellg();
+        file.seekg(0, std::ios::beg);
+        g_translateData = std::make_unique_for_overwrite<char[]>(static_cast<std::size_t>(size));
+        if (file.read(g_translateData.get(), size)) {
+            yi18n::LoadTranslateData(reinterpret_cast<yi18n::YMOData*>(g_translateData.get()));
+        }
+    }
+}
+
 void startup_thread(HMODULE reframework_module) {
     // We will set it once here, then do it continuously
     // every now and then because it gets replaced
     reframework::setup_exception_handler();
+    i18n_init();
 
 #ifndef NDEBUG
     AllocConsole();

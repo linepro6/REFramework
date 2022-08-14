@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-14 10:52+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Main.cpp:23
+msgid ""
+"REFramework: Unable to load the original dinput8.dll. Please report this to "
+"the developer."
+msgstr ""
+
+#: src/mods/Camera.cpp:27
+msgid ""
+"Make sure to tick \"Enabled\" for any of the below settings to take effect."
+msgstr ""
+
+#: src/REFramework.cpp:900
+msgid "Default Menu Key: Insert"
+msgstr ""
+
+#: src/REFramework.cpp:901
+msgid "Transparency"
+msgstr ""
+
+#: src/REFramework.cpp:905
+msgid "Makes the UI transparent when not focused."
+msgstr ""
+
+#: src/REFramework.cpp:906
+msgid "Input Passthrough"
+msgstr ""
+
+#: src/REFramework.cpp:910
+msgid ""
+"Allows mouse and keyboard inputs to register to the game while the UI is "
+"focused."
+msgstr ""
+
+#: src/REFramework.cpp:918
+msgid "REFramework is currently initializing..."
+msgstr ""
+
+#: src/REFramework.cpp:919
+msgid ""
+"This menu will close after initialization if you have the remember option "
+"enabled."
+msgstr ""
+
+#: src/REFramework.cpp:921
+#, c-format
+msgid "REFramework error: %s"
+msgstr ""
+
+#: src/REFramework.cpp:941 src/REFramework.cpp:945
+msgid "About"
+msgstr ""
+
+#: src/REFramework.cpp:947
+msgid "Author: praydog"
+msgstr ""
+
+#: src/REFramework.cpp:948
+msgid "Inspired by the Kanan project."
+msgstr ""
+
+#: src/REFramework.cpp:1018
+msgid "Engine information"
+msgstr ""
+
+#: src/REFramework.cpp:1023 src/REFramework.cpp:1026
+msgid "Unable to determine engine version."
+msgstr ""
+
+#: src/REFramework.cpp:1263
+msgid "An unknown error has occurred."
+msgstr ""
+
+#: src/REFramework.cpp:1268
+msgid "Initialization of mods failed. Reason: {}"
+msgstr ""

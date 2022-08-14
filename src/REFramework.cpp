@@ -31,6 +31,7 @@ extern "C" {
 #include "LicenseStrings.hpp"
 #include "mods/REFrameworkConfig.hpp"
 #include "REFramework.hpp"
+#include "I18n.hpp"
 
 namespace fs = std::filesystem;
 using namespace std::literals;
@@ -813,6 +814,7 @@ void REFramework::update_fonts() {
 
     fonts->Clear();
     fonts->AddFontFromMemoryCompressedTTF(RobotoMedium_compressed_data, RobotoMedium_compressed_size, (float)m_font_size);
+    fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", 18, nullptr, fonts->GetGlyphRangesChineseSimplifiedCommon());
 
     for (auto& font : m_additional_fonts) {
         const ImWchar* ranges = nullptr;
@@ -895,17 +897,17 @@ void REFramework::draw_ui() {
     ImGui::SetNextWindowPos(ImVec2(50, 50), ImGuiCond_::ImGuiCond_Once);
     ImGui::SetNextWindowSize(ImVec2(300, 500), ImGuiCond_::ImGuiCond_Once);
     ImGui::Begin("REFramework", &m_draw_ui);
-    ImGui::Text("Default Menu Key: Insert");
-    ImGui::Checkbox("Transparency", &m_ui_option_transparent);
+    ImGui::Text(_("Default Menu Key: Insert"));
+    ImGui::Checkbox(_("Transparency"), &m_ui_option_transparent);
     ImGui::SameLine();
     ImGui::Text("(?)");
     if (ImGui::IsItemHovered())
-        ImGui::SetTooltip("Makes the UI transparent when not focused.");
-    ImGui::Checkbox("Input Passthrough", &m_ui_passthrough);
+        ImGui::SetTooltip(_("Makes the UI transparent when not focused."));
+    ImGui::Checkbox(_("Input Passthrough"), &m_ui_passthrough);
     ImGui::SameLine();
     ImGui::Text("(?)");
     if (ImGui::IsItemHovered())
-        ImGui::SetTooltip("Allows mouse and keyboard inputs to register to the game while the UI is focused.");
+        ImGui::SetTooltip(_("Allows mouse and keyboard inputs to register to the game while the UI is focused."));
 
     // Mods:
     draw_about();
@@ -913,10 +915,10 @@ void REFramework::draw_ui() {
     if (m_error.empty() && m_game_data_initialized) {
         m_mods->on_draw_ui();
     } else if (!m_game_data_initialized) {
-        ImGui::TextWrapped("REFramework is currently initializing...");
-        ImGui::TextWrapped("This menu will close after initialization if you have the remember option enabled.");
+        ImGui::TextWrapped(_("REFramework is currently initializing..."));
+        ImGui::TextWrapped(_("This menu will close after initialization if you have the remember option enabled."));
     } else if (!m_error.empty()) {
-        ImGui::TextWrapped("REFramework error: %s", m_error.c_str());
+        ImGui::TextWrapped(_("REFramework error: %s"), m_error.c_str());
     }
 
     m_last_window_pos = ImGui::GetWindowPos();
@@ -936,14 +938,14 @@ void REFramework::draw_ui() {
 }
 
 void REFramework::draw_about() {
-    if (!ImGui::CollapsingHeader("About")) {
+    if (!ImGui::CollapsingHeader(_("About"))) {
         return;
     }
 
-    ImGui::TreePush("About");
+    ImGui::TreePush(_("About"));
 
-    ImGui::Text("Author: praydog");
-    ImGui::Text("Inspired by the Kanan project.");
+    ImGui::Text(_("Author: praydog"));
+    ImGui::Text(_("Inspired by the Kanan project."));
     ImGui::Text("https://github.com/praydog/REFramework");
     ImGui::Text("http://praydog.com");
 
@@ -1013,15 +1015,15 @@ void REFramework::draw_about() {
                 }
             }
 
-            ImGui::Text("Engine information");
+            ImGui::Text(_("Engine information"));
             ImGui::Text(" Config: %s", engine_config.c_str());
             ImGui::Text(" Version: %s", clean_version.c_str());
             ImGui::Text(" TDB Version: %i", tdb_version);
         } catch(...) {
-            ImGui::Text("Unable to determine engine version.");
+            ImGui::Text(_("Unable to determine engine version."));
         }
     } else {
-        ImGui::Text("Unable to determine engine version.");
+        ImGui::Text(_("Unable to determine engine version."));
     }
 
     ImGui::TreePop();
@@ -1258,12 +1260,12 @@ bool REFramework::initialize() {
 
                 if (e) {
                     if (e->empty()) {
-                        m_error = "An unknown error has occurred.";
+                        m_error = _("An unknown error has occurred.");
                     } else {
                         m_error = *e;
                     }
 
-                    spdlog::error("Initialization of mods failed. Reason: {}", m_error);
+                    spdlog::error(_("Initialization of mods failed. Reason: {}"), m_error);
                 }
 
                 m_game_data_initialized = true;

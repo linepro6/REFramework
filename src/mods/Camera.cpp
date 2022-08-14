@@ -2,6 +2,7 @@
 #include <sdk/RETypeDB.hpp>
 
 #include "Camera.hpp"
+#include "I18n.hpp"
 
 using namespace utility;
 
@@ -23,7 +24,7 @@ void Camera::on_draw_ui() {
         return;
     }
 
-    ImGui::TextWrapped("Make sure to tick \"Enabled\" for any of the below settings to take effect.");
+    ImGui::TextWrapped(_("Make sure to tick \"Enabled\" for any of the below settings to take effect."));
 
     if (m_enabled->draw("Enabled") && !m_enabled->value()) {
         on_disabled();
