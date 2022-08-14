@@ -26,17 +26,17 @@ void Camera::on_draw_ui() {
 
     ImGui::TextWrapped(_("Make sure to tick \"Enabled\" for any of the below settings to take effect."));
 
-    if (m_enabled->draw("Enabled") && !m_enabled->value()) {
+    if (m_enabled->draw(_("Enabled")) && !m_enabled->value()) {
         on_disabled();
     }
 
-    if (m_disable_vignette->draw("Disable Vignette") && !m_disable_vignette->value()) {
+    if (m_disable_vignette->draw(_("Disable Vignette")) && !m_disable_vignette->value()) {
         set_vignette_type(via::render::ToneMapping::Vignetting::Enable);
     }
 
     // RE8 and above have vignetting brightness
 #if TDB_VER >= 69
-    m_vignette_brightness->draw("Vignette Brightness");
+    m_vignette_brightness->draw(_("Vignette Brightness"));
 #endif
 
 #ifdef RE8
