@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Mod.hpp"
+#include "I18n.hpp"
 
 class REFrameworkConfig : public Mod {
 public:
@@ -8,7 +9,7 @@ public:
 
 public:
     std::string_view get_name() const {
-        return "REFrameworkConfig";
+        return _("REFrameworkConfig");
     }
 
     std::optional<std::string> on_initialize() override;

@@ -11,7 +11,6 @@
 
 #include "VR.hpp"
 #include "FirstPerson.hpp"
-#include "I18n.hpp"
 
 #if defined(RE2) || defined(RE3)
 

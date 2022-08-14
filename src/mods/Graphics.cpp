@@ -21,21 +21,21 @@ void Graphics::on_draw_ui() {
         return;
     }
 
-    if (m_ultrawide_fix->draw("Ultrawide/Aspect Ratio Fix") && m_ultrawide_fix->value() == false) {
+    if (m_ultrawide_fix->draw(_("Ultrawide/Aspect Ratio Fix")) && m_ultrawide_fix->value() == false) {
         set_vertical_fov(false);
         do_ultrawide_fov_restore(true);
     }
 
     if (m_ultrawide_fix->value()) {
-        m_ultrawide_vertical_fov->draw("Ultrawide: Enable Vertical FOV");
-        m_ultrawide_fov->draw("Ultrawide: Override FOV");
-        m_ultrawide_fov_multiplier->draw("Ultrawide: FOV Multiplier");
+        m_ultrawide_vertical_fov->draw(_("Ultrawide: Enable Vertical FOV"));
+        m_ultrawide_fov->draw(_("Ultrawide: Override FOV"));
+        m_ultrawide_fov_multiplier->draw(_("Ultrawide: FOV Multiplier"));
     }
 
     ImGui::Separator();
-    ImGui::Text("GUI Options");
+    ImGui::Text(_("GUI Options"));
 
-    m_disable_gui->draw("Hide GUI");
+    m_disable_gui->draw(_("Hide GUI"));
 }
 
 void Graphics::on_pre_application_entry(void* entry, const char* name, size_t hash) {

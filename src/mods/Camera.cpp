@@ -2,7 +2,6 @@
 #include <sdk/RETypeDB.hpp>
 
 #include "Camera.hpp"
-#include "I18n.hpp"
 
 using namespace utility;
 
@@ -45,10 +44,10 @@ void Camera::on_draw_ui() {
 #endif
 
     ImGui::Separator();
-    ImGui::TextWrapped("These below settings are separate and do not require \"Enabled\" to be ticked.");
+    ImGui::TextWrapped(_("These below settings are separate and do not require \"Enabled\" to be ticked."));
 
-    m_use_custom_global_fov->draw("Use Custom Global FOV");
-    m_global_fov->draw("Global FOV");
+    m_use_custom_global_fov->draw(_("Use Custom Global FOV"));
+    m_global_fov->draw(_("Global FOV"));
 }
 
 void Camera::on_update_transform(RETransform* transform) {

@@ -61,10 +61,10 @@ void SceneMods::on_draw_ui() {
         return;
     }
 
-    m_timescale_toggle_key->draw("Timescale (Toggle) Key");
-    m_timescale_continuous_key->draw("Timescale (Continuous) Key");
+    m_timescale_toggle_key->draw(_("Timescale (Toggle) Key"));
+    m_timescale_continuous_key->draw(_("Timescale (Continuous) Key"));
 
-    if (m_use_application_timescale->draw("Use Application Timescale")) {
+    if (m_use_application_timescale->draw(_("Use Application Timescale"))) {
         sdk::set_timescale(1.0f);
         sdk::Application::set_global_speed(1.0f);
     }
@@ -72,7 +72,7 @@ void SceneMods::on_draw_ui() {
     m_timescale->draw("");
     ImGui::SameLine();
 
-    if (m_set_timescale->draw("Timescale")) {
+    if (m_set_timescale->draw(_("Timescale"))) {
         if (!m_set_timescale->value()) {
             sdk::set_timescale(1.0f);
         }

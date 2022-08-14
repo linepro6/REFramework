@@ -723,18 +723,18 @@ void PluginLoader::on_draw_ui() {
         std::scoped_lock _{m_mux};
 
         if (!m_plugins.empty()) {
-            ImGui::Text("Loaded plugins:");
+            ImGui::Text(_("Loaded plugins:"));
 
             for (auto&& [name, _] : m_plugins) {
                 ImGui::Text(name.c_str());
             }
         } else {
-            ImGui::Text("No plugins loaded.");
+            ImGui::Text(_("No plugins loaded."));
         }
 
         if (!m_plugin_load_errors.empty()) {
             ImGui::Spacing();
-            ImGui::Text("Errors:");
+            ImGui::Text(_("Errors:"));
             for (auto&& [name, error] : m_plugin_load_errors) {
                 ImGui::Text("%s - %s", name.c_str(), error.c_str());
             }
@@ -742,7 +742,7 @@ void PluginLoader::on_draw_ui() {
 
         if (!m_plugin_load_warnings.empty()) {
             ImGui::Spacing();
-            ImGui::Text("Warnings:");
+            ImGui::Text(_("Warnings:"));
             for (auto&& [name, warning] : m_plugin_load_warnings) {
                 ImGui::Text("%s - %s", name.c_str(), warning.c_str());
             }

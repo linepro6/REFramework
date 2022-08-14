@@ -20,7 +20,7 @@ std::mutex g_load_mutex{};
 std::unique_ptr<char[]> g_translateData;
 
 void failed() {
-    MessageBox(0, _("REFramework: Unable to load the original dinput8.dll. Please report this to the developer."), "REFramework", 0);
+    MessageBox(0, "REFramework: Unable to load the original dinput8.dll. Please report this to the developer.", "REFramework", 0);
     ExitProcess(0);
 }
 

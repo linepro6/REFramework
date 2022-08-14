@@ -12,16 +12,16 @@ std::optional<std::string> REFrameworkConfig::on_initialize() {
 }
 
 void REFrameworkConfig::on_draw_ui() {
-    if (!ImGui::CollapsingHeader("Configuration")) {
+    if (!ImGui::CollapsingHeader(_("Configuration"))) {
         return;
     }
 
-    ImGui::TreePush("Configuration");
+    ImGui::TreePush(_("Configuration"));
 
-    m_menu_key->draw("Menu Key");
-    m_remember_menu_state->draw("Remember Menu Open/Closed State");
+    m_menu_key->draw(_("Menu Key"));
+    m_remember_menu_state->draw(_("Remember Menu Open/Closed State"));
 
-    if (m_font_size->draw("Font Size")) {
+    if (m_font_size->draw(_("Font Size"))) {
         g_framework->set_font_size(m_font_size->value());
     }
 

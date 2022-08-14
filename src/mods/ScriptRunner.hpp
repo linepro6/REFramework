@@ -20,6 +20,7 @@
 #include "reframework/API.hpp"
 
 #include "HookManager.hpp"
+#include "I18n.hpp"
 
 namespace regenny {
 namespace via {
@@ -131,7 +132,7 @@ class ScriptRunner : public Mod {
 public:
     static std::shared_ptr<ScriptRunner>& get();
 
-    std::string_view get_name() const override { return "ScriptRunner"; }
+    std::string_view get_name() const override { return _("ScriptRunner"); }
     std::optional<std::string> on_initialize() override;
     void on_config_load(const utility::Config& cfg) override;
     void on_config_save(utility::Config& cfg) override;

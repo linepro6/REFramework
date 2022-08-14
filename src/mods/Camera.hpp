@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Mod.hpp"
+#include "I18n.hpp"
 
 class RenderToneMappingInternal {
 public:
@@ -56,7 +57,7 @@ public:
 
 class Camera : public Mod {
 public:
-    std::string_view get_name() const override { return "Camera"; };
+    std::string_view get_name() const override { return _("Camera"); };
 
     void on_config_load(const utility::Config& cfg) override;
     void on_config_save(utility::Config& cfg) override;

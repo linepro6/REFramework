@@ -3,6 +3,7 @@
 #include "utility/Patch.hpp"
 
 #include "Mod.hpp"
+#include "I18n.hpp"
 
 #ifdef RE8
 class AppPlayerHandLight2 : public AppBehaviorApp {
@@ -27,7 +28,7 @@ public:
     
     void toggle_flashlight();
     
-    std::string_view get_name() const override { return "ManualFlashlight"; }
+    std::string_view get_name() const override { return _("ManualFlashlight"); }
 
     void on_frame() override;
     void on_draw_ui() override;

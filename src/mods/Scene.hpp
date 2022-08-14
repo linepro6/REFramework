@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Mod.hpp"
+#include "I18n.hpp"
 
 class REManagedObject;
 
@@ -8,7 +9,7 @@ class SceneMods : public Mod {
 public:
     SceneMods() = default;
 
-    std::string_view get_name() const override { return "Scene"; }
+    std::string_view get_name() const override { return _("Scene"); }
 
     std::optional<std::string> on_initialize() override;
 

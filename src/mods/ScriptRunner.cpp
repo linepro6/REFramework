@@ -687,7 +687,7 @@ void ScriptRunner::on_draw_ui() {
     ImGui::SetNextTreeNodeOpen(false, ImGuiCond_::ImGuiCond_Once);
 
     if (ImGui::CollapsingHeader(get_name().data())) {
-        if (ImGui::Button("Run script")) {
+        if (ImGui::Button(_("Run script"))) {
             OPENFILENAME ofn{};
             char file[260]{};
 
@@ -707,13 +707,13 @@ void ScriptRunner::on_draw_ui() {
 
         ImGui::SameLine();
 
-        if (ImGui::Button("Reset scripts")) {
+        if (ImGui::Button(_("Reset scripts"))) {
             reset_scripts();
         }
 
         ImGui::SameLine();
 
-        if (ImGui::Button("Spawn Debug Console")) {
+        if (ImGui::Button(_("Spawn Debug Console"))) {
             if (!m_console_spawned) {
                 AllocConsole();
                 freopen("CONIN$", "r", stdin);
@@ -724,54 +724,54 @@ void ScriptRunner::on_draw_ui() {
             }
         }
 
-        if (ImGui::TreeNode("Garbage Collection Stats")) {
+        if (ImGui::TreeNode(_("Garbage Collection Stats"))) {
             std::scoped_lock _{ m_access_mutex };
 
             auto g = G(m_state->lua().lua_state());
             const auto bytes_in_use = g->totalbytes + g->GCdebt;
 
-            ImGui::Text("Megabytes in use: %.2f", (float)bytes_in_use / 1024.0f / 1024.0f);
+            ImGui::Text(_("Megabytes in use: %.2f"), (float)bytes_in_use / 1024.0f / 1024.0f);
 
             ImGui::TreePop();
         }
 
-        if (m_gc_handler->draw("Garbage Collection Handler")) {
+        if (m_gc_handler->draw(_("Garbage Collection Handler"))) {
             std::scoped_lock _{ m_access_mutex };
             m_state->gc_data_changed(make_gc_data());
         }
 
-        if (m_gc_mode->draw("Garbage Collection Mode")) {
+        if (m_gc_mode->draw(_("Garbage Collection Mode"))) {
             std::scoped_lock _{ m_access_mutex };
             m_state->gc_data_changed(make_gc_data());
         }
 
         if ((uint32_t)m_gc_mode->value() == (uint32_t)ScriptState::GarbageCollectionMode::GENERATIONAL) {
-            if (m_gc_minor_multiplier->draw("Minor GC Multiplier")) {
+            if (m_gc_minor_multiplier->draw(_("Minor GC Multiplier"))) {
                 std::scoped_lock _{ m_access_mutex };
                 m_state->gc_data_changed(make_gc_data());
             }
 
-            if (m_gc_major_multiplier->draw("Major GC Multiplier")) {
+            if (m_gc_major_multiplier->draw(_("Major GC Multiplier"))) {
                 std::scoped_lock _{ m_access_mutex };
                 m_state->gc_data_changed(make_gc_data());
             }
         }
 
         if (m_gc_handler->value() == (int32_t)ScriptState::GarbageCollectionHandler::REFRAMEWORK_MANAGED) {
-            if (m_gc_type->draw("Garbage Collection Type")) {
+            if (m_gc_type->draw(_("Garbage Collection Type"))) {
                 std::scoped_lock _{ m_access_mutex };
                 m_state->gc_data_changed(make_gc_data());
             }
 
             if ((uint32_t)m_gc_mode->value() != (uint32_t)ScriptState::GarbageCollectionMode::GENERATIONAL) {
-                if (m_gc_budget->draw("Garbage Collection Budget")) {
+                if (m_gc_budget->draw(_("Garbage Collection Budget"))) {
                     std::scoped_lock _{ m_access_mutex };
                     m_state->gc_data_changed(make_gc_data());
                 }
             }
         }
 
-        m_log_to_disk->draw("Log Lua Errors to Disk");
+        m_log_to_disk->draw(_("Log Lua Errors to Disk"));
 
         if (!m_last_script_error.empty()) {
             std::shared_lock _{m_script_error_mutex};
@@ -780,23 +780,23 @@ void ScriptRunner::on_draw_ui() {
             const auto diff = now - m_last_script_error_time;
             const auto sec = std::chrono::duration<float>(diff).count();
 
-            ImGui::TextWrapped("Last Error Time: %.2f seconds ago", sec);
+            ImGui::TextWrapped(_("Last Error Time: %.2f seconds ago"), sec);
 
             ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
-            ImGui::TextWrapped("Last Script Error: %s", m_last_script_error.data());
+            ImGui::TextWrapped(_("Last Script Error: %s"), m_last_script_error.data());
             ImGui::PopStyleColor();
         } else {
-            ImGui::TextWrapped("No Script Errors... yet!");
+            ImGui::TextWrapped(_("No Script Errors... yet!"));
         }
 
         if (!m_loaded_scripts.empty()) {
-            ImGui::Text("Loaded scripts:");
+            ImGui::Text(_("Loaded scripts:"));
 
             for (auto&& name : m_loaded_scripts) {
                 ImGui::Text(name.c_str());
             }
         } else {
-            ImGui::Text("No scripts loaded.");
+            ImGui::Text(_("No scripts loaded."));
         }
     }
 

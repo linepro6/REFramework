@@ -27,16 +27,16 @@ void ManualFlashlight::on_draw_ui() {
         return;
     }
 
-    if (m_enabled->draw("Enabled") && !m_enabled->value()) {
+    if (m_enabled->draw(_("Enabled")) && !m_enabled->value()) {
         on_disabled();
     }
 
-    m_key->draw("Change Key");
+    m_key->draw(_("Change Key"));
 
 #ifdef RE8
-    m_light_ignore_power_on_zones->draw("Ignore Light Power On Zones");
+    m_light_ignore_power_on_zones->draw(_("Ignore Light Power On Zones"));
 
-    ImGui::Text("Light power on zones: %i\n", m_light_power_on_zones);
+    ImGui::Text(_("Light power on zones: %i\n"), m_light_power_on_zones);
 #endif
 }
 

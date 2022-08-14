@@ -3845,12 +3845,12 @@ void VR::on_draw_ui() {
         }
 
         if (runtime->error && runtime->dll_missing) {
-            ImGui::TextWrapped("%s not loaded: %s not found", runtime->name().data(), dll_name.data());
-            ImGui::TextWrapped("Please drop the %s file into the game's directory if you want to use %s", dll_name.data(), runtime->name().data());
+            ImGui::TextWrapped(_("%s not loaded: %s not found"), runtime->name().data(), dll_name.data());
+            ImGui::TextWrapped(_("Please drop the %s file into the game's directory if you want to use %s"), dll_name.data(), runtime->name().data());
         } else if (runtime->error) {
-            ImGui::TextWrapped("%s not loaded: %s", runtime->name().data(), runtime->error->c_str());
+            ImGui::TextWrapped(_("%s not loaded: %s"), runtime->name().data(), runtime->error->c_str());
         } else {
-            ImGui::TextWrapped("%s not loaded: Unknown error", runtime->name().data());
+            ImGui::TextWrapped(_("%s not loaded: Unknown error"), runtime->name().data());
         }
 
         ImGui::Separator();
@@ -3860,53 +3860,53 @@ void VR::on_draw_ui() {
     display_error(m_openvr, "openvr_api.dll");
 
     if (!get_runtime()->loaded) {
-        ImGui::TextWrapped("No runtime loaded.");
+        ImGui::TextWrapped(_("No runtime loaded."));
         return;
     }
 
-    ImGui::TextWrapped("Hardware scheduling: %s", m_has_hw_scheduling ? "Enabled" : "Disabled");
+    ImGui::TextWrapped(_("Hardware scheduling: %s"), m_has_hw_scheduling ? _("Enabled") : _("Disabled"));
 
     if (m_has_hw_scheduling) {
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
-        ImGui::TextWrapped("WARNING: Hardware-accelerated GPU scheduling is enabled. This will cause the game to run slower.");
-        ImGui::TextWrapped("Go into your Windows Graphics settings and disable \"Hardware-accelerated GPU scheduling\"");
+        ImGui::TextWrapped(_("WARNING: Hardware-accelerated GPU scheduling is enabled. This will cause the game to run slower."));
+        ImGui::TextWrapped(_("Go into your Windows Graphics settings and disable \"Hardware-accelerated GPU scheduling\""));
         ImGui::PopStyleColor();
     }
 
     ImGui::Separator();
 
-    ImGui::TextWrapped("VR Runtime: %s", get_runtime()->name().data());
-    ImGui::TextWrapped("Render Resolution: %d x %d", get_runtime()->get_width(), get_runtime()->get_height());
+    ImGui::TextWrapped(_("VR Runtime: %s"), get_runtime()->name().data());
+    ImGui::TextWrapped(_("Render Resolution: %d x %d"), get_runtime()->get_width(), get_runtime()->get_height());
 
     if (get_runtime()->is_openvr()) {
-        ImGui::TextWrapped("Resolution can be changed in SteamVR");
+        ImGui::TextWrapped(_("Resolution can be changed in SteamVR"));
     } else if (get_runtime()->is_openxr()) {
-        if (ImGui::TreeNode("Bindings")) {
+        if (ImGui::TreeNode(_("Bindings"))) {
             m_openxr->display_bindings_editor();
             ImGui::TreePop();
         }
 
-        if (m_resolution_scale->draw("Resolution Scale")) {
+        if (m_resolution_scale->draw(_("Resolution Scale"))) {
             m_openxr->resolution_scale = m_resolution_scale->value();
         }
     }
     
-    ImGui::Combo("Sync Mode", (int*)&get_runtime()->custom_stage, "Early\0Late\0Very Late\0");
+    ImGui::Combo(_("Sync Mode"), (int*)&get_runtime()->custom_stage, _("Early\0Late\0Very Late\0"));
     ImGui::Separator();
 
-    if (ImGui::Button("Set Standing Height")) {
+    if (ImGui::Button(_("Set Standing Height"))) {
         m_standing_origin.y = get_position(0).y;
     }
 
-    if (ImGui::Button("Set Standing Origin") || m_set_standing_key->is_key_down_once()) {
+    if (ImGui::Button(_("Set Standing Origin")) || m_set_standing_key->is_key_down_once()) {
         m_standing_origin = get_position(0);
     }
 
-    if (ImGui::Button("Recenter View") || m_recenter_view_key->is_key_down_once()) {
+    if (ImGui::Button(_("Recenter View")) || m_recenter_view_key->is_key_down_once()) {
         recenter_view();
     }
 
-    if (ImGui::Button("Reinitialize Runtime")) {
+    if (ImGui::Button(_("Reinitialize Runtime"))) {
         get_runtime()->wants_reinitialize = true;
     }
 
@@ -3915,72 +3915,72 @@ void VR::on_draw_ui() {
 
     ImGui::Separator();
 
-    m_set_standing_key->draw("Set Standing Origin Key");
-    m_recenter_view_key->draw("Recenter View Key");
+    m_set_standing_key->draw(_("Set Standing Origin Key"));
+    m_recenter_view_key->draw(_("Recenter View Key"));
 
     ImGui::Separator();
 
-    m_use_afr->draw("Use AFR");
-    m_decoupled_pitch->draw("Decoupled Camera Pitch");
+    m_use_afr->draw(_("Use AFR"));
+    m_decoupled_pitch->draw(_("Decoupled Camera Pitch"));
 
-    if (ImGui::Checkbox("Positional Tracking", &m_positional_tracking)) {
+    if (ImGui::Checkbox(_("Positional Tracking"), &m_positional_tracking)) {
     }
 
-    m_hmd_oriented_audio->draw("Head Oriented Audio");
-    m_use_custom_view_distance->draw("Use Custom View Distance");
-    m_view_distance->draw("View Distance/FarZ");
-    m_motion_controls_inactivity_timer->draw("Inactivity Timer");
-    m_joystick_deadzone->draw("Joystick Deadzone");
+    m_hmd_oriented_audio->draw(_("Head Oriented Audio"));
+    m_use_custom_view_distance->draw(_("Use Custom View Distance"));
+    m_view_distance->draw(_("View Distance/FarZ"));
+    m_motion_controls_inactivity_timer->draw(_("Inactivity Timer"));
+    m_joystick_deadzone->draw(_("Joystick Deadzone"));
 
-    m_ui_scale_option->draw("2D UI Scale");
-    m_ui_distance_option->draw("2D UI Distance");
-    m_world_ui_scale_option->draw("World-Space UI Scale");
+    m_ui_scale_option->draw(_("2D UI Scale"));
+    m_ui_distance_option->draw(_("2D UI Distance"));
+    m_world_ui_scale_option->draw(_("World-Space UI Scale"));
 
-    ImGui::DragFloat3("Overlay Rotation", (float*)&m_overlay_rotation, 0.01f, -360.0f, 360.0f);
-    ImGui::DragFloat3("Overlay Position", (float*)&m_overlay_position, 0.01f, -100.0f, 100.0f);
+    ImGui::DragFloat3(_("Overlay Rotation"), (float*)&m_overlay_rotation, 0.01f, -360.0f, 360.0f);
+    ImGui::DragFloat3(_("Overlay Position"), (float*)&m_overlay_position, 0.01f, -100.0f, 100.0f);
 
     ImGui::Separator();
-    ImGui::Text("Graphical Options");
+    ImGui::Text(_("Graphical Options"));
 
-    m_force_fps_settings->draw("Force Uncap FPS");
-    m_force_aa_settings->draw("Force Disable TAA");
-    m_force_motionblur_settings->draw("Force Disable Motion Blur");
-    m_force_vsync_settings->draw("Force Disable V-Sync");
-    m_force_lensdistortion_settings->draw("Force Disable Lens Distortion");
-    m_force_volumetrics_settings->draw("Force Disable Volumetrics");
-    m_force_lensflares_settings->draw("Force Disable Lens Flares");
-    m_force_dynamic_shadows_settings->draw("Force Enable Dynamic Shadows");
-    m_allow_engine_overlays->draw("Allow Engine Overlays");
+    m_force_fps_settings->draw(_("Force Uncap FPS"));
+    m_force_aa_settings->draw(_("Force Disable TAA"));
+    m_force_motionblur_settings->draw(_("Force Disable Motion Blur"));
+    m_force_vsync_settings->draw(_("Force Disable V-Sync"));
+    m_force_lensdistortion_settings->draw(_("Force Disable Lens Distortion"));
+    m_force_volumetrics_settings->draw(_("Force Disable Volumetrics"));
+    m_force_lensflares_settings->draw(_("Force Disable Lens Flares"));
+    m_force_dynamic_shadows_settings->draw(_("Force Enable Dynamic Shadows"));
+    m_allow_engine_overlays->draw(_("Allow Engine Overlays"));
 
-    if (ImGui::TreeNode("Desktop Recording Fix")) {
-        ImGui::PushID("Desktop");
-        m_desktop_fix->draw("Enabled");
-        m_desktop_fix_skip_present->draw("Skip Present");
+    if (ImGui::TreeNode(_("Desktop Recording Fix"))) {
+        ImGui::PushID(_("Desktop"));
+        m_desktop_fix->draw(_("Enabled"));
+        m_desktop_fix_skip_present->draw(_("Skip Present"));
         ImGui::PopID();
         ImGui::TreePop();
     }
 
     ImGui::Separator();
-    ImGui::Text("Debug info");
-    ImGui::Checkbox("Disable Projection Matrix Override", &m_disable_projection_matrix_override);
-    ImGui::Checkbox("Disable GUI Projection Matrix Override", &m_disable_gui_camera_projection_matrix_override);
-    ImGui::Checkbox("Disable View Matrix Override", &m_disable_view_matrix_override);
-    ImGui::Checkbox("Disable Backbuffer Size Override", &m_disable_backbuffer_size_override);
-    ImGui::Checkbox("Disable Temporal Fix", &m_disable_temporal_fix);
-    ImGui::Checkbox("Disable Post Effect Fix", &m_disable_post_effect_fix);
-    ImGui::Checkbox("Enable Asynchronous Rendering", &m_enable_asynchronous_rendering);
+    ImGui::Text(_("Debug info"));
+    ImGui::Checkbox(_("Disable Projection Matrix Override"), &m_disable_projection_matrix_override);
+    ImGui::Checkbox(_("Disable GUI Projection Matrix Override"), &m_disable_gui_camera_projection_matrix_override);
+    ImGui::Checkbox(_("Disable View Matrix Override"), &m_disable_view_matrix_override);
+    ImGui::Checkbox(_("Disable Backbuffer Size Override"), &m_disable_backbuffer_size_override);
+    ImGui::Checkbox(_("Disable Temporal Fix"), &m_disable_temporal_fix);
+    ImGui::Checkbox(_("Disable Post Effect Fix"), &m_disable_post_effect_fix);
+    ImGui::Checkbox(_("Enable Asynchronous Rendering"), &m_enable_asynchronous_rendering);
     
     const double min_ = 0.0;
     const double max_ = 25.0;
-    ImGui::SliderScalar("Prediction Scale", ImGuiDataType_Double, &m_openxr->prediction_scale, &min_, &max_);
+    ImGui::SliderScalar(_("Prediction Scale"), ImGuiDataType_Double, &m_openxr->prediction_scale, &min_, &max_);
 
-    ImGui::DragFloat4("Raw Left", (float*)&m_raw_projections[0], 0.01f, -100.0f, 100.0f);
-    ImGui::DragFloat4("Raw Right", (float*)&m_raw_projections[1], 0.01f, -100.0f, 100.0f);
+    ImGui::DragFloat4(_("Raw Left"), (float*)&m_raw_projections[0], 0.01f, -100.0f, 100.0f);
+    ImGui::DragFloat4(_("Raw Right"), (float*)&m_raw_projections[1], 0.01f, -100.0f, 100.0f);
 
     // convert m_avg_input_delay (std::chrono::nanoseconds) to milliseconds (float)
     auto duration_float = std::chrono::duration<float, std::milli>(m_avg_input_delay).count();
 
-    ImGui::DragFloat("Avg Input Processing Delay (MS)", &duration_float, 0.00001f);
+    ImGui::DragFloat(_("Avg Input Processing Delay (MS)"), &duration_float, 0.00001f);
 }
 
 void VR::on_device_reset() {

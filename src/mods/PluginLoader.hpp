@@ -7,6 +7,7 @@
 
 #include "Mod.hpp"
 #include "reframework/API.hpp"
+#include "I18n.hpp"
 
 bool reframework_on_lua_state_created(REFLuaStateCreatedCb cb);
 bool reframework_on_lua_state_destroyed(REFLuaStateDestroyedCb cb);
@@ -30,7 +31,7 @@ public:
     // specifics (`reframework_plugin_initialize`) are still delayed until REFramework is fully setup.
     void early_init();
 
-    std::string_view get_name() const override { return "PluginLoader"; }
+    std::string_view get_name() const override { return _("PluginLoader"); }
     std::optional<std::string> on_initialize() override;
     void on_draw_ui() override;
 

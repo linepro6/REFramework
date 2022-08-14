@@ -2,12 +2,13 @@
 
 #include "Mod.hpp"
 #include "utility/FunctionHook.hpp"
+#include "I18n.hpp"
 
 class Hooks : public Mod {
 public:
     Hooks();
 
-    std::string_view get_name() const override { return "PositionHooks"; };
+    std::string_view get_name() const override { return _("PositionHooks"); };
     std::optional<std::string> on_initialize() override;
     void on_draw_ui() override;
 
