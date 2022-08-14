@@ -813,8 +813,12 @@ void REFramework::update_fonts() {
     auto& fonts = ImGui::GetIO().Fonts;
 
     fonts->Clear();
-    fonts->AddFontFromMemoryCompressedTTF(RobotoMedium_compressed_data, RobotoMedium_compressed_size, (float)m_font_size);
-    fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", 18, nullptr, fonts->GetGlyphRangesChineseSimplifiedCommon());
+
+    ImFontConfig config;
+    config.MergeMode = true;
+
+    fonts->AddFontFromMemoryCompressedTTF(RobotoMedium_compressed_data, RobotoMedium_compressed_size, (float)m_font_size, nullptr, fonts->GetGlyphRangesDefault());
+    fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", 18, &config, fonts->GetGlyphRangesChineseSimplifiedCommon());
 
     for (auto& font : m_additional_fonts) {
         const ImWchar* ranges = nullptr;
