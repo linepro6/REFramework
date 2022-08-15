@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-14 13:15+0800\n"
+"POT-Creation-Date: 2022-08-16 00:10+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -397,74 +397,78 @@ msgstr ""
 msgid "Scene"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:690
+#: src/mods/ScriptRunner.cpp:354
+msgid "Script Generated UI"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:691
 msgid "Run script"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:710
+#: src/mods/ScriptRunner.cpp:711
 msgid "Reset scripts"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:716
+#: src/mods/ScriptRunner.cpp:717
 msgid "Spawn Debug Console"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:727
+#: src/mods/ScriptRunner.cpp:728
 msgid "Garbage Collection Stats"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:733
+#: src/mods/ScriptRunner.cpp:734
 #, c-format
 msgid "Megabytes in use: %.2f"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:738
+#: src/mods/ScriptRunner.cpp:739
 msgid "Garbage Collection Handler"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:743
+#: src/mods/ScriptRunner.cpp:744
 msgid "Garbage Collection Mode"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:749
+#: src/mods/ScriptRunner.cpp:750
 msgid "Minor GC Multiplier"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:754
+#: src/mods/ScriptRunner.cpp:755
 msgid "Major GC Multiplier"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:761
+#: src/mods/ScriptRunner.cpp:762
 msgid "Garbage Collection Type"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:767
+#: src/mods/ScriptRunner.cpp:768
 msgid "Garbage Collection Budget"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:774
+#: src/mods/ScriptRunner.cpp:775
 msgid "Log Lua Errors to Disk"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:783
+#: src/mods/ScriptRunner.cpp:784
 #, c-format
 msgid "Last Error Time: %.2f seconds ago"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:786
+#: src/mods/ScriptRunner.cpp:787
 #, c-format
 msgid "Last Script Error: %s"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:789
+#: src/mods/ScriptRunner.cpp:790
 msgid "No Script Errors... yet!"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:793
+#: src/mods/ScriptRunner.cpp:794
 msgid "Loaded scripts:"
 msgstr ""
 
-#: src/mods/ScriptRunner.cpp:799
+#: src/mods/ScriptRunner.cpp:800
 msgid "No scripts loaded."
 msgstr ""
 

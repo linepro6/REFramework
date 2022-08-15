@@ -32,6 +32,7 @@ extern "C" {
 #include "mods/REFrameworkConfig.hpp"
 #include "REFramework.hpp"
 #include "I18n.hpp"
+#include "I18n/i18n_ymo_zh_CN.hpp"
 
 namespace fs = std::filesystem;
 using namespace std::literals;
@@ -137,6 +138,8 @@ REFramework::REFramework(HMODULE reframework_module)
     spdlog::set_default_logger(m_logger);
     spdlog::flush_on(spdlog::level::info);
     spdlog::info("REFramework entry");
+
+    yi18n::LoadTranslateData(reinterpret_cast<const yi18n::YMOData*>(i18n_ymo_zh_CN));
 
     const auto module_size = *utility::get_module_size(m_game_module);
 
@@ -818,7 +821,7 @@ void REFramework::update_fonts() {
     config.MergeMode = true;
 
     fonts->AddFontFromMemoryCompressedTTF(RobotoMedium_compressed_data, RobotoMedium_compressed_size, (float)m_font_size, nullptr, fonts->GetGlyphRangesDefault());
-    fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", (float)m_font_size, &config, fonts->GetGlyphRangesChineseSimplifiedCommon());
+    fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", (float)m_font_size, &config, fonts->GetGlyphRangesChineseFull());
 
     for (auto& font : m_additional_fonts) {
         const ImWchar* ranges = nullptr;

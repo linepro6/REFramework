@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-14 13:15+0800\n"
-"PO-Revision-Date: 2022-08-15 22:13+0800\n"
+"POT-Creation-Date: 2022-08-16 00:10+0800\n"
+"PO-Revision-Date: 2022-08-16 00:11+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -398,74 +398,78 @@ msgstr "时间尺度"
 msgid "Scene"
 msgstr "场景设置"
 
-#: src/mods/ScriptRunner.cpp:690
+#: src/mods/ScriptRunner.cpp:354
+msgid "Script Generated UI"
+msgstr "脚本生成界面"
+
+#: src/mods/ScriptRunner.cpp:691
 msgid "Run script"
 msgstr "运行脚本"
 
-#: src/mods/ScriptRunner.cpp:710
+#: src/mods/ScriptRunner.cpp:711
 msgid "Reset scripts"
 msgstr "重载脚本"
 
-#: src/mods/ScriptRunner.cpp:716
+#: src/mods/ScriptRunner.cpp:717
 msgid "Spawn Debug Console"
 msgstr "呼出调试控制台"
 
-#: src/mods/ScriptRunner.cpp:727
+#: src/mods/ScriptRunner.cpp:728
 msgid "Garbage Collection Stats"
 msgstr "垃圾收集统计信息"
 
-#: src/mods/ScriptRunner.cpp:733
+#: src/mods/ScriptRunner.cpp:734
 #, c-format
 msgid "Megabytes in use: %.2f"
 msgstr "已使用MB:%.2f"
 
-#: src/mods/ScriptRunner.cpp:738
+#: src/mods/ScriptRunner.cpp:739
 msgid "Garbage Collection Handler"
 msgstr "垃圾收集处理管理器"
 
-#: src/mods/ScriptRunner.cpp:743
+#: src/mods/ScriptRunner.cpp:744
 msgid "Garbage Collection Mode"
 msgstr "垃圾收集模式"
 
-#: src/mods/ScriptRunner.cpp:749
+#: src/mods/ScriptRunner.cpp:750
 msgid "Minor GC Multiplier"
 msgstr "次垃圾收集倍增"
 
-#: src/mods/ScriptRunner.cpp:754
+#: src/mods/ScriptRunner.cpp:755
 msgid "Major GC Multiplier"
 msgstr "主垃圾收集倍增"
 
-#: src/mods/ScriptRunner.cpp:761
+#: src/mods/ScriptRunner.cpp:762
 msgid "Garbage Collection Type"
 msgstr "垃圾收集类型"
 
-#: src/mods/ScriptRunner.cpp:767
+#: src/mods/ScriptRunner.cpp:768
 msgid "Garbage Collection Budget"
 msgstr "垃圾收集预算"
 
-#: src/mods/ScriptRunner.cpp:774
+#: src/mods/ScriptRunner.cpp:775
 msgid "Log Lua Errors to Disk"
 msgstr "将Lua错误记录到磁盘"
 
-#: src/mods/ScriptRunner.cpp:783
+#: src/mods/ScriptRunner.cpp:784
 #, c-format
 msgid "Last Error Time: %.2f seconds ago"
 msgstr "上次报错时间: %.2f 秒前"
 
-#: src/mods/ScriptRunner.cpp:786
+#: src/mods/ScriptRunner.cpp:787
 #, c-format
 msgid "Last Script Error: %s"
 msgstr "上一个脚本错误: %s"
 
-#: src/mods/ScriptRunner.cpp:789
+#: src/mods/ScriptRunner.cpp:790
 msgid "No Script Errors... yet!"
 msgstr "没有脚本错误…暂时！"
 
-#: src/mods/ScriptRunner.cpp:793
+#: src/mods/ScriptRunner.cpp:794
 msgid "Loaded scripts:"
 msgstr "已加载脚本:"
 
-#: src/mods/ScriptRunner.cpp:799
+#: src/mods/ScriptRunner.cpp:800
 msgid "No scripts loaded."
 msgstr "无脚本加载。"
 
