@@ -8,11 +8,9 @@ struct YMOData;
 
 void LoadTranslateData(const YMOData* ymo);
 
-#ifdef _INC_WINDOWS
-void LoadTranslateDataFromResource(const HINSTANCE hInst);
-#endif
-
 const char* TranslateWithHash(const char* const str, const uint32_t hash);
+
+const char* Translate(const char* const str);
 } // namespace yi18n
 
 #define _(str) yi18n::TranslateWithHash(str, std::integral_constant<uint32_t, fnv1a_32(str)>::value)

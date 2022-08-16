@@ -1,0 +1,56 @@
+﻿开局彩鸟spiribird_spawn 文本,
+Bird Summoner MOD,彩鸟召唤 MOD
+Press 'home' to hide or show,使用“Home”键隐藏/显示菜单界面
+if you use gamepad press R3 & L3 to summon prism,如果您使用手柄，请按R3和L3召唤彩鸟
+Auto Spawn prism,进场自动召唤出彩鸟
+Buttons of birds,彩鸟按键
+Auto Summon,自动召唤
+Attack,攻击鸟
+Vitality,生命鸟
+Defense,防御鸟
+Stamina,耐力鸟
+Prism,彩虹鸟
+Summor max,最高属性
+Values of birds,鸟的数值
+Auto Birds ATK,攻击鸟（自动召唤）
+Auto Birds DEF,防御鸟（自动召唤）
+Auto Birds HP,生命鸟（自动召唤）
+Auto Birds STM,耐力鸟（自动召唤）
+infos of birds,彩鸟信息
+auto birds id ,自动鸟ID
+Total birds,彩鸟总数
+Attack,攻击
+Defense,防御
+Stamina,耐力
+Vitality,生命
+Prism,彩虹
+Status and timer cheat,状态和计时器
+,
+,
+无限耗材Infinite_Consumables 文本,
+Infinite Consumables Options,无限耗材设置
+Multiplayer being False will override the other individual settings.,如果你关闭了多人模式，那么在多人模式环境下，其他设置也会跟随关闭
+Enabled in Multiplayer Quests,在多人模式中启用
+Infinite Coatings (for Bow),无限瓶子（弓）
+Infinite Ammo (for Bowguns),无限弹药（弩）
+"Infinite Items (Potions, Food, Traps, etc.)",无限物品（药剂、食物、陷阱等）
+"Infinite Endemic Life (Spiders, Beetles, etc)",无限环境生物（蜘蛛、甲虫等）
+,
+BUFF提示Buff_reminder 文本,
+Buff reminder options,Buff提示 设置
+"Language (requires \""Reset scripts\"" in REFramework ScriptRunner)",语言（选择后，需要在REF的“脚本工具”中使用“重载脚本”才能生效）
+English,英语
+Traditional Chinese,繁体中文
+Korean,韩语
+Japanese,日语
+Timer Enable,计时器：启用BUFF倒计时
+HP/Stamina Enable,启用HP/耐力数值（作用不大，建议关闭）
+Remind when skill actived,当技能激活时提醒
+Remind when skill worn off,当技能结束时提醒
+"Font size(requires \""Reset scripts\"" in REFramework ScriptRunner)",字体大小（选择后，需要在REF的“脚本工具”中使用“重载脚本”才能生效）
+Timer spacing,计时器间隔
+Timer Width,计时器横向位置
+Timer Height,计时器纵向位置
+HP/Stamina spacing,HP/耐力数值间隔
+HP/Stamina Width,HP/耐力数值横向位置
+HP/Stamina Height,HP/耐力数值纵向位置

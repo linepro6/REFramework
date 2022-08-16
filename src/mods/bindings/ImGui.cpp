@@ -6,6 +6,7 @@
 #include "utility/ImGui.hpp"
 
 #include "ImGui.hpp"
+#include "I18n.hpp"
 
 namespace api::imgui {
 ImVec2 create_imvec2(sol::object obj) {
@@ -59,7 +60,7 @@ bool button(const char* label) {
         label = "";
     }
 
-    return ImGui::Button(label);
+    return ImGui::Button(yi18n::Translate(label));
 }
 
 bool small_button(const char* label) {
@@ -99,7 +100,7 @@ void text(const char* text) {
         text = "";
     }
 
-    ImGui::Text(text);
+    ImGui::Text(yi18n::Translate(text));
 }
 
 void text_colored(const char* text, unsigned int color) {
@@ -112,7 +113,7 @@ void text_colored(const char* text, unsigned int color) {
     auto b = (color >> 16) & 0xFF;
     auto a = (color >> 24) & 0xFF;
 
-    ImGui::TextColored(ImVec4{ (float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, (float)a / 255.0f }, text);
+    ImGui::TextColored(ImVec4{ (float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, (float)a / 255.0f }, yi18n::Translate(text));
 }
 
 sol::variadic_results checkbox(sol::this_state s, const char* label, bool v) {
@@ -120,7 +121,7 @@ sol::variadic_results checkbox(sol::this_state s, const char* label, bool v) {
         label = "";
     }
 
-    auto changed = ImGui::Checkbox(label, &v);
+    auto changed = ImGui::Checkbox(yi18n::Translate(label), &v);
 
     sol::variadic_results results{};
 
@@ -135,7 +136,7 @@ sol::variadic_results drag_float(sol::this_state s, const char* label, float v, 
         label = "";
     }
 
-    auto changed = ImGui::DragFloat(label, &v, v_speed, v_min, v_max, display_format);
+    auto changed = ImGui::DragFloat(yi18n::Translate(label), &v, v_speed, v_min, v_max, display_format);
 
     sol::variadic_results results{};
 
@@ -150,7 +151,7 @@ sol::variadic_results drag_float2(sol::this_state s, const char* label, Vector2f
         label = "";
     }
 
-    auto changed = ImGui::DragFloat2(label, (float*)&v, v_speed, v_min, v_max, display_format);
+    auto changed = ImGui::DragFloat2(yi18n::Translate(label), (float*)&v, v_speed, v_min, v_max, display_format);
 
     sol::variadic_results results{};
 
@@ -165,7 +166,7 @@ sol::variadic_results drag_float3(sol::this_state s, const char* label, Vector3f
         label = "";
     }
 
-    auto changed = ImGui::DragFloat3(label, (float*)&v, v_speed, v_min, v_max, display_format);
+    auto changed = ImGui::DragFloat3(yi18n::Translate(label), (float*)&v, v_speed, v_min, v_max, display_format);
 
     sol::variadic_results results{};
 
@@ -181,7 +182,7 @@ sol::variadic_results drag_float4(sol::this_state s, const char* label, Vector4f
         label = "";
     }
 
-    auto changed = ImGui::DragFloat4(label, (float*)&v, v_speed, v_min, v_max, display_format);
+    auto changed = ImGui::DragFloat4(yi18n::Translate(label), (float*)&v, v_speed, v_min, v_max, display_format);
 
     sol::variadic_results results{};
 
@@ -196,7 +197,7 @@ sol::variadic_results drag_int(sol::this_state s, const char* label, int v, floa
         label = "";
     }
 
-    auto changed = ImGui::DragInt(label, &v, v_speed, v_min, v_max, display_format);
+    auto changed = ImGui::DragInt(yi18n::Translate(label), &v, v_speed, v_min, v_max, display_format);
 
     sol::variadic_results results{};
 
@@ -211,7 +212,7 @@ sol::variadic_results slider_float(sol::this_state s, const char* label, float v
         label = "";
     }
 
-    auto changed = ImGui::SliderFloat(label, &v, v_min, v_max, display_format);
+    auto changed = ImGui::SliderFloat(yi18n::Translate(label), &v, v_min, v_max, display_format);
 
     sol::variadic_results results{};
 
@@ -227,7 +228,7 @@ sol::variadic_results slider_int(sol::this_state s, const char* label, int v, in
         label = "";
     }
 
-    auto changed = ImGui::SliderInt(label, &v, v_min, v_max, display_format);
+    auto changed = ImGui::SliderInt(yi18n::Translate(label), &v, v_min, v_max, display_format);
 
     sol::variadic_results results{};
 
@@ -261,7 +262,7 @@ sol::variadic_results input_text(sol::this_state s, const char* label, const std
         return 0;
     };
 
-    auto changed = ImGui::InputText(label, buffer.data(), buffer.capacity() + 1, flags, input_text_callback);
+    auto changed = ImGui::InputText(yi18n::Translate(label), buffer.data(), buffer.capacity() + 1, flags, input_text_callback);
 
     sol::variadic_results results{};
 
@@ -299,7 +300,7 @@ sol::variadic_results input_text_multiline(sol::this_state s, const char* label,
 
     const auto size = create_imvec2(size_obj);
 
-    auto changed = ImGui::InputTextMultiline(label, buffer.data(), buffer.capacity() + 1, size, flags, input_text_callback);
+    auto changed = ImGui::InputTextMultiline(yi18n::Translate(label), buffer.data(), buffer.capacity() + 1, size, flags, input_text_callback);
 
     sol::variadic_results results{};
 
@@ -333,13 +334,13 @@ sol::variadic_results combo(sol::this_state s, const char* label, sol::object se
 
     auto selection_changed = false;
 
-    if (ImGui::BeginCombo(label, preview_value)) {
+    if (ImGui::BeginCombo(yi18n::Translate(label), yi18n::Translate(preview_value))) {
         //for (auto i = 1u; i <= values.size(); ++i) {
         for (auto& [key, val] : values) {
             auto val_at_k = values[key].get<sol::object>();
 
             if (val_at_k.is<const char*>()) {
-                auto entry = val_at_k.as<const char*>();
+                auto entry = yi18n::Translate(val_at_k.as<const char*>());
 
                 if (ImGui::Selectable(entry, selection == key)) {
                     selection = key;
@@ -364,7 +365,7 @@ bool tree_node(const char* label) {
         label = "";
     }
 
-    return ImGui::TreeNode(label);
+    return ImGui::TreeNode(yi18n::Translate(label));
 }
 
 bool tree_node_ptr_id(const void* id, const char* label) {
@@ -372,7 +373,7 @@ bool tree_node_ptr_id(const void* id, const char* label) {
         label = "";
     }
 
-    return ImGui::TreeNode(id, label);
+    return ImGui::TreeNode(id, yi18n::Translate(label));
 }
 
 bool tree_node_str_id(const char* id, const char* label) {
@@ -380,7 +381,7 @@ bool tree_node_str_id(const char* id, const char* label) {
         label = "";
     }
 
-    return ImGui::TreeNode(id, label);
+    return ImGui::TreeNode(id, yi18n::Translate(label));
 }
 
 void tree_pop() {
@@ -426,7 +427,7 @@ bool begin_window(const char* name, sol::object open_obj, ImGuiWindowFlags flags
         return false;
     }
 
-    ImGui::Begin(name, open_p, flags);
+    ImGui::Begin(yi18n::Translate(name), open_p, flags);
 
     return open;
 }
@@ -455,7 +456,7 @@ bool begin_child_window(const char* name, sol::object size_obj, sol::object bord
         border = border_obj.as<bool>();
     }
 
-    return ImGui::BeginChild(name, size, border, flags);
+    return ImGui::BeginChild(yi18n::Translate(name), size, border, flags);
 }
 
 void end_child_window() {
@@ -504,7 +505,7 @@ void new_line() {
 }
 
 bool collapsing_header(const char* name) {
-    return ImGui::CollapsingHeader(name);
+    return ImGui::CollapsingHeader(yi18n::Translate(name));
 }
 
 int load_font(sol::object filepath_obj, int size, sol::object ranges) {
@@ -576,7 +577,7 @@ sol::variadic_results color_picker(sol::this_state s, const char* label, unsigne
         a / 255.0f,
     };
 
-    auto changed = ImGui::ColorPicker4(label, col, flags);
+    auto changed = ImGui::ColorPicker4(yi18n::Translate(label), col, flags);
 
     r = (unsigned int)(col[0] * 255.0f);
     g = (unsigned int)(col[1] * 255.0f);
@@ -617,7 +618,7 @@ sol::variadic_results color_picker_argb(sol::this_state s, const char* label, un
         a / 255.0f,
     };
 
-    auto changed = ImGui::ColorPicker4(label, col, flags);
+    auto changed = ImGui::ColorPicker4(yi18n::Translate(label), col, flags);
 
     r = (unsigned int)(col[0] * 255.0f);
     g = (unsigned int)(col[1] * 255.0f);
@@ -650,7 +651,7 @@ sol::variadic_results color_picker3(sol::this_state s, const char* label, Vector
         flags = (ImGuiColorEditFlags)flags_obj.as<int>();
     }
 
-    auto changed = ImGui::ColorPicker3(label, &color.x, flags);
+    auto changed = ImGui::ColorPicker3(yi18n::Translate(label), &color.x, flags);
 
     sol::variadic_results results{};
 
@@ -671,7 +672,7 @@ sol::variadic_results color_picker4(sol::this_state s, const char* label, Vector
         flags = (ImGuiColorEditFlags)flags_obj.as<int>();
     }
 
-    auto changed = ImGui::ColorPicker4(label, &color.x, flags);
+    auto changed = ImGui::ColorPicker4(yi18n::Translate(label), &color.x, flags);
 
     sol::variadic_results results{};
 
@@ -701,7 +702,7 @@ sol::variadic_results color_edit(sol::this_state s, const char* label, unsigned 
         a / 255.0f,
     };
 
-    auto changed = ImGui::ColorEdit4(label, col, flags);
+    auto changed = ImGui::ColorEdit4(yi18n::Translate(label), col, flags);
 
     r = (unsigned int)(col[0] * 255.0f);
     g = (unsigned int)(col[1] * 255.0f);
@@ -742,7 +743,7 @@ sol::variadic_results color_edit_argb(sol::this_state s, const char* label, unsi
         a / 255.0f,
     };
 
-    auto changed = ImGui::ColorEdit4(label, col, flags);
+    auto changed = ImGui::ColorEdit4(yi18n::Translate(label), col, flags);
 
     r = (unsigned int)(col[0] * 255.0f);
     g = (unsigned int)(col[1] * 255.0f);
@@ -775,7 +776,7 @@ sol::variadic_results color_edit3(sol::this_state s, const char* label, Vector3f
         flags = (ImGuiColorEditFlags)flags_obj.as<int>();
     }
 
-    auto changed = ImGui::ColorEdit3(label, &color.x, flags);
+    auto changed = ImGui::ColorEdit3(yi18n::Translate(label), &color.x, flags);
 
     sol::variadic_results results{};
 
@@ -796,7 +797,7 @@ sol::variadic_results color_edit4(sol::this_state s, const char* label, Vector4f
         flags = (ImGuiColorEditFlags)flags_obj.as<int>();
     }
 
-    auto changed = ImGui::ColorEdit4(label, &color.x, flags);
+    auto changed = ImGui::ColorEdit4(yi18n::Translate(label), &color.x, flags);
 
     sol::variadic_results results{};
 
@@ -973,7 +974,7 @@ bool is_popup_open(const char* str_id) {
 }
 
 Vector2f calc_text_size(const char* text) {
-    const auto result = ImGui::CalcTextSize(text);
+    const auto result = ImGui::CalcTextSize(yi18n::Translate(text));
 
     return Vector2f{
         result.x,
@@ -1050,7 +1051,7 @@ bool begin_menu(const char* label, sol::object enabled_obj) {
         enabled = enabled_obj.as<bool>();
     }
 
-    return ImGui::BeginMenu(label, enabled);
+    return ImGui::BeginMenu(yi18n::Translate(label), enabled);
 }
 
 void end_menu() {
@@ -1080,7 +1081,7 @@ bool menu_item(const char* label, sol::object shortcut_obj, sol::object selected
         enabled = enabled_obj.as<bool>();
     }
 
-    return ImGui::MenuItem(label, shortcut, selected, enabled);
+    return ImGui::MenuItem(yi18n::Translate(label), shortcut, selected, enabled);
 }
 
 Vector2f get_display_size() {
@@ -1227,7 +1228,7 @@ void table_setup_column(const char* label, sol::object flags_obj, sol::object in
     auto init_width = init_width_or_weight_obj.is<float>() ? init_width_or_weight_obj.as<float>() : 0.0f;
     auto user_id = user_id_obj.is<ImGuiID>() ? user_id_obj.as<ImGuiID>() : 0;
 
-    ImGui::TableSetupColumn(label, flags, init_width, user_id);
+    ImGui::TableSetupColumn(yi18n::Translate(label), flags, init_width, user_id);
 }
 
 void table_setup_scroll_freeze(int cols, int rows) {
@@ -1243,7 +1244,7 @@ void table_header(const char* label) {
         label = "";
     }
 
-    ImGui::TableHeader(label);
+    ImGui::TableHeader(yi18n::Translate(label));
 }
 
 int table_get_column_count() {
@@ -1376,11 +1377,11 @@ void world_text(const char* text, sol::object world_pos_object, ImU32 color = 0x
     }
 
     auto draw_list = ImGui::GetBackgroundDrawList();
-    draw_list->AddText(ImVec2{screen_pos->x, screen_pos->y}, color, text);
+    draw_list->AddText(ImVec2{screen_pos->x, screen_pos->y}, color, yi18n::Translate(text));
 }
 
 void text(const char* text, float x, float y, ImU32 color) {
-    ImGui::GetBackgroundDrawList()->AddText(ImVec2{x, y}, color, text);
+    ImGui::GetBackgroundDrawList()->AddText(ImVec2{x, y}, color, yi18n::Translate(text));
 }
 
 void filled_rect(float x, float y, float w, float h, ImU32 color) {

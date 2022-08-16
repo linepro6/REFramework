@@ -2,21 +2,25 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Kurimu Miya, 2022
+# LinePro V, 2022
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-16 00:10+0800\n"
-"PO-Revision-Date: 2022-08-16 00:11+0800\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: zh_CN\n"
+"POT-Creation-Date: 2022-08-16 21:46+0800\n"
+"PO-Revision-Date: 2022-08-14 05:29+0000\n"
+"Last-Translator: LinePro V, 2022\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/l-17/teams/148606/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
 
 #: src/mods/Camera.cpp:26
 msgid ""
@@ -57,7 +61,7 @@ msgstr "全局FOV"
 
 #: src/mods/Camera.hpp:60
 msgid "Camera"
-msgstr "相机"
+msgstr "视角"
 
 #: src/mods/FirstPerson.cpp:106
 msgid "Show In Cutscenes"
@@ -484,7 +488,8 @@ msgstr "%s 未加载: %s 妹找着啊……"
 
 #: src/mods/VR.cpp:3849
 #, c-format
-msgid "Please drop the %s file into the game's directory if you want to use %s"
+msgid ""
+"Please drop the %s file into the game's directory if you want to use %s"
 msgstr "请把 %s文件放入游戏目录，如果要使用 %s"
 
 #: src/mods/VR.cpp:3851
@@ -512,8 +517,8 @@ msgstr "禁用"
 
 #: src/mods/VR.cpp:3871
 msgid ""
-"WARNING: Hardware-accelerated GPU scheduling is enabled. This will cause the "
-"game to run slower."
+"WARNING: Hardware-accelerated GPU scheduling is enabled. This will cause the"
+" game to run slower."
 msgstr "警告：已启用硬件加速GPU调度。这将导致游戏运行较慢。"
 
 #: src/mods/VR.cpp:3872
@@ -732,67 +737,67 @@ msgstr ""
 msgid "VR"
 msgstr "VR"
 
-#: src/REFramework.cpp:904
+#: src/REFramework.cpp:907
 msgid "Default Menu Key: Insert"
 msgstr "默认菜单按键：Insert"
 
-#: src/REFramework.cpp:905
+#: src/REFramework.cpp:908
 msgid "Transparency"
 msgstr "透明"
 
-#: src/REFramework.cpp:909
+#: src/REFramework.cpp:912
 msgid "Makes the UI transparent when not focused."
 msgstr "让REF在未选中时变得透明。"
 
-#: src/REFramework.cpp:910
+#: src/REFramework.cpp:913
 msgid "Input Passthrough"
 msgstr "UI透过"
 
-#: src/REFramework.cpp:914
+#: src/REFramework.cpp:917
 msgid ""
 "Allows mouse and keyboard inputs to register to the game while the UI is "
 "focused."
 msgstr "让鼠标能够穿过REF界面点击到游戏内。"
 
-#: src/REFramework.cpp:922
+#: src/REFramework.cpp:925
 msgid "REFramework is currently initializing..."
 msgstr "REFramework当前正在初始化……"
 
-#: src/REFramework.cpp:923
+#: src/REFramework.cpp:926
 msgid ""
 "This menu will close after initialization if you have the remember option "
 "enabled."
-msgstr "如果启用了“记住”选项，此菜单将在初始化后关闭。"
+msgstr "如果启用了“保存”选项，此菜单将在初始化后关闭。"
 
-#: src/REFramework.cpp:925
+#: src/REFramework.cpp:928
 #, c-format
 msgid "REFramework error: %s"
 msgstr "REFramework错误: %s"
 
-#: src/REFramework.cpp:945 src/REFramework.cpp:949
+#: src/REFramework.cpp:948 src/REFramework.cpp:952
 msgid "About"
 msgstr "关于"
 
-#: src/REFramework.cpp:951
+#: src/REFramework.cpp:954
 msgid "Author: praydog"
 msgstr "作者：praydog/汉化：花舞组"
 
-#: src/REFramework.cpp:952
+#: src/REFramework.cpp:955
 msgid "Inspired by the Kanan project."
 msgstr "灵感来自Kanan项目。"
 
-#: src/REFramework.cpp:1022
+#: src/REFramework.cpp:1025
 msgid "Engine information"
 msgstr "引擎信息"
 
-#: src/REFramework.cpp:1027 src/REFramework.cpp:1030
+#: src/REFramework.cpp:1030 src/REFramework.cpp:1033
 msgid "Unable to determine engine version."
 msgstr "无法确定引擎版本。"
 
-#: src/REFramework.cpp:1267
+#: src/REFramework.cpp:1270
 msgid "An unknown error has occurred."
 msgstr "发生未知错误。"
 
-#: src/REFramework.cpp:1272
+#: src/REFramework.cpp:1275
 msgid "Initialization of mods failed. Reason: {}"
 msgstr "mods初始化失败，原因: {}"

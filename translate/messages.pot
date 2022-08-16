@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-16 00:10+0800\n"
+"POT-Creation-Date: 2022-08-16 21:46+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -731,67 +731,67 @@ msgstr ""
 msgid "VR"
 msgstr ""
 
-#: src/REFramework.cpp:904
+#: src/REFramework.cpp:907
 msgid "Default Menu Key: Insert"
 msgstr ""
 
-#: src/REFramework.cpp:905
+#: src/REFramework.cpp:908
 msgid "Transparency"
 msgstr ""
 
-#: src/REFramework.cpp:909
+#: src/REFramework.cpp:912
 msgid "Makes the UI transparent when not focused."
 msgstr ""
 
-#: src/REFramework.cpp:910
+#: src/REFramework.cpp:913
 msgid "Input Passthrough"
 msgstr ""
 
-#: src/REFramework.cpp:914
+#: src/REFramework.cpp:917
 msgid ""
 "Allows mouse and keyboard inputs to register to the game while the UI is "
 "focused."
 msgstr ""
 
-#: src/REFramework.cpp:922
+#: src/REFramework.cpp:925
 msgid "REFramework is currently initializing..."
 msgstr ""
 
-#: src/REFramework.cpp:923
+#: src/REFramework.cpp:926
 msgid ""
 "This menu will close after initialization if you have the remember option "
 "enabled."
 msgstr ""
 
-#: src/REFramework.cpp:925
+#: src/REFramework.cpp:928
 #, c-format
 msgid "REFramework error: %s"
 msgstr ""
 
-#: src/REFramework.cpp:945 src/REFramework.cpp:949
+#: src/REFramework.cpp:948 src/REFramework.cpp:952
 msgid "About"
 msgstr ""
 
-#: src/REFramework.cpp:951
+#: src/REFramework.cpp:954
 msgid "Author: praydog"
 msgstr ""
 
-#: src/REFramework.cpp:952
+#: src/REFramework.cpp:955
 msgid "Inspired by the Kanan project."
 msgstr ""
 
-#: src/REFramework.cpp:1022
+#: src/REFramework.cpp:1025
 msgid "Engine information"
 msgstr ""
 
-#: src/REFramework.cpp:1027 src/REFramework.cpp:1030
+#: src/REFramework.cpp:1030 src/REFramework.cpp:1033
 msgid "Unable to determine engine version."
 msgstr ""
 
-#: src/REFramework.cpp:1267
+#: src/REFramework.cpp:1270
 msgid "An unknown error has occurred."
 msgstr ""
 
-#: src/REFramework.cpp:1272
+#: src/REFramework.cpp:1275
 msgid "Initialization of mods failed. Reason: {}"
 msgstr ""
