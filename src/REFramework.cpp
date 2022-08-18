@@ -821,7 +821,9 @@ void REFramework::update_fonts() {
     config.MergeMode = true;
 
     fonts->AddFontFromMemoryCompressedTTF(RobotoMedium_compressed_data, RobotoMedium_compressed_size, (float)m_font_size, nullptr, fonts->GetGlyphRangesDefault());
-    fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", (float)m_font_size, &config, fonts->GetGlyphRangesChineseFull());
+    static const ImWchar fullRanges[] = { 0x0020, 0xffff, 0 };
+    // fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", (float)m_font_size, &config, fonts->GetGlyphRangesChineseFull());
+    fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", (float)m_font_size, &config, fullRanges);
 
     for (auto& font : m_additional_fonts) {
         const ImWchar* ranges = nullptr;

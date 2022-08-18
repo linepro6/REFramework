@@ -59,3 +59,102 @@ HP/Stamina Height,HP/耐力数值纵向位置
 "Seconds, Please! Eat more dango",猫饭无限吃
 "Seconds, Please",猫饭无限吃
 Disable in quests (use default timer),在任务内禁止使用
+,
+VIP Dango Ticket VIP团子票 文本,
+[VIP Dango Ticket],[VIP团子券]
+[VIP Dango Ticket] Options,VIP团子券 设置
+Get Dango Ticket back after use##VIPDango,使用后取回特制团子券##VIPDango
+Use Dango Ticket as default choice##VIPDango,默认使用特制团子券##VIPDango
+Show all available Dango (including Daily Dango)##VIPDango,显示全部团子（包括每日团子）##VIPDango
+Note: To toggle OFF requires game restart after.,注意: 关闭需要重启游戏.
+Configure Hopping Skewer Dango Levels,配置跃动竹签团子等级
+Top Dango##VIPDango,上团子##VIPDango
+Mid Dango##VIPDango,中团子##VIPDango
+Bot Dango##VIPDango,下团子##VIPDango
+Reset to Defaults##VIPDango,重置为默认值##VIPDango
+,
+Buddy Skill Editor 宠物编辑 文本,
+Edit Skills: Buddy Slot 1,编辑技能: 宠物1
+Buddy Slot 1 Empty,宠物栏1是空的
+Edit Skills: Buddy Slot 2,编辑技能: 宠物2
+Buddy Slot 2 Empty,宠物栏2是空的
+'s Skills,的技能
+Skill Slot 1,技能栏1
+Skill Slot 2,技能栏2
+Skill Slot 3,技能栏3
+Skill Slot 4,技能栏4
+Skill Slot 5,技能栏5
+Skill Slot 6,技能栏6
+Skill Slot 7,技能栏7
+Skill Slot 8,技能栏8
+Support Type,支援类型
+Support Move 1,支援行动1
+Support Move 2,支援行动2
+Support Move 3,支援行动3
+Support Move 4,支援行动4
+Support Move 5,支援行动5
+Healer,治疗
+Assist,协助
+Fight,战斗
+Bombardier,爆破手
+Gathering,收集
+Herbacious Healing,治愈果实栽培之技
+Healing Bubble,回复泡泡之术
+Vase of Vitality,猫式活力壶之技
+Furbidden Acorn,禁忌橡子之技
+Health Horn,回复笛之技
+Felyne Silkbind,猫式铁虫丝束缚之技
+"Go, Fight, Win",应援舞蹈之技
+Summeown Endemic Life,环境生物召唤之技
+Shock Purr-ison,麻痹陷阱之技
+Poison Purr-ison,毒地洞之技
+Rousing Roar,强化咆哮之技
+Whirlwind Assault,龙卷旋风击之技
+Power Drum,强化太鼓之技
+Fleet-foot Feat,闪挪之技
+Furr-ious,愤怒之技
+Felyne Wyvernblast,猫式起爆龙弹之技
+Zap Blast Spinner,噼里啪啦爆弹陀螺之技
+Anti-Monster Mine,设置型爆弹之技
+Flash Bombay,闪光爆弹之技
+Giga Barrel Bombay,特大桶爆弹之技
+Endemic Life Barrage,发射环境生物之技
+Mega Boomerang,巨型回力镖之技
+Camouflage,隐蔽防御之技
+Shock Tripper,发射回旋电虫之技
+Pilfer,抢夺之技
+Attack Up (S),攻击强化之术 (小)
+Attack Up (L),攻击强化之术 (大)
+Critical Up (S),会心强化之术 (小)
+Critical Up (L),会心强化之术 (大)
+Element Attack Up,属性攻击强化之术
+Ranged Attack Up,远程攻击强化之术
+Status Attack Up,状态异常攻击强化之术
+Knockout King,击晕之术
+Piercing Attack Up,贯穿攻击强化之术
+Counter,反击之术
+Nine Lives,不屈不饶之术
+Buddy Partbreaker,随从破坏王之术
+Health Up (S),体力强化之术 (小)
+Health Up (L),体力强化之术 (大)
+Defense Up,防御强化之术
+Omniresistance,全耐性强化之术
+Artful Dodger,善于回避之术
+Medic's Touch,自我回复强化之术
+Recovery Boost,回复量强化之术
+Ailment Artistry,状态异常克服之术
+Buddy Friendship,随从友爱之术
+Pro Parry,善于防御之术
+Buddy Breather,随从休息之术
+Negate Stun,昏厥无效之术
+Negate Paralysis,麻痹无效之术
+Negate Poison,毒无效之术
+Negate Sleep,睡眠无效之术
+Negate Tremor,耐震之术
+Negate Wind Pressure,风压无效之术
+Earplugs,防音之术
+Webproof,丝线束缚无效之术
+Deflagration Relief,爆破·鬼火无效之术
+Ranged-Centric,远程优先之术
+Melee-Centric,近身优先之术
+Support-Centric,支援优先之术
