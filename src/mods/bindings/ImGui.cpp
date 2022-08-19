@@ -509,6 +509,7 @@ bool collapsing_header(const char* name) {
 }
 
 int load_font(sol::object filepath_obj, int size, sol::object ranges) {
+    return 0;
     namespace fs = std::filesystem;
     const char* filepath = "doesnt-exist.not-a-real-font";
 
@@ -547,11 +548,11 @@ int load_font(sol::object filepath_obj, int size, sol::object ranges) {
 }
 
 void push_font(int font) {
-    ImGui::PushFont(g_framework->get_font(font));
+    // ImGui::PushFont(g_framework->get_font(font));
 }
 
 void pop_font() {
-    ImGui::PopFont();
+    // ImGui::PopFont();
 }
 
 int get_default_font_size() {

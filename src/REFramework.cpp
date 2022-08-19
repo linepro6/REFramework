@@ -824,20 +824,21 @@ void REFramework::update_fonts() {
     static const ImWchar fullRanges[] = { 0x0020, 0xffff, 0 };
     // fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", (float)m_font_size, &config, fonts->GetGlyphRangesChineseFull());
     fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", (float)m_font_size, &config, fullRanges);
+    // fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\simsun.ttc)", (float)m_font_size, nullptr, fullRanges);
 
-    for (auto& font : m_additional_fonts) {
-        const ImWchar* ranges = nullptr;
-
-        if (!font.ranges.empty()) {
-            ranges = font.ranges.data();
-        }
-
-        if (fs::exists(font.filepath)) {
-            font.font = fonts->AddFontFromFileTTF(font.filepath.string().c_str(), (float)font.size, nullptr, ranges);
-        } else {
-            font.font = fonts->AddFontFromMemoryCompressedTTF(RobotoMedium_compressed_data, RobotoMedium_compressed_size, (float)font.size, nullptr, ranges);
-        }
-    }
+    // for (auto& font : m_additional_fonts) {
+    //     const ImWchar* ranges = nullptr;
+    // 
+    //     if (!font.ranges.empty()) {
+    //         ranges = font.ranges.data();
+    //     }
+    // 
+    //     if (fs::exists(font.filepath)) {
+    //         font.font = fonts->AddFontFromFileTTF(font.filepath.string().c_str(), (float)font.size, nullptr, ranges);
+    //     } else {
+    //         font.font = fonts->AddFontFromMemoryCompressedTTF(RobotoMedium_compressed_data, RobotoMedium_compressed_size, (float)font.size, nullptr, ranges);
+    //     }
+    // }
 
     fonts->Build();
     m_wants_device_object_cleanup = true;
