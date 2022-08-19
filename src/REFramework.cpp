@@ -32,7 +32,6 @@ extern "C" {
 #include "mods/REFrameworkConfig.hpp"
 #include "REFramework.hpp"
 #include "I18n.hpp"
-#include "I18n/i18n_ymo_zh_CN.hpp"
 
 namespace fs = std::filesystem;
 using namespace std::literals;
@@ -139,7 +138,7 @@ REFramework::REFramework(HMODULE reframework_module)
     spdlog::flush_on(spdlog::level::info);
     spdlog::info("REFramework entry");
 
-    yi18n::LoadTranslateData(reinterpret_cast<const yi18n::YMOData*>(i18n_ymo_zh_CN));
+    yi18n::Init();
 
     const auto module_size = *utility::get_module_size(m_game_module);
 

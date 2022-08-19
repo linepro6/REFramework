@@ -1,6 +1,7 @@
 #include "I18n.hpp"
 #include "FnvHash.hpp"
 #include <unordered_map>
+#include "I18n/i18n_ymo_zh_CN.hpp"
 
 namespace yi18n {
 std::unordered_map<uint32_t, const char*> hashToStrMap;
@@ -65,6 +66,10 @@ const char* Translate(const char* const str) {
         }
     }
     return result;
+}
+
+void Init() {
+    LoadTranslateData(reinterpret_cast<const YMOData*>(i18n_ymo_zh_CN));
 }
 
 } // namespace yi18n
