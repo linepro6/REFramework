@@ -73,11 +73,11 @@ Mid Dango##VIPDango,中团子##VIPDango
 Bot Dango##VIPDango,下团子##VIPDango
 Reset to Defaults##VIPDango,重置为默认值##VIPDango
 ,
-Buddy Skill Editor 宠物编辑 文本,
-Edit Skills: Buddy Slot 1,编辑技能: 宠物1
-Buddy Slot 1 Empty,宠物栏1是空的
-Edit Skills: Buddy Slot 2,编辑技能: 宠物2
-Buddy Slot 2 Empty,宠物栏2是空的
+Buddy Skill Editor 随从编辑 文本,
+Edit Skills: Buddy Slot 1,编辑技能: 随从1
+Buddy Slot 1 Empty,随从栏1是空的
+Edit Skills: Buddy Slot 2,编辑技能: 随从2
+Buddy Slot 2 Empty,随从栏2是空的
 's Skills,的技能
 Skill Slot 1,技能栏1
 Skill Slot 2,技能栏2
@@ -158,3 +158,105 @@ Deflagration Relief,爆破·鬼火无效之术
 Ranged-Centric,远程优先之术
 Melee-Centric,近身优先之术
 Support-Centric,支援优先之术
+,
+Follow Me盟友 文本,
+Fiorayne,菲奥莱娜
+Luchika,露琪卡
+Jae,杰伊
+Rondine,罗德娜
+Arlow,阿尔洛
+Galleus,加雷亚斯
+Hinoa,火芽
+Minoto,水芸
+Fugen,普贤
+Utsushi,倪泰
+Great Sword,巨剑
+Longsword,太刀
+Sword & Shield,单手剑
+Lance,长枪
+Charge Blade,盾斧
+Gunlance,铳枪
+Light Bowgun,轻弩
+Heavy Bowgun,重弩
+Bow,弓
+Switch Axe,斩击斧
+Insect Glaive,操虫棍
+Hammer,大锤
+Hunting Horn,狩猎笛
+Dual Blades,双剑
+[Follow Me!],[跟着我，盟友！汉化V0.9.0版]
+Follow Me!##Settings Window,跟着我，盟友！感谢Laplace提供汉化参考##Settings Window
+You have accepted a Quest in a Lobby,你已经在多人集会中接受了任务
+Followers cannot be edited in this state to prevent desync,在这种状态下，你无法编辑盟友，以防止失去同步
+"Cancel the Quest to edit Followers, then re-post it",请取消当前任务，编辑好盟友后再参加任务
+Follower 1,盟友1
+Follower 2,盟友2
+Follower 3,盟友3
+Follower 4,盟友4
+Equipped Weapon,装备的武器
+None,无
+Random,随机
+Hide Palamute,隐藏牙猎犬
+Advanced settings,高级设置
+Use Four Follower Slots,使用4个盟友栏
+"Only three Followers will be visible in the sidebar, even if there is room enough for all four.",就算可以让四个盟友参与任务，任务时，左边的队友栏中也只能显示前三个盟友的名字。
+Ignore Progress Gates for Followers,无视盟友解锁进度
+"Unless checked, you can only bring Followers if you have unlocked them for Support Surveys.",启动该选项后，无论你是否解锁全部盟友，都能选择他们参与任务
+Allow in Lobbies,允许盟友加入多人集会
+Still exludes Join Requests. Followers must be selected before Quest is posted.,依旧排除了加入请求，发布任务前必须选择盟友。
+Coral PalaceNo Followers in the Coral Palace (as this crashes players without the mod).,龙宫古城没有盟友（因为这会让没装这个MOD的玩家游戏崩溃）。（就是打风雷神龙的地方）
+"Any applied Monster Scaling will stack multiplicatively with Multiplayer Scaling, so adjust that or face a slog.",任何应用的怪物血量增强都将与多人游戏的怪物血量成倍叠加，因此你最好在下面调整难度，否则会吃瘪。（不调！要的就是这种效果！）
+"WARNING: If there is an communication error that breaks up the Quest, the players will get an infinite load when it ends!",警告：如果有连接错误导致任务中断，玩家将在任务结束时获得无限负载！
+Allow in Arena/Challenge Quests,允许盟友加入斗技场/挑战任务
+Followers will only be allowed in if they have a supported weapon type for the Quest.,只有任务支持该盟友的武器时，盟友才能加入。（特指斗技场）
+Allow Spooooky Clones,允许克隆
+"Funny but buggy. Duplicates share a health pool, and if they aren't assigned different wepaons, you risk random crashes.",逆天整活，盟友共享同一个生命值，如果没有为他们分配不同的武器，会存在随机崩溃的风险。
+Use Palamute Toggles,使用牙猎犬切换
+"The Palamutes will spawn back in if you mount a Palamute yourself, to keep pace. They will despawn when you are back on foot.",如果你自己携带了牙猎犬，MOD会重新生成一个，以保证盟友跟随。如果你取消骑乘，牙猎犬会消失。
+Show Quick Window during Quest Preparation,在任务准备期间显示快捷窗口
+Quick Window Settings##Follow_Me!,快捷窗口设置##Follow_Me!
+Assign Toggle Hotkey,分配切换热键
+KBM##GetHotkeyFollowMe,键鼠按键
+PAD##GetHotkeyFollowMe,手柄按键
+Currently: ,当前热键
+Listening for press...,监听按键中…
+X Position##Follow_Me!,横向位置##Follow_Me!
+Y Position##Follow_Me!,纵向位置##Follow_Me!
+"CTRL + Click on fields to type, then ENTER to confirm",按住Ctrl键并点击你要输入的窗口，输入数值后，回车键确认
+Balance Solo Quests (psuedo-multiplayer),平衡单人任务（虚拟多人模式）
+Followers do player-level damage and Monsters scale with them too.,盟友会造成玩家级别的伤害，怪物也会随之强化。
+Use Custom Scaling Multipliers,使用自定义倍率乘数
+Set your own Monster scaling and Follower damage adjustment.,设置怪物强度和盟友伤害。
+Reset to Vanilla Defaults##CustomDamageMults,重设为普通的默认值
+Reset to Balanced Defaults##CustomDamageMults,重设为平衡的默认值
+Custom Damage Multipliers,使用自定义伤害倍率
+Multipliers for Followers:,盟友的伤害倍率:
+Damage Dealt Mult.,伤害乘数
+Part Breaking Mult.,部位破坏乘数
+Stun/Fatigue Mult.,晕眩/疲劳倍率
+Baseline HP Multiplier for Solo. Total HP multiplier will be:,单人任务怪物HP的基础倍率，总HP倍率将为：
+Base Mult. + (Followers * Scaling Mult.),基础倍率 + (盟友数量 * 强化倍率)
+HP Base Mult.,HP基础倍率
+Multipliers for Monsters (per Follower in Quest),怪物强化倍率(任务中每增加1个盟友)
+HP Scaling Mult.,HP强化倍率
+Parts Scaling Mult.,部位破坏强化倍率
+Stun/Fatigue Threshold Mult.,晕眩/疲劳阈值 强化倍率.
+"--Character is unloaded, cannot edit--","--字符已卸载, 不能编辑--"
+ERROR,错误
+Follow Me! - Quick Window,跟着我，盟友！ - 快捷窗口
+Are any Followers joining you in this next Quest?,是否让盟友加入你的下一次任务？
+No - Zero follower slots assigned,否 - 没有设置盟友
+will join you,会加入
+Yes -,是 -
+Note: These Followers are already part of the Quest and cannot be changed at this point,注意：这些盟友已经是任务的一部分，此时无法更改
+No - Mod functionality disabled,否 - 关闭MOD修改功能
+No - Destination map does not support Followers,否 - 该地图不允许有盟友
+No - Multiplayer active,否 - 多人任务
+No - Disabled in Arena/Challenge Quests,否 - 在竞技场/挑战任务中禁用
+No - Disabled in Multiplayer Anomaly Investigations,否 - 在多人怪异调查任务中禁用
+This currently causes random crashing,当前会导致随机崩溃
+No - Lobby Quest locked in with no participating Followers,否 - 多人集会任务被锁定，没有参与的盟友
+No - Zero follower slots assigned,否 - 没有分配盟友位
+cannot use an appropriate weapon for the Challenge!,需要选择一个适合这个挑战的武器！
+Toggle active with ,切换选择热键：
+Toggle acive with ,切换选择热键：
