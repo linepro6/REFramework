@@ -33,7 +33,8 @@ def po2ymohpp(lang, includefuzzy=False, encoding='utf-8', byteorder='little'):
                 continue
             source, target = line
             if source and target:
-                source = source.replace("\\", "")
+                source = source.replace("\\n", "\n").replace("\\", "")
+                target = target.replace("\\n", "\n")
                 print(source, "-----", target)
                 hash = fnv1a_32(source.encode(encoding))
                 units[hash] = target.encode(encoding) + bytes(2)

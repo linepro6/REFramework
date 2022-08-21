@@ -780,7 +780,7 @@ msgstr "关于"
 
 #: src/REFramework.cpp:954
 msgid "Author: praydog"
-msgstr "作者：praydog/汉化：花舞组"
+msgstr "作者：praydog / 汉化：花舞组  Ver1.0.9"
 
 #: src/REFramework.cpp:955
 msgid "Inspired by the Kanan project."

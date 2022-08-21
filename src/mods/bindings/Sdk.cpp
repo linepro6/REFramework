@@ -18,6 +18,7 @@
 #include <lgc.h>
 
 #include "Sdk.hpp"
+#include "I18n.hpp"
 
 namespace api {
 namespace sdk {
@@ -468,7 +469,7 @@ sol::object create_managed_string(sol::this_state s, const char* text) {
         return sol::make_object(s, sol::nil);
     }
 
-    auto new_str = ::sdk::VM::create_managed_string(utility::widen(text));
+    auto new_str = ::sdk::VM::create_managed_string(utility::widen(yi18n::Translate(text)));
 
     if (new_str == nullptr) {
         return sol::make_object(s, sol::nil);

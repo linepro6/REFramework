@@ -1,4 +1,4 @@
-﻿开局彩鸟spiribird_spawn 文本,
+﻿开局彩鸟spiribird_spawn,
 Bird Summoner MOD,彩鸟召唤 MOD
 Press 'home' to hide or show,使用“Home”键隐藏/显示菜单界面
 if you use gamepad press R3 & L3 to summon prism,如果您使用手柄，请按R3和L3召唤彩鸟
@@ -27,7 +27,8 @@ Prism,彩虹
 Status and timer cheat,状态和计时器
 ,
 ,
-无限耗材Infinite_Consumables 文本,
+无限耗材Infinite_Consumables,
+[Infinite Consumables] Options,[无限耗材] 设置
 Infinite Consumables Options,无限耗材设置
 Multiplayer being False will override the other individual settings.,如果你关闭了多人模式，那么在多人模式环境下，其他设置也会跟随关闭
 Enabled in Multiplayer Quests,在多人模式中启用
@@ -36,8 +37,10 @@ Infinite Ammo (for Bowguns),无限弹药（弩）
 "Infinite Items (Potions, Food, Traps, etc.)",无限物品（药剂、食物、陷阱等）
 "Infinite Endemic Life (Spiders, Beetles, etc)",无限环境生物（蜘蛛、甲虫等）
 ,
-BUFF提示Buff_reminder 文本,
-Buff reminder options,Buff提示 设置
+BUFF提示Buff_reminder,
+Buff reminder setting,BUFF提示
+Open reminder setting,打开BUFF提示设置
+Buff reminder options,BUFF提示 设置
 "Language (requires \""Reset scripts\"" in REFramework ScriptRunner)",语言（选择后，需要在REF的“脚本工具”中使用“重载脚本”才能生效）
 English,英语
 Traditional Chinese,繁体中文
@@ -55,12 +58,12 @@ HP/Stamina spacing,HP/耐力数值间隔
 HP/Stamina Width,HP/耐力数值横向位置
 HP/Stamina Height,HP/耐力数值纵向位置
 ,
-猫饭无限吃 文本,
+猫饭无限吃,
 "Seconds, Please! Eat more dango",猫饭无限吃
 "Seconds, Please",猫饭无限吃
 Disable in quests (use default timer),在任务内禁止使用
 ,
-VIP Dango Ticket VIP团子票 文本,
+VIP Dango Ticket VIP团子票,
 [VIP Dango Ticket],[VIP团子券]
 [VIP Dango Ticket] Options,VIP团子券 设置
 Get Dango Ticket back after use##VIPDango,使用后取回特制团子券##VIPDango
@@ -73,7 +76,7 @@ Mid Dango##VIPDango,中团子##VIPDango
 Bot Dango##VIPDango,下团子##VIPDango
 Reset to Defaults##VIPDango,重置为默认值##VIPDango
 ,
-Buddy Skill Editor 随从编辑 文本,
+Buddy Skill Editor 随从编辑,
 Edit Skills: Buddy Slot 1,编辑技能: 随从1
 Buddy Slot 1 Empty,随从栏1是空的
 Edit Skills: Buddy Slot 2,编辑技能: 随从2
@@ -158,8 +161,11 @@ Deflagration Relief,爆破·鬼火无效之术
 Ranged-Centric,远程优先之术
 Melee-Centric,近身优先之术
 Support-Centric,支援优先之术
+Changing a Skill will clear the Buddy's Skill Memory to prevent issues.,更改技能将清除随从的技能记忆，以防止出现问题。
+Force Legal Support Move Selection,支援行动强制合法
 ,
-Follow Me盟友 文本,
+,
+Follow Me盟友,
 Fiorayne,菲奥莱娜
 Luchika,露琪卡
 Jae,杰伊
@@ -204,7 +210,7 @@ Ignore Progress Gates for Followers,无视盟友解锁进度
 "Unless checked, you can only bring Followers if you have unlocked them for Support Surveys.",启动该选项后，无论你是否解锁全部盟友，都能选择他们参与任务
 Allow in Lobbies,允许盟友加入多人集会
 Still exludes Join Requests. Followers must be selected before Quest is posted.,依旧排除了加入请求，发布任务前必须选择盟友。
-Coral PalaceNo Followers in the Coral Palace (as this crashes players without the mod).,龙宫古城没有盟友（因为这会让没装这个MOD的玩家游戏崩溃）。（就是打风雷神龙的地方）
+No Followers in the Coral Palace (as this crashes players without the mod).,龙宫古城没有盟友（因为这会让没装这个MOD的玩家游戏崩溃）。（就是打风雷神龙的地方）
 "Any applied Monster Scaling will stack multiplicatively with Multiplayer Scaling, so adjust that or face a slog.",任何应用的怪物血量增强都将与多人游戏的怪物血量成倍叠加，因此你最好在下面调整难度，否则会吃瘪。（不调！要的就是这种效果！）
 "WARNING: If there is an communication error that breaks up the Quest, the players will get an infinite load when it ends!",警告：如果有连接错误导致任务中断，玩家将在任务结束时获得无限负载！
 Allow in Arena/Challenge Quests,允许盟友加入斗技场/挑战任务
@@ -260,3 +266,299 @@ No - Zero follower slots assigned,否 - 没有分配盟友位
 cannot use an appropriate weapon for the Challenge!,需要选择一个适合这个挑战的武器！
 Toggle active with ,切换选择热键：
 Toggle acive with ,切换选择热键：
+,
+Qurious Cheating怪异炼化自定义,
+Qurious Cheating,[怪异炼化自定义] 感谢蛮子哒协助汉化
+Game has not loaded properly yet,游戏尚未正确加载
+Speak to smithy to use,请前往铁匠铺触发对话
+Open the Qurious Armor Crafting menu\nand select a piece to edit,请打开“防具的怪异炼化”菜单，并选择自己需要编辑修改的防具
+Allow skill cheating,允许技能不合法
+Enable Augmentation,启用编辑
+Enable augmentation to edit this piece,选择“启用编辑”以开启修改
+Rarity 1,稀有度 1
+Rarity 2,稀有度 2
+Rarity 3,稀有度 3
+Rarity 4,稀有度 4
+Rarity 5,稀有度 5
+Rarity 6,稀有度 6
+Rarity 7,稀有度 7
+Rarity 8,稀有度 8
+Rarity 9,稀有度 9
+Rarity 10,稀有度 10
+Rarity 11,稀有度 11
+Rarity 12,稀有度 12
+Rarity 13,稀有度 13
+Rarity 14,稀有度 14
+Rarity 15,稀有度 15
+Armor tier,防具等级
+Spent ,已使用
+ out of ,点数，装备基础点数为
+ available points,点
+Legal:,是否合法
+No,否
+Yes,是
+Augmentation 0,强化类型 0
+Augmentation 1,强化类型 1
+Augmentation 2,强化类型 2
+Augmentation 3,强化类型 3
+Augmentation 4,强化类型 4
+Augmentation 5,强化类型 5
+Augmentation 6,强化类型 6
+Augmentation Skill 0,技能选择 0
+Augmentation Skill 1,技能选择 1
+Augmentation Skill 2,技能选择 2
+Augmentation Skill 3,技能选择 3
+Augmentation Skill 4,技能选择 4
+Augmentation Skill 5,技能选择 5
+Augmentation Skill 6,技能选择 6
+Defense -6,防御力 -6
+Defense -12,防御力 -12
+Defense +1,防御力 +1
+Defense +2,防御力 +2
+Defense +3,防御力 +3
+Defense +4,防御力 +4
+Defense +5,防御力 +5
+Defense +6,防御力 +6
+Defense +7,防御力 +7
+Defense +8,防御力 +8
+Defense +9,防御力 +9
+Defense +10,防御力 +10
+Defense +11,防御力 +11
+Defense +12,防御力 +12
+Defense +13,防御力 +13
+Defense +14,防御力 +14
+Defense +15,防御力 +15
+Defense +16,防御力 +16
+Defense +17,防御力 +17
+Defense +18,防御力 +18
+Defense +19,防御力 +19
+Defense +20,防御力 +20
+Defense +21,防御力 +21
+Defense +22,防御力 +22
+Defense +23,防御力 +23
+Defense +24,防御力 +24
+Defense +25,防御力 +25
+Defense +26,防御力 +26
+Defense +27,防御力 +27
+Defense +28,防御力 +28
+Defense +29,防御力 +29
+Defense +30,防御力 +30
+Defense +31,防御力 +31
+Defense +32,防御力 +32
+Defense +33,防御力 +33
+Defense +34,防御力 +34
+Fire Res -1,火耐性 -1
+Fire Res -2,火耐性 -2
+Fire Res -3,火耐性 -3
+Fire Res +1,火耐性 +1
+Fire Res +2,火耐性 +2
+Water Res -1,水耐性 -1
+Water Res -2,水耐性 -2
+Water Res -3,水耐性 -3
+Water Res +1,水耐性 +1
+Water Res +2,水耐性 +2
+Thunder Res -1,雷耐性 -1
+Thunder Res -2,雷耐性 -2
+Thunder Res -3,雷耐性 -3
+Thunder Res +1,雷耐性 +1
+Thunder Res +2,雷耐性 +2
+Ice Res -1,冰耐性 -1
+Ice Res -2,冰耐性 -2
+Ice Res -3,冰耐性 -3
+Ice Res +1,冰耐性 +1
+Ice Res +2,冰耐性 +2
+Dragon Res -1,龙耐性 -1
+Dragon Res -2,龙耐性 -2
+Dragon Res -3,龙耐性 -3
+Dragon Res +1,龙耐性 +1
+Dragon Res +2,龙耐性 +2
+Slot +1,孔位 +1
+Slot +2,孔位 +2
+Slot +3,孔位 +3
+D-Tier Skill,D级技能
+C-Tier Skill,C级技能
+B-Tier Skill,B级技能
+A-Tier Skill,A级技能
+S-Tier Skill,S级技能
+Skill Removal,移除技能
+,
+Better Matchmaking更好匹配,
+Better Matchmaking,更好匹配
+Timeout Fix,超时修复
+Quest Types,任务类型
+Regular,常规
+Rampage,百鬼夜行
+Random MR,随机大师
+Random Anomaly,随机怪异
+Anomaly Investigation,怪异调查
+Region Lock Fix (Join Requests),区域锁定修复（加入请求）
+Distance Filter,距离过滤器
+Explanation,说明
+Close - Only lobbies in the same immediate region will be returned.,关闭 - 仅搜索同一个地区的集会。
+Default - Only lobbies in the same region or nearby regions will be returned.,默认 - 仅搜索同一个地区或附近地区的集会。
+Far - Will return lobbies about half-way around the globe.,远 - 将搜索全球一半地区的集会。
+"Worldwide - No filtering, will match lobbies as far as India to NY",全球 - 无过滤，将匹配从印度到纽约的集会。
+"(not recommended, expect multiple seconds of latency between the clients).",(不推荐，延迟长)。
+Hide Network Errors,隐藏网络错误
+When to hide,何时隐藏
+On Quests,任务中
+Outside Quests,任务外
+Misc,杂项
+Hide Online Warning,隐藏网络连接报错
+Close,关闭
+Default,默认
+Far,远
+Worldwide,全球
+,
+Infinite Buddy Recon无限侦察营地,
+Infinite buddy recon,无限侦查营地
+Village point per use,每次消耗的点数
+,
+Anomaly Investigations Editor怪异调查编辑器,
+Anomaly Investigations Editor,怪异调查编辑器
+Flooded Forest,水没林
+Frost Islands,冰封群岛
+Lava Caverns,熔岩洞
+Jungle,密林
+Citadel,城塞高地
+Sandy Plains,沙原
+Shrine Ruins,废神社
+Arena,斗技场
+Coral Palace,龙宫古城
+Red Stronghold,翡叶要塞
+Infernal Springs,狱泉乡
+Yawning Abyss,渊劫地狱
+Forlorn Arena,塔之秘境
+Day,白天
+Night,夜晚
+Pass,通过
+Fail,失败
+Quest Level Too High,任务等级过高
+Monster Rank Too High For Quest Level,当前怪物等级高于任务等级
+Duplicate Monsters,包含重复的怪物
+Mod works only in the lobby with quest counter closed.,编辑器只在任务面板关闭时启用。
+Force Authorization Pass,强制让任务通过合法检测
+Filter,筛选
+Quest,任务
+Quest Level,任务等级
+Quest Count,任务是否通过合法检测
+Map,任务区域
+Monster 1,怪物 1
+Monster 2,怪物 2
+Monster 3,怪物 3
+Intruder,乱入怪物
+Target Num,目标数量
+Time Limit,时间限制
+Quest Life,猫车次数
+Time of Day,任务出发时间
+Auth Status,身份验证
+Quest Level,任务等级
+Hunter Num,参与人数
+Edit Quest,生成自定义任务
+Generate Random Quest,生成随机任务
+Rathian,雌火龙
+Anjanath,蛮颚龙
+Pukei-Pukei,毒妖鸟
+Kulu-Ya-Ku,骚鸟
+Jyuratodus,泥鱼龙
+Tobi-Kadachi,飞雷龙
+Bazelgeuse,爆鳞龙
+Furious Rajang,激昂金狮子（赛亚人V2）
+Malzeno,爵银龙（爵爵子）
+Lunagaron,冰狼龙
+Garangolm,刚缠兽
+Espinas,棘龙
+Crimson Glow Valstrax,天慧龙
+Scorned Magnamalo,嗟怨震天怨虎龙（明日香）
+Apex Rathian,霸主雌火龙
+Apex Arzuros,霸主青熊兽
+Daimyo Hermitaur,大名盾蟹
+Rathalos,雄火龙
+Shogun Ceanataur,将军镰蟹
+Rajang,金狮子（赛亚人）
+Kushala Daora,钢龙
+Chameleos,霞龙
+Teostra,炎王龙
+Khezu,奇怪龙
+Tigrex,轰龙（车车子）
+Blood Orange Bishaten,绯天狗兽
+Aurora Somnacanth,冰人鱼龙
+Pyre Rakna-Kadaki,炽妃蜘蛛
+Magma Almudron,熔翁龙
+Nargacuga,迅龙
+Basarios,岩龙
+Barioth,冰牙龙
+Barroth,土砂龙
+Royal Ludroth,水兽
+Great Baggi,眠狗龙王
+Zinogre,雷狼龙（雷娘）
+Great Wroggi,毒狗龙王
+Arzuros,青熊兽
+Lagombi,白兔兽
+Volvidon,赤甲兽
+Diablos,角龙
+Gore Magala,黑蚀龙
+Shagaru Magala,天廻龙
+Seregios,千刃龙
+Astalos,电龙
+Mizutsune,泡狐龙
+Magnamalo,怨虎龙（胖虎）
+Bishaten,天狗兽
+Aknosom,伞鸟
+Tetranadon,河童蛙
+Somnacanth,人鱼龙
+Rakna-Kadaki,妃蜘蛛
+Almudron,泥翁龙（粪龙）
+Goss Harag,雪鬼兽
+Great Izuchi,镰鼬龙王
+Gold Rathian,金火龙
+Seething Bazelgeuse,红莲爆鳞龙
+Silver Rathalos,银火龙
+,
+Eternal Sale and Lottery永恒促销和抽奖,
+[Eternal Sale] Options,[永恒促销抽奖] 设置
+Eternal Sale,永恒促销
+Always Jackpot,必定头彩
+Force Antique Lottery (until all found),强制出古董手办（直到你拿完全部）
+,
+Skip Dango Song跳过猫饭动画,
+Skip Dango Song,跳过猫饭动画
+Credits to DSC-173(DSC173 on Nexus) for the code for telling which skills have activated!,感谢DSC-173（Nexus上的DSC173）的代码，告诉您哪些技能已激活！
+Made by Raff,作者：Raff
+Skip the song,跳过唱歌
+Skip eating,跳过吃饭
+Skip Motley Mix,跳过Motley Mix
+,
+Talisman Quest Reward任务奖励护石,
+Talisman Reward,任务奖励护石
+Rewards Configuration,奖励配置
+Endgame Mode,游戏结束时奖励
+Percent,奖励概率
+Message,信息
+Overwrite Game Language,修改游戏内的语言
+,
+Reward multiplier结算奖励倍率,
+Reward multiplier,结算奖励倍率
+Money Multiplier,金币倍率
+kamuraPoint Multiplier,焰火点数倍率
+Exp Multiplier (exclude anomaly research),猎人经验倍率（不包括怪异研究）
+Master Exp Multiplier (exclude anomaly research),大师经验倍率（不包括怪异研究）
+Anomaly research Exp Multiplier,怪异研究经验倍率
+,
+Tactician (Skill)战术专家,
+Tactician,战术专家
+Increases damage against monsters\nwith broken parts.,每破坏一次怪物的部位时\n为自身追加伤害。
+Grants attack +3% and\nelement +5% for each broken\npart,每破坏一个部位\n增加3%伤害和5%属性伤害。
+Additionally deals 5%\nincreased part damage for\neach broken part.,每破坏一个部位\n额外增加5%部位破坏伤害。
+Part damage bonus is\nincreased to 10% for\neach broken part.,部位破坏伤害提升至10%。
+Strategy Jewel 3,战术珠【3】
+A decoration that enhances\nthe Tactician skill.,能够提升\n战术专家技能的装饰品。
+,
+,
+,
+散碎文本,
+All Monster Is Anomaly Research Target,所有怪异BOSS都是委托目标
+German,德语
+Simplified Chinese,简体中文
+Language,语言
+Save,保存
