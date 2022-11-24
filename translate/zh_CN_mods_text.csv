@@ -523,7 +523,8 @@ Force Antique Lottery (until all found),强制出古董手办（直到你拿完�
 ,
 Skip Dango Song跳过猫饭动画,
 Skip Dango Song,跳过猫饭动画
-Credits to DSC-173(DSC173 on Nexus) for the code for telling which skills have activated!,感谢DSC-173（Nexus上的DSC173）的代码，告诉您哪些技能已激活！
+Credits to DSC-173(DSC173 on Nexus) for the code for\n telling which skills have activated!,感谢DSC-173（Nexus上的DSC173）的代码，\n告诉您哪些技能已激活！
+Credits to LatencyKG on Nexus for figuring out\n how to display HP and Stamina dynamically\n and how to go straight to the end of the animation\n when not skipping eating!,感谢Nexus上的LatencyKG，\n因为他，我了解了如何动态显示HP和耐力，\n以及如何在不跳过进食的情况下直接进入动画的结尾！
 Made by Raff,作者：Raff
 Skip the song,跳过唱歌
 Skip eating,跳过吃饭
@@ -547,14 +548,20 @@ Anomaly research Exp Multiplier,怪异研究经验倍率
 ,
 Tactician (Skill)战术专家,
 Tactician,战术专家
-Increases damage against monsters\nwith broken parts.,每破坏一次怪物的部位时\n为自身追加伤害。
+Increases damage against monsters\nwith broken parts.,每破坏一次怪物的部位时\n获得额外的伤害加成。
 Grants attack +3% and\nelement +5% for each broken\npart,每破坏一个部位\n增加3%伤害和5%属性伤害。
 Additionally deals 5%\nincreased part damage for\neach broken part.,每破坏一个部位\n额外增加5%部位破坏伤害。
 Part damage bonus is\nincreased to 10% for\neach broken part.,部位破坏伤害提升至10%。
 Strategy Jewel 3,战术珠【3】
 A decoration that enhances\nthe Tactician skill.,能够提升\n战术专家技能的装饰品。
 ,
-,
+No random scale monster(怪物大小金),
+Fixed Enemy Scale setting,怪物固定大小设置
+enable this mod,启用MOD
+Max possible scale,大金
+Min possible scale,小金
+"Most possible scale(Mid, usually 1.00)","正常比例(中, 通常为1.00)"
+Disable the script,禁用脚本
 ,
 散碎文本,
 All Monster Is Anomaly Research Target,所有怪异BOSS都是委托目标
@@ -562,3 +569,332 @@ German,德语
 Simplified Chinese,简体中文
 Language,语言
 Save,保存
+,
+REFramework,
+"Make sure to tick ""Enabled"" for any of the below settings to take effect.",勾选下面的“启用”来让设置生效。
+Enabled,启用
+Disable Vignette,禁用晕影
+Vignette Brightness,晕影亮度
+"These below settings are separate and do not require ""Enabled"" to be ticked.",这个设置会一直生效，无需点击上面的“启用”
+Use Custom Global FOV,使用自定义全局FOV视角
+Global FOV,全局FOV
+Camera,视角
+Show In Cutscenes,在剪接场景中显示
+VR Specific Settings,VR具体设置
+Smooth XZ Movement (VR),平滑XZ移动(VR)
+Smooth Y Movement (VR),平滑Y移动(VR)
+Roomscale Movement (VR),
+Adjust Hand Offset,
+Scale Debug,
+Scale Debug 2,
+Offset Debug,
+VR Scale,VR缩放
+Controller rotation (Left),控制器旋转(左)
+Controller rotation (Right),控制器旋转(右)
+Controller position (Left),控制器方向(左)
+Controller position (Right),控制器方向(右)
+Controller 1,控制器1
+Controller 2,控制器2
+General Settings,常规设置
+Disable Camera Light,禁用闪光灯
+Hide Joint Mesh,隐藏关节网
+Force Rotate Joint,强制旋转关节
+Rotate Body,旋转身体
+Change Toggle Key,更改切换键
+CameraOffset,镜头偏移
+CameraSpeed,镜头速度
+CameraShake,镜头抖动
+FOVOffset,FOV偏移
+FOVMultiplier,FOV倍增
+CurrentFOV,当前FOV
+BodyRotateSpeed,身体旋转速度
+Joint,
+Joints,
+FirstPerson,第一人称
+Lock Position,锁定视角
+Disable Character Movement,禁用角色移动
+Toggle Key,切换
+Move camera up Key,视角向上移动
+Move camera down Key,视角向下移动
+Lock Position Toggle Key,禁用位置切换键
+Disable Movement Toggle Key,禁用移动切换键
+Speed modifier Fast key,快速移动
+Speed modifier Slow key,减速移动
+Rotation Speed,旋转速度
+Speed,移动速度
+Speed Modifier,移动速度补正
+FreeCam,自由视角
+Ultrawide/Aspect Ratio Fix,超宽/纵横比修复
+Ultrawide: Enable Vertical FOV,超宽:启用垂直视野
+Ultrawide: Override FOV,超宽:覆盖FOV
+Ultrawide: FOV Multiplier,超宽:视野放大
+GUI Options,GUI设置
+Hide GUI,隐藏GUI
+Graphics,图像显示设置
+Unable to get module size,无法获取模块尺寸
+Performance,性能
+Enable Profiling,启用性能分析
+Application Entry Times,
+Total REFramework Time: %.3fms,
+Total Game Time: %.3fms,
+Game Time: %s: %.2fms,
+REFramework Pre Time: %.2fms,
+REFramework Post Time: %.2fms,
+Total Time: %.2fms,
+PositionHooks,
+IntegrityCheckBypass,
+Change Key,切换按键
+Ignore Light Power On Zones,
+Light power on zones: %i\n,
+ManualFlashlight,
+Loaded plugins:,已加载插件：
+No plugins loaded.,无已加载插件。
+Errors:,错误：
+Warnings:,警告：
+PluginLoader,插件
+Configuration,设置
+Menu Key,显示/隐藏热键
+Remember Menu Open/Closed State,界面显示/隐藏是否保存
+Font Size,字体大小
+REFrameworkConfig,REFramework设置
+Timescale (Toggle) Key,时间比例（切换）热键
+Timescale (Continuous) Key,时间比例（持续）热键
+Use Application Timescale,使用应用程序时间刻度
+Timescale,时间尺度
+Scene,场景设置
+Script Generated UI,脚本生成界面
+Run script,运行脚本
+Reset scripts,重载脚本
+Spawn Debug Console,呼出调试控制台
+Garbage Collection Stats,垃圾收集统计信息
+Megabytes in use: %.2f,已使用MB:%.2f
+Garbage Collection Handler,垃圾收集处理管理器
+Garbage Collection Mode,垃圾收集模式
+Minor GC Multiplier,次垃圾收集倍增
+Major GC Multiplier,主垃圾收集倍增
+Garbage Collection Type,垃圾收集类型
+Garbage Collection Budget,垃圾收集预算
+Log Lua Errors to Disk,将Lua错误记录到磁盘
+Last Error Time: %.2f seconds ago,上次报错时间: %.2f 秒前
+Last Script Error: %s,上一个脚本错误: %s
+No Script Errors... yet!,没有脚本错误…牛逼！
+Loaded scripts:,已加载脚本:
+No scripts loaded.,无脚本加载。
+ScriptRunner,脚本工具
+%s not loaded: %s not found,%s 未加载: %s 妹找着啊……
+Please drop the %s file into the game's directory if you want to use %s,请把 %s文件放入游戏目录，如果要使用 %s
+%s not loaded: %s,%s 未加载: %s
+%s not loaded: Unknown error,%s 未加载: 未知错误
+No runtime loaded.,没有运行时被加载。
+Hardware scheduling: %s,硬件调度中:%s
+Disabled,禁用
+WARNING: Hardware-accelerated GPU scheduling is enabled. This will cause the game to run slower.,警告：已启用硬件加速GPU调度。这将导致游戏运行较慢。
+"Go into your Windows Graphics settings and disable ""Hardware-accelerated GPU scheduling""",进入Windows图形设置并禁用“硬件加速GPU调度”
+VR Runtime: %s,VR运行时间: %s
+Render Resolution: %d x %d,渲染分辨率: %d x %d
+Resolution can be changed in SteamVR,分辨率可以在SteamVR中更改
+Bindings,绑定
+Resolution Scale,分辨率缩放
+Sync Mode,同步模式
+Early,
+Set Standing Height,
+Set Standing Origin,
+Recenter View,
+Reinitialize Runtime,
+Set Standing Origin Key,
+Recenter View Key,
+Use AFR,
+Decoupled Camera Pitch,
+Positional Tracking,
+Head Oriented Audio,
+Use Custom View Distance,
+View Distance/FarZ,
+Inactivity Timer,
+Joystick Deadzone,手柄死角
+2D UI Scale,2D UI缩放
+2D UI Distance,
+World-Space UI Scale,
+Overlay Rotation,
+Overlay Position,
+Graphical Options,
+Force Uncap FPS,
+Force Disable TAA,
+Force Disable Motion Blur,
+Force Disable V-Sync,
+Force Disable Lens Distortion,
+Force Disable Volumetrics,
+Force Disable Lens Flares,
+Force Enable Dynamic Shadows,
+Allow Engine Overlays,
+Desktop Recording Fix,
+Desktop,桌面
+Skip Present,
+Debug info,调试信息
+Disable Projection Matrix Override,
+Disable GUI Projection Matrix Override,
+Disable View Matrix Override,
+Disable Backbuffer Size Override,
+Disable Temporal Fix,
+Disable Post Effect Fix,
+Enable Asynchronous Rendering,
+Prediction Scale,
+Raw Left,
+Raw Right,
+Avg Input Processing Delay (MS),
+VR,VR
+Default Menu Key: Insert,默认菜单按键：Insert
+Transparency,透明
+Makes the UI transparent when not focused.,让REF在未选中时变得透明。
+Input Passthrough,UI透过
+Allows mouse and keyboard inputs to register to the game while the UI is focused.,让鼠标能够穿过REF界面点击到游戏内。
+REFramework is currently initializing...,REFramework当前正在初始化……
+This menu will close after initialization if you have the remember option enabled.,如果启用了“保存”选项，此菜单将在初始化后关闭。
+REFramework error: %s,REFramework错误: %s
+About,关于
+Author: praydog,作者：praydog / 汉化：花舞 - 踩蘑菇MOD汉化组  Ver1.1.1
+Inspired by the Kanan project.,灵感来自Kanan项目。
+Engine information,引擎信息
+Unable to determine engine version.,无法确定引擎版本。
+An unknown error has occurred.,发生未知错误。
+Initialization of mods failed. Reason: {},mods初始化失败，原因: {}
+,
+自定义怪物击杀慢动作,
+No Kill-Cam + SlowMo,自定义怪物击杀+慢动作
+Disable KillCam,禁用击杀镜头
+Disable Other Cams,禁用其他镜头
+Disable UI on Kill,禁用击杀界面
+Use SlowMo,启动慢动作
+Use SlowMo Online,在多人游戏时启动慢动作
+Use Motion Blur In SlowMo,在慢动作时启动动态模糊
+SlowMo Speed,慢动作速度
+SlowMo Duration,慢动作持续时间
+SlowMo Ramp,慢动作过渡速度
+Activate For All Monsters,对所有怪物激活慢动作
+Activate By Any Player,由任意玩家激活慢动作
+Activate by Enemies,随从/怪物被击杀时激活慢动作
+Activate on Capture,捕获时激活慢动作
+Disables flying cam cutscene at end of quest.,在任务结束时禁用无人机拍摄镜头。
+Disable cutscene for fast travel and return to village.,禁用快速传送和返回村庄的动画镜头。
+Turns off the UI when SlowMo activates.,当慢动作启动时禁用UI界面。
+It's mostly fine online.\nBut you can change it here.,在线时基本没问题。\n但你可以在这里更改。
+Adds as much motion blur as the game can handle during SlowMo.,在慢动作中添加尽可能多的运动模糊。
+Percentage speed to use when slowing time.,慢动作时使用的速度百分比。
+Length of SlowMo in seconds.,慢动作的持续时间。（以秒为单位）
+How quickly the SlowMo transitions.,决定了慢动作的过渡速度的快慢。
+"Whether or not to activate for all monsters,\nnot just the target.",是否对所有怪物激活，\n不仅仅只有目标怪物。
+Whether or not to activate SlowMo if other players get the kill.,如果其他玩家被击杀，是否启动慢动作。
+Whether or not to activate SlowMo if a buddy or enemy gets the kill.,如果随从或敌人被击杀，是否启动慢动作。
+(Theoretically) activate SlowMo on moster capture or not.,（理论上）是否在怪物被捕获时激活慢动作。
+Toggles,切换
+Slides,调节
+Activation Toggles,激活设置
+Please update mod menu API.,请更新「MOD菜单API」。
+It does what it says on the tin.,MOD会照着这个说明去做。
+,
+autoBuff(自动喝药),
+사용,发动
+그레이트 귀인약,鬼人药G
+괴력씨앗,怪力种子
+귀인약,鬼人药
+귀인의 가루,鬼人粉尘
+경화약,硬化药
+인내씨앗,忍耐种子
+그레이트 경화약,硬化药G
+경화의 가루,硬化粉尘
+강주약,强走药
+잘익은 생선,烤鱼
+활력제,活力剂
+자동 버프 작동,自动buff激活
+type choose,类型选择
+Automatically When buff times out,自动在buff结束时补充
+Gestures(Show Off2),决胜姿势2
+HardorSoft (肉质可视化),
+Hard or Soft,肉质可视化
+Blademaster,近战
+Weakness Exploit,弱点特效
+Weakness Exploit And Element Exploit,弱点特效和弱点特效[属性]
+Mind's Eye,心眼
+Mind's Eye And Element Exploit,心眼和弱点特效[属性]
+Neither,心眼弱特均不触发
+Gunner,远程
+Change the color of the damage to the site where the Mind's Eye and Weakness Exploit are triggered.,修改心眼和弱点特效的颜色为指定颜色
+Enable,启用
+Neither And Element Exploit,心眼弱特均不触发但触发弱点特效属性
+Explosion,爆破
+Buddy Attack,随从攻击
+Element Exploit Trigger Hitzone,属性弱特触发需要的属性值
+Display Negative Value In Case Of Element Exploit,在属性弱特触发的情况下 以减数形式显示伤害(与伤害数字显示魔改不接容)
+Other,其他
+The display is negative only for the part where Element Exploit is activated. Actual damage is non-negative,仅对激活 弱点特效属性的部分显示为负。 实际伤害是非负的
+Element Exploit of Skill is 20. Element Exploit of Rampage Decorations is 25,技能弱点特效[属性]是20 百龙技能的则为25
+,
+Quest manager(任务一键完成),
+Quest Manager,任务管理器
+Clear Quest,清除任务
+You will not get monsters rewards,你不会获得任何素材奖励
+Big Monsters,大型怪物
+Unknown,未知
+Force exit,强制击退
+Kill and exit,讨伐
+Not instantaneous,非即时的
+Request go away,离开
+Capture,捕获
+Kill,讨伐
+(Target),(任务目标)
+Not in quest...,不在任务中...
+End quest time,任务结束时间
+Settings,设置
+,
+Granular Qurious Crafting 怪异炼化锁词条,
+Currently in slot: ,当前强化:
+\nAvailable Budget:,\n可用预算:
+Lock qurious slot,锁怪异强化
+,
+Persistent Buff Glow Removal 去除BUFF发光,
+[Remove Buff Glow],[去除BUFF发光]
+[Remove Buff Glow] Options,[去除BUFF发光] 设置
+"Standard Buff Effects (Atk Up, Def Up) and Kinsect Buffs",标准Buff效果（攻击上升、防御上升）和猎虫Buff
+Zone change to apply any changes.,部分更改或应用全体更改
+Less Glow##StdGlow,减少发光##StdGlow
+Minimal Glow##StdGlow,中等发光##StdGlow
+No Glow##StdGlow,没有发光##StdGlow
+Active on all Players##StdGlow,对所有玩家生效##StdGlow
+Active on Buddies##StdGlow,对随从生效##StdGlow
+Great Sword##BuffGlow,巨剑##BuffGlow
+Charge Levels,生效范围
+Remove effects from Player##GSCharge,移除玩家的效果##GSCharge
+Remove effects from all Players##GSCharge,移除所有玩家的效果##GSCharge
+Sword & Shield##BuffGlow,单手剑##BuffGlow
+Remove effects from Player##SNSCharge,移除玩家的效果##SNSCharge
+Remove effects from all Players##SNSCharge,移除所有玩家的效果##SNSCharge
+Dual Blades##BuffGlow,"双剑##BuffGlow"""
+Demon Mode,鬼人化
+Remove effects from Player##DBDemon,移除玩家的效果##DBDemon
+Remove effects from all Players##DBDemon,移除所有玩家的效果##DBDemon
+Archdemon Mode,鬼人兽
+Remove effects from Player##DBArchdemon,移除玩家的效果##DBArchdemon
+Remove effects from all Players##DBArchdemon,移除所有玩家的效果##DBArchdemon
+Ironshine Buff,磨刀Buff
+Remove effects from Player##DBSharpness,移除玩家的效果##DBSharpness
+Remove effects from all Players##DBSharpness,移除所有玩家的效果##DBSharpness
+Hammer##BuffGlow,大锤##BuffGlow
+Remove effects from Player##HCharge,移除玩家的效果##HCharge
+Remove effects from all Players##HCharge,移除所有玩家的效果##HCharge
+Charge Blade##BuffGlow,盾斧##BuffGlow
+Charged Shield,红盾
+Remove effects from Player##CBShield,移除玩家的效果##CBShield
+Remove effects from all Players##CBShield,移除所有玩家的效果##CBShield
+Charged Sword,红剑
+Remove effects from Player##CBSword,移除玩家的效果##CBSword
+Remove effects from all Players##CBSword,移除所有玩家的效果##CBSword
+Insect Glaive##BuffGlow,操虫棍##BuffGlow
+Triple Kinsect Buff,三种猎虫Buff
+Remove effects from Player##IGTriple,移除玩家的效果##IGTriple
+Remove effects from all Players##IGTriple,移除所有玩家的效果##IGTriple
+"For individual Kinsect buffs, edit the 'Standard Buffs (Atk Up, Def Up)' above",可以在上面的“标准Buff”中选择对单个猎虫的生效
+Heavy Bowgun##BuffGlow,重弩##BuffGlow
+Remove effects from Player##HBCharge,移除玩家的效果##HBCharge
+Remove effects from all Players##HBCharge,移除所有玩家的效果##HBCharge
+Bow##BuffGlow,弓##BuffGlow
+Remove effects from Player##BowCharge,移除玩家的效果##BowCharge
+Remove effects from all Players##BowCharge,移除所有玩家的效果##BowCharge

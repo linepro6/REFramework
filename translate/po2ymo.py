@@ -13,18 +13,18 @@ def fnv1a_32(data, hval=FNV1_32_INIT):
     return hval
 
 def po2ymohpp(lang, includefuzzy=False, encoding='utf-8', byteorder='little'):
-    inputstore = po.pofile(open(f"{lang}.po", 'rb'))
+    # inputstore = po.pofile(open(f"{lang}.po", 'rb'))
 
     units = {}
-    for unit in inputstore.units:
-        if unit.istranslated() or (unit.isfuzzy() and includefuzzy and unit.target):
-            source = unit.source
-            context = unit.getcontext()
-            print(source, "-----", unit.target)
-            if context:
-                source = context + '\004' + source
-            hash = fnv1a_32(source.encode(encoding))
-            units[hash] = unit.target.encode(encoding) + bytes(2)
+    # for unit in inputstore.units:
+    #     if unit.istranslated() or (unit.isfuzzy() and includefuzzy and unit.target):
+    #         source = unit.source
+    #         context = unit.getcontext()
+    #         print(source, "-----", unit.target)
+    #         if context:
+    #             source = context + '\004' + source
+    #         hash = fnv1a_32(source.encode(encoding))
+    #         units[hash] = unit.target.encode(encoding) + bytes(2)
     
     with open(f"{lang}_mods_text.csv", "r", encoding="utf-8-sig") as csvf:
         reader = csv.reader(csvf)
