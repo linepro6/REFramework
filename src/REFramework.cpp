@@ -1,7 +1,9 @@
 #include <chrono>
 #include <filesystem>
+#include <fstream>
 
 #include <windows.h>
+#include <ShlObj.h>
 
 #include <spdlog/sinks/basic_file_sink.h>
 
@@ -12,6 +14,7 @@ extern "C" {
 
 #include <imgui.h>
 #include <ImGuizmo.h>
+#include <imnodes.h>
 #include "re2-imgui/font_robotomedium.hpp"
 #include "re2-imgui/imgui_impl_dx11.h"
 #include "re2-imgui/imgui_impl_dx12.h"
@@ -134,12 +137,18 @@ void REFramework::hook_monitor() {
 REFramework::REFramework(HMODULE reframework_module)
     : m_reframework_module{reframework_module}
     , m_game_module{GetModuleHandle(0)}
-    , m_logger{spdlog::basic_logger_mt("REFramework", "re2_framework_log.txt", true)} {
+    , m_logger{spdlog::basic_logger_mt("REFramework", (get_persistent_dir("re2_framework_log.txt")).string(), true)}
+    {
 
     std::scoped_lock __{m_startup_mutex};
 
     spdlog::set_default_logger(m_logger);
     spdlog::flush_on(spdlog::level::info);
+
+    if (s_fallback_appdata) {
+        spdlog::warn("Failed to write to current directory, falling back to appdata folder");
+    }
+
     spdlog::info("REFramework entry");
 
     yi18n::Init();
@@ -268,11 +277,11 @@ REFramework::REFramework(HMODULE reframework_module)
 
     m_last_present_time = std::chrono::steady_clock::now();
     m_last_message_time = std::chrono::steady_clock::now();
-    m_d3d_monitor_thread = std::make_unique<std::thread>([this]() {
+    m_d3d_monitor_thread = std::make_unique<std::jthread>([this](std::stop_token stop_token) {
         // Load the plugins early right after executable unpacking
         PluginLoader::get()->early_init();
 
-        while (true) {
+        while (!stop_token.stop_requested() && !m_terminating) {
             this->hook_monitor();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
         }
@@ -359,7 +368,13 @@ bool REFramework::hook_d3d12() {
 REFramework::~REFramework() {
     spdlog::info("REFramework shutting down...");
 
-    std::scoped_lock _{ m_hook_monitor_mutex };
+    m_terminating = true;
+    m_d3d_monitor_thread->request_stop();
+    if (m_d3d_monitor_thread->joinable()) {
+        m_d3d_monitor_thread->join();
+    }
+
+    m_d3d_monitor_thread.reset();
 
     if (m_is_d3d11) {
         ImGui_ImplDX11_Shutdown();
@@ -451,7 +466,7 @@ void REFramework::on_frame_d3d11() {
     if (is_init_ok) {
         // Write default config once if it doesn't exist.
         if (!std::exchange(m_created_default_cfg, true)) {
-            if (!fs::exists({utility::widen("re2_fw_config.txt")})) {
+            if (!fs::exists({utility::widen(get_persistent_dir("re2_fw_config.txt").string())})) {
                 save_config();
             }
         }
@@ -554,7 +569,7 @@ void REFramework::on_frame_d3d12() {
     if (is_init_ok) {
         // Write default config once if it doesn't exist.
         if (!std::exchange(m_created_default_cfg, true)) {
-            if (!fs::exists({utility::widen("re2_fw_config.txt")})) {
+            if (!fs::exists({utility::widen(get_persistent_dir("re2_fw_config.txt").string())})) {
                 save_config();
             }
         }
@@ -767,6 +782,55 @@ void REFramework::on_direct_input_keys(const std::array<uint8_t, 256>& keys) {
     m_last_keys = keys;
 }
 
+std::filesystem::path REFramework::get_persistent_dir() {
+    auto return_appdata_dir = []() -> std::filesystem::path {
+        char app_data_path[MAX_PATH]{};
+        SHGetSpecialFolderPathA(0, app_data_path, CSIDL_APPDATA, false);
+
+        static const auto exe_name = [&]() {
+            const auto result = std::filesystem::path(*utility::get_module_path(utility::get_executable())).stem().string();
+            const auto dir = std::filesystem::path(app_data_path) / "REFramework" / result;
+            std::filesystem::create_directories(dir);
+
+            return result;
+        }();
+
+        return std::filesystem::path(app_data_path) / "REFramework" / exe_name;
+    };
+
+    if (s_fallback_appdata) {
+        return return_appdata_dir();
+    }
+
+    if (s_checked_file_permissions) {
+        static const auto result = std::filesystem::path(*utility::get_module_path(utility::get_executable())).parent_path();
+        return result;
+    }
+
+    // Do some tests on the file creation/writing permissions of the current directory
+    // If we can't write to the current directory, we fallback to the appdata folder
+    try {
+        const auto dir = std::filesystem::path(*utility::get_module_path(utility::get_executable())).parent_path();
+        const auto test_file = dir / "test.txt";
+        std::ofstream test_stream{test_file};
+        test_stream << "test";
+        test_stream.close();
+
+        std::filesystem::create_directories(dir / "test_dir");
+        std::filesystem::remove(test_file);
+        std::filesystem::remove(dir / "test_dir");
+
+        s_checked_file_permissions = true;
+        s_fallback_appdata = false;
+    } catch(...) {
+        s_fallback_appdata = true;
+        s_checked_file_permissions = true;
+        return return_appdata_dir();
+    }
+    
+    return std::filesystem::path(*utility::get_module_path(utility::get_executable())).parent_path();
+}
+
 void REFramework::save_config() {
     std::scoped_lock _{m_config_mtx};
 
@@ -778,8 +842,16 @@ void REFramework::save_config() {
         mod->on_config_save(cfg);
     }
 
-    if (!cfg.save("re2_fw_config.txt")) {
-        spdlog::info("Failed to save config");
+    try {
+        if (!cfg.save((get_persistent_dir() / "re2_fw_config.txt").string())) {
+            spdlog::error("Failed to save config");
+            return;
+        }
+    } catch(const std::exception& e) {
+        spdlog::error("Failed to save config: {}", e.what());
+        return;
+    } catch(...) {
+        spdlog::error("Unexpected error while saving config");
         return;
     }
 
@@ -1185,10 +1257,13 @@ bool REFramework::initialize() {
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
+        ImNodes::SetImGuiContext(ImGui::GetCurrentContext());
+        ImNodes::CreateContext();
 
         set_imgui_style();
 
-        ImGui::GetIO().IniFilename = "ref_ui.ini";
+        static const auto imgui_ini = (get_persistent_dir() / "ref_ui.ini").string();
+        ImGui::GetIO().IniFilename = imgui_ini.c_str();
 
         spdlog::info("Initializing ImGui Win32");
 
@@ -1245,10 +1320,13 @@ bool REFramework::initialize() {
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
+        ImNodes::SetImGuiContext(ImGui::GetCurrentContext());
+        ImNodes::CreateContext();
 
         set_imgui_style();
 
-        ImGui::GetIO().IniFilename = "ref_ui.ini";
+        static const auto imgui_ini = (get_persistent_dir() / "ref_ui.ini").string();
+        ImGui::GetIO().IniFilename = imgui_ini.c_str();
         
         if (!ImGui_ImplWin32_Init(m_wnd)) {
             spdlog::error("Failed to initialize ImGui ImplWin32.");

@@ -52,6 +52,13 @@ public:
     bool on_message(HWND wnd, UINT message, WPARAM w_param, LPARAM l_param);
     void on_direct_input_keys(const std::array<uint8_t, 256>& keys);
 
+    static inline bool s_fallback_appdata{false};
+    static inline bool s_checked_file_permissions{false};
+    static std::filesystem::path get_persistent_dir();
+    static std::filesystem::path get_persistent_dir(const std::string& dir) {
+        return get_persistent_dir() / dir;
+    }
+
     void save_config();
 
     enum class RendererType : uint8_t {
@@ -140,6 +147,7 @@ private:
     bool m_initialized{false};
     bool m_created_default_cfg{false};
     bool m_started_game_data_thread{false};
+    std::atomic<bool> m_terminating{false}; // Destructor is called
     std::atomic<bool> m_game_data_initialized{false};
     
     // UI
@@ -190,7 +198,7 @@ private:
 
     std::recursive_mutex m_hook_monitor_mutex{};
     std::recursive_mutex m_startup_mutex{};
-    std::unique_ptr<std::thread> m_d3d_monitor_thread{};
+    std::unique_ptr<std::jthread> m_d3d_monitor_thread{};
     std::chrono::steady_clock::time_point m_last_present_time{};
     std::chrono::steady_clock::time_point m_last_message_time{};
     std::chrono::steady_clock::time_point m_last_sendmessage_time{};

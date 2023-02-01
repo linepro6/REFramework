@@ -368,6 +368,8 @@ void ScriptState::on_frame() {
     } catch (...) {
         ScriptRunner::get()->spew_error("Unknown error in on_frame");
     }
+
+    api::imnodes::cleanup();
 }
 
 void ScriptState::on_draw_ui() {
@@ -386,6 +388,8 @@ void ScriptState::on_draw_ui() {
     } catch (...) {
         ScriptRunner::get()->spew_error("Unknown error in on_draw_ui");
     }
+
+    api::imnodes::cleanup();
 }
 
 void ScriptState::on_pre_application_entry(size_t hash) {
@@ -412,17 +416,15 @@ void ScriptState::on_pre_application_entry(size_t hash) {
 
 void ScriptState::on_application_entry(size_t hash) {
     try {
-        if (m_application_entry_fns.empty()) {
-            return;
-        }
+        if (!m_application_entry_fns.empty()) {
+            auto range = m_application_entry_fns.equal_range(hash);
 
-        auto range = m_application_entry_fns.equal_range(hash);
+            if (range.first != range.second) {
+                std::scoped_lock _{ m_execution_mutex };
 
-        if (range.first != range.second) {
-            std::scoped_lock _{ m_execution_mutex };
-
-            for (auto it = range.first; it != range.second; ++it) {
-                handle_protected_result(it->second());
+                for (auto it = range.first; it != range.second; ++it) {
+                    handle_protected_result(it->second());
+                }
             }
         }
     } catch (const std::exception& e) {
@@ -524,7 +526,11 @@ catch (const std::exception& e) {
 
 void ScriptState::add_hook(
     sdk::REMethodDefinition* fn, sol::protected_function pre_cb, sol::protected_function post_cb, sol::object ignore_jmp_obj) {
-    m_hooks_to_add.emplace_back(fn, pre_cb, post_cb, ignore_jmp_obj);
+    m_hooks_to_add.emplace_back((::REManagedObject*)nullptr, fn, pre_cb, post_cb, ignore_jmp_obj);
+}
+
+void ScriptState::add_vtable(::REManagedObject* obj, sdk::REMethodDefinition* fn, sol::protected_function pre_cb, sol::protected_function post_cb) {
+    m_hooks_to_add.emplace_back(obj, fn, pre_cb, post_cb);
 }
 
 void ScriptState::install_hooks() {
@@ -534,8 +540,9 @@ void ScriptState::install_hooks() {
         auto pre_cb = hookdef.pre_cb;
         auto post_cb = hookdef.post_cb;
         auto ignore_jmp_object = hookdef.ignore_jmp_obj;
-        auto id = g_hookman.add(
-            fn,
+        const auto hookman_data = HookManager::EitherOr{hookdef.obj, hookdef.fn, ignore_jmp_object.is<bool>() ? ignore_jmp_object.as<bool>() : false};
+        auto id = g_hookman.add_either_or(
+            hookman_data,
             [pre_cb, state = this](auto& args, auto& arg_tys) -> HookManager::PreHookResult {
                 using PreHookResult = HookManager::PreHookResult;
 
@@ -600,8 +607,8 @@ void ScriptState::install_hooks() {
                 } catch (...) {
                     ScriptRunner::get()->spew_error("Unknown exception in post_hook");
                 }
-            },
-            ignore_jmp_object.is<bool>() ? ignore_jmp_object.as<bool>() : false);
+            }
+        );
         m_hooks[fn].emplace_back(id);
     }
 }
@@ -926,7 +933,7 @@ void ScriptRunner::reset_scripts() {
     spdlog::info("[ScriptRunner] Module path {}", module_path);
 
     // Load from the reframework/autorun directory.
-    auto autorun_path = std::filesystem::path{module_path}.parent_path() / "reframework" / "autorun";
+    const auto autorun_path = REFramework::get_persistent_dir() / "reframework" / "autorun";
 
     spdlog::info("[ScriptRunner] Creating directories {}", autorun_path.string());
     std::filesystem::create_directories(autorun_path);
