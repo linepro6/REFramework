@@ -2,6 +2,7 @@
 #include "FnvHash.hpp"
 #include <unordered_map>
 #include "I18n/i18n_ymo_zh_CN.hpp"
+#include <string>
 
 namespace yi18n {
 std::unordered_map<uint32_t, const char*> hashToStrMap;
