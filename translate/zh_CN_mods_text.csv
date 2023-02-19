@@ -1003,3 +1003,304 @@ Right Trigger,RT键/R2键
 Aim & Firing,瞄准和射击同时按下时
 Only Firing,仅在射击时
 Only Aiming,仅在瞄准时
+,
+Auto Quest自动任务,
+,
+Can't join hub quests while not in the lobby.,不在集会时不能加入集会任务
+No quests to join.,没有可加入的任务
+Invalid Quest ID.,无效的任务ID
+Cant be played online.,无法在线游玩
+Can't join chosen quest type.,无法加入选定的任务类型
+Something went wrong.,出了一些问题
+Menu selection timeout.,菜单选择超时
+All quests are full.,所有任务都已满员
+Can't post in this area.,无法在此区域发布任务
+Failed to find Quest Counter NPC\nMove closer and try again.,找不到可承接任务的NPC。\n请靠近一点，然后重试
+Hub Quest,集会任务
+Random Anomaly Investigations,随机怪异化调查任务
+Random Anomaly,随机怪异化任务
+Random Master Rank,随机大师等级任务
+Random High Rank,随机上位任务
+Random Low Rank,随机下位任务
+Specific Quest,具体任务
+Join,加入
+Post,发布
+Posting Method,发布方式
+Quest Type,任务类型
+Anomaly Inv. Min Lv,怪异化调查任务最低等级
+Anomaly Inv. Max Lv,怪异化调查任务最高等级
+Auto ,自动 
+ Quest, 任务
+Auto Randomize Quest,自动随机选择任务
+Monster,怪物
+Keep RNG,锁定怪物出生地点
+New Hub Quests,自动加入集会任务
+Auto Ready,自动完成准备
+Auto Depart,自动出发
+Send Join Request,发送救援信号
+Quest ID,任务ID
+Reload Quest Data,重新加载任务数据
+Randomizer,随机化
+Randomizer Settings,随机化设置
+Select All,全选
+Unselect All,取消全选
+Quest Ranks,任务等级
+Exclude Village,排除村任务
+Exclude Low Rank,排除下位任务
+Exclude High Rank,排除上位任务
+Exclude Master Rank,排除大师等级任务
+Quest Categories,任务类别
+Exclude MR Level,要排除的大师位任务的等级
+Exclude Anomaly,排除怪异化任务
+M1,大师等级1
+M2,大师等级2
+M3,大师等级3
+M4,大师等级4
+M5,大师等级5
+M6,大师等级6
+A1,怪异化1星
+A2,怪异化2星
+A3,怪异化3星
+A4,怪异化4星
+A5,怪异化5星
+A6,怪异化6星
+A7,怪异化7星
+Exclude Anomaly Level,要排除怪异化任务等级
+Exclude Anomaly Investigations,排除怪异化调查任务
+Exclude Anomaly Investigations Level,要排除的怪异化调查任务等级
+Exclude Below,排除 等级以下的任务
+Exclude Above,排除 等级以外的任务
+Exclude Arena,排除斗技场任务
+Low Rank,下位
+High Rank,上位
+Master Rank,大师位
+Exclude Rampage,排除百龙夜行任务
+Exclude Rampage Ranks,要排除的百龙夜行任务等级
+Village,村任务
+Exclude Support Surveys,排除盟友调查任务
+Exclude Follower Quests,排除盟友跟随任务
+Exclude Event,排除盟友支线任务
+Exclude Event Ranks,排除以下类型的支线任务
+Exclude Training,排除教学任务
+Exclude Tour,排除探索任务
+Exclude Capture,排除捕获任务
+Exclude Slay,排除连续狩猎的任务
+Exclude Hunt,排除狩猎任务
+Exclude Boss Rush,排除大连续任务
+Exclude Gathering,排除收集任务
+Exclude Small Monsters,排除小型怪物任务
+Exclude Single Monster,排除单目标任务
+Exclude Mutli Monsters,排除多目标任务
+Exclude Not Unlocked,排除未解锁任务
+Exclude Completed,排除已完成任务
+Exclude Invalid Anomaly Investigations,排除非法的怪异化调查任务
+Exclude Custom,排除自制任务
+Exclude Non Custom,排除官方任务
+Exclude Posted,排除已发布任务
+Reset Posted Quests List,重置已发布任务的列表
+Prefer Anomaly Research Quests,偏好怪异化调查任务
+GUI Settings,GUI 设置
+Hide GUI while posting,发布任务时隐藏GUI
+Mute UI sounds while posting,发布任务时禁用UI音效
+Restore GUI,重置GUI设定
+ Quest Bind, 任务 绑定快捷键
+Press any key...,按下任意键...
+Explanations,功能释意
+Posting Method,任务发布方式
+Multiplayer,联机模式
+Required method if you want to post quest for people in your lobby\n,如果您想在您的集会中发布任务，则需要使用此方法。\n
+or activate Join Request later. Also can be used if you play singleplayer.\n,或者在任务开始时发送救援信号，在单人游戏时也可以使用此模式。\n
+"Quests can be posted only in 3 areas, Elgado, Kamura Village and Kamura Hub\n",只能在埃尔加多、炎火村和炎火村集会这三处发布任务。\n
+while somewhat close to Quest Counter. GUI cant be disabled while posting.,请靠近任务面布告栏发布任务，联机模式发布任务时不能隐藏GUI。
+Singleplayer,单人模式
+Other people cant join quests posted with this method.\n,使用此方法时其他人无法加入您发布的任务。\n
+Quests can be posted from each area that lets you open Quest Board.\n,任务可以从任何可以打开任务面板的区域发布。\n
+Is faster than Multiplayer method and GUI can be disabled while posting.,此方法比联机模式快，发布任务时可以隐藏GUI。
+Join Multiplayer,加入联机
+Queues for random multiplayer quests of your choosing or joins hub quests.,排队等待您选择的随机联机任务或加入集会任务
+"Lets you keep random seed used in last quest. Affects spawned monsters,\n",允许您保留上次任务中使用的随机种子。这会影响生成怪物的\n
+their spawn postitions and probably some less important stuff.\n,出生位置，和一些不太重要的东西。\n
+Quest rewards are not affected.,完成任务时的奖励不受影响。
+Join New Hub Quests,自动加入集会任务
+When enabled mod will attempt to join new hub quests whenever one is posted.\n,启用后，无论何时何人在你集会内发布集会任务，mod都会尝试加入。\n
+"Tbh I dislike this option as its essentially giving a bit of control to other players,\n",说真的，我不喜欢这个选项，因为它本质上给了其他玩家一点控制权，\n
+but its there if you want it.,不过您真想用的话就用吧。
+Mystery Mode,神秘模式
+Hides quest info displayed in top left corner and while signing for hub quest.,隐藏左上角显示的任务信息，并在加入集会任务时隐藏任务信息
+Reset list,重置列表
+Resets list of posted quests.,重置已发布任务的列表
+Unhides GUI and restores ui volume if something went wrong.,如果出现问题，使用此项取消隐藏GUI并恢复UI声音
+Custom Quests,自制任务
+After loading custom quests press Reload Quest Data button\n,加载自制任务后，按“重新加载任务数据”按钮\n
+for them to appear in the randomizer quest pool.,让它们出现在随机化任务池中
+Other,其他选项
+"Posts quests for singleplayer ONLY, faster than multiplayer method.",
+"Posts quests for multiplayer and singleplayer, slower than singleplayer method.",
+Joins Hub quests or multiplayer queues.,
+Join Hub Quest.,
+Queue for Random Anomaly Investigation.,
+Queue for Random Anomaly Quest.,
+Queue for Random Master Rank Quest.,
+Queue for Random High Rank Quest.,
+Queue for Random Low Rank Quest.,
+Queue for Specific Quest.,
+Buttons,
+Created by: <COL RED>kmy</COL>,"作者: <COL RED>kmy</COL>,汉化: <COL BU>蛮子哒</COL>"
+Version: <COL RED>,版本: <COL RED>
+<COL AUTOQUESTBR>Quest ID</COL>,<COL AUTOQUESTBR>任务 ID</COL>
+<COL AUTOQUESTGREEN>Quest ID</COL>,<COL AUTOQUESTGREEN>任务 ID</COL>
+Quest ID of next quest to be posted. Press to type.,
+Type something in...,
+<COL AUTOQUESTBR>Randomize</COL>,
+Randomize Quest ID - No. of quests in the Randomizer list.,
+<COL AUTOQUESTBR>Select Randomizer Chekboxes</COL>,
+<COL AUTOQUESTBR>Unselect Randomizer Chekboxes</COL>,
+Selects or Unselects all Randomizer Checkboxes.,
+<COL AUTOQUESTBR>Reload Quest Data</COL>,
+Use this after loading custom quests if you want them to appear in the randomizer quest list - No. of quests,
+<COL GRAY>Quest ID</COL>,
+"Multiplayer, Singleplayer Methods and Join Multiplayer Specific Quest only.",
+<COL GRAY>Select Randomizer Chekboxes</COL>,
+<COL GRAY>Unselect Randomizer Chekboxes</COL>,
+<COL GRAY>Reload Quest Data</COL>,
+"Multiplayer, Singleplayer Methods only.",
+Close options and ,
+ Quest Bind</COL>,
+<COL GRAY>Press any key... ,
+Your ,
+ Quest Bind. Press to bind.,
+General,
+Choose your Posting Method.,
+<COL GRAY>Quest Type</COL>,
+Join Multiplayer Method only.,
+Join Mulitplayer Quest Type.,
+<COL YEL>Anomaly Investigations Options</COL>,
+Show/Hide Anomaly Investigations options.,
+You can set this higher than game lets you normally. ,
+Random Anomaly Investigation Target,
+<COL YEL>Hub Quest Options</COL>,
+Show/Hide Hub Quest options.,
+Enable/Disable joining Hub Quests whenever new one is posted.,
+Enable/Disable readying up immediately after joining Hub Quest.,
+Enable/Disable Auto ,
+ing quests upon returning to village.,
+Auto Randomize Quest,
+Enable/Disable Auto Randomizing Quests upon posting.,
+"Enable/Disable Keeping last quest RNG. Affects spawned monsters,",
+their spawn postitions and probably some less important stuff.,
+<COL GRAY>Keep RNG</COL>,
+"Multiplayer, Singleplayer Methods only.",
+<COL GRAY>Send Join Request</COL>,
+Multiplayer Method only.,
+Auto Depart,
+Enable/Disable departing immediately after quest post.,
+<COL GRAY>Auto Depart</COL>,
+Singleplayer Method only.,
+Enable/Disable hiding quest info displayed in top ,
+left corner and while signing for Hub quest.,
+Hide Gui,
+Enable/Disable hiding gui while posting.,
+Mute UI,
+Enable/Disable muting ui sounds while posting.,
+<COL GRAY>Hide Gui</COL>,
+<COL GRAY>Mute UI</COL>,
+<COL GRAY>Quest Ranks</COL>,
+Show/Hide Quest Ranks options.,
+Exclude/Include Village Quests.,
+Exclude/Include Low Rank Quests.,
+Exclude/Include High Rank Quests.,
+Exclude/Include Master Rank Quests.,
+<COL YEL>Exclude Master Rank Level</COL>,
+Show/Hide Master Rank Level options.,
+Include Master Rank Quests to show.,
+Exclude Master Rank Level 1,
+Exclude Master Rank Level 2,
+Exclude Master Rank Level 3,
+Exclude Master Rank Level 4,
+Exclude Master Rank Level 5,
+Exclude Master Rank Level 6,
+Exclude/Include Master Rank Level 1 Quests.,
+Exclude/Include Master Rank Level 2 Quests.,
+Exclude/Include Master Rank Level 3 Quests.,
+Exclude/Include Master Rank Level 4 Quests.,
+Exclude/Include Master Rank Level 5 Quests.,
+Exclude/Include Master Rank Level 6 Quests.,
+<COL YEL>Quest Categories</COL>,
+Show/Hide Quest Categories options.,
+Exclude/Include Anomnaly Quests.,
+<COL YEL>Exclude Anomaly Level</COL>,
+Show/Hide Anomaly Level options.,
+<COL GRAY>Exclude Anomaly Level</COL>,
+Include Anomaly Quests to show.,
+Exclude Anomaly Level 1,
+Exclude Anomaly Level 2,
+Exclude Anomaly Level 3,
+Exclude Anomaly Level 4,
+Exclude Anomaly Level 5,
+Exclude Anomaly Level 6,
+Exclude Anomaly Level 7,
+Exclude/Include Anomaly Level 1 Quests.,
+Exclude/Include Anomaly Level 2 Quests.,
+Exclude/Include Anomaly Level 3 Quests.,
+Exclude/Include Anomaly Level 4 Quests.,
+Exclude/Include Anomaly Level 5 Quests.,
+Exclude/Include Anomaly Level 6 Quests.,
+Exclude/Include Anomaly Level 7 Quests.,
+Exclude/Include Anomaly Investigations Quests.,
+<COL YEL>Exclude Anomaly Investigations Level</COL>,
+Show/Hide Anomaly Investigations Level options.,
+<COL GRAY>Exclude Anomaly Investigations Level</COL>,
+Include Anomaly Investigations Quests to show.,
+Exclude/Include Arena Quests.,
+<COL YEL>Exclude Arena Ranks</COL>,
+Show/Hide Arena Ranks options.,
+<COL GRAY>Exclude Arena Ranks</COL>,
+Include Arena Quests to show.,
+Exclude/Include Arena Low Rank Quests.,
+Exclude/Include Arena Low Rank Quests.,
+Exclude/Include Arena Low Rank Quests.,
+Exclude/Include Rampage Quests.,
+<COL YEL>Exclude Rampage Ranks</COL>,
+Show/Hide Rampage Ranks options.,
+<COL GRAY>Exclude Rampage Ranks</COL>,
+Include Rampage Quests to show.,
+Exclude/Include Rampage Village Quests.,
+Exclude/Include Rampage Low Rank Quests.,
+Exclude/Include Rampage High Rank Quests.,
+Exclude/Include Event Quests.,
+<COL YEL>Exclude Event Ranks</COL>,
+Show/Hide Event Ranks options.,
+<COL GRAY>Exclude Event Ranks</COL>,
+Include Event Quests to show.,
+Exclude/Include Event Low Rank Quests.,
+Exclude/Include Event High Rank Quests.,
+Exclude/Include Event Master Rank Quests.,
+Exclude/Include Support Surveys Quests.,
+Exclude/Include Follower Quests.,
+Exclude/Include Training Quests.,
+Exclude/Include Tour Quests.,
+<COL GRAY>Quest Types</COL>,
+<COL YEL>Quest Types</COL>,
+Show/Hide Quest Types options.,
+Exclude/Include Capture Quests.,
+Exclude/Include Slay Quests.,
+Exclude/Include Boss Rush Quests.,
+Exclude/Include Gathering Quests.,
+<COL GRAY>Other</COL>,
+<COL YEL>Other</COL>,
+Show/Hide Other options.,
+Exclude/Include Quests with small monsters as a main target.,
+Exclude/Include Quests with single monster as a main target.,
+Exclude/Include Multi Target Quests.,
+Exclude/Include Not Unlocked Quests.,
+Exclude/Include Completed Quests.,
+Exclude/Include Invalid Anomaly Investigations.,
+Exclude/Include Custom Quests.,
+Exclude/Include Non Custom Quests.,
+Exclude/Include Already Posted Quests.,
+Randomizer will pick Anomaly Research Quest over other quests if available.,
+<COL AUTOQUESTBR>Reset Posted Quests List<COL>,
+You have ,
+ quests in the list.,
+AutoQuest,
+Posts quests for you :),
