@@ -81,7 +81,9 @@ T* create_instance(std::string_view type_name, bool simplify = false);
 
 #include "RETypeDefinition.hpp"
 #include "REManagedObject.hpp"
+#include "REContext.hpp"
 #include "TDBVer.hpp"
+#include "REGlobals.hpp"
 
 namespace sdk {
 namespace tdb71 {
@@ -807,6 +809,26 @@ struct REMethodDefinition : public sdk::REMethodDefinition_ {
         return get_function_t<T (*)(Args...)>()(args...);
     }
 
+    // Does what invoke does without all the stupid setup beforehand
+    template<typename T = void*, typename ...Args>
+    T call_safe(Args... args) const {
+        if constexpr (std::is_same_v<T, void>) {
+            sdk::VMContext::safe_wrap(get_name(), [&]() {
+                get_function_t<void (*)(Args...)>()(args...);
+            });
+            return;
+        }
+        
+        if constexpr (!std::is_same_v<T, void>) {
+            T result{};
+            sdk::VMContext::safe_wrap(get_name(), [&]() {
+                result = get_function_t<T (*)(Args...)>()(args...);
+            });
+
+            return result;
+        }
+    }
+
     template <typename Ret = void*, typename ...Types>
     struct CallHelper {
         template<size_t... I>
@@ -992,15 +1014,28 @@ T* get_static_field(std::string_view type_name, std::string_view name, bool is_v
 }
 
 template <typename T>
-T* get_native_singleton(std::string_view type_name) {
-    auto t = sdk::find_type_definition(type_name);
+T* get_native_singleton(std::string_view type_name)  {
+    const auto t = sdk::find_type_definition(type_name);
 
-    if (t == nullptr) {
-        //spdlog::error("Cannot find type {:s}", type_name.data());
+    if (t != nullptr) {
+        const auto result = t->get_instance();
+
+        if (result != nullptr) {
+            return (T*)result;
+        }
+    }
+
+    const auto retype = reframework::get_globals()->get_native(type_name);
+    if (retype == nullptr)  {
         return nullptr;
     }
 
-    return (T*)t->get_instance();
+    const auto instance = utility::re_type::get_singleton_instance(retype);
+    if (instance == nullptr)  {
+        return nullptr;
+    }
+
+    return (T*)instance;
 }
 
 template <typename T>

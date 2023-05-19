@@ -83,6 +83,10 @@ REFrameworkSDKFunctions g_sdk_functions {
         return (REFrameworkManagedObjectHandle)tdef->get_runtime_type();
     },
     [](const char* name) -> REFrameworkManagedObjectHandle {
+        if (const auto singleton = (REFrameworkManagedObjectHandle)sdk::get_managed_singleton<void*>(name); singleton != nullptr) {
+            return singleton;
+        }
+        
         return (REFrameworkManagedObjectHandle)reframework::get_globals()->get(name);
     },
     [](const char* name) {
@@ -725,7 +729,7 @@ std::optional<std::string> PluginLoader::on_initialize() {
 }
 
 void PluginLoader::on_draw_ui() {
-    ImGui::SetNextTreeNodeOpen(false, ImGuiCond_Once);
+    ImGui::SetNextItemOpen(false, ImGuiCond_Once);
 
     if (ImGui::CollapsingHeader(get_name().data())) {
         std::scoped_lock _{m_mux};

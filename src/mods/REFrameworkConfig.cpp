@@ -19,7 +19,9 @@ void REFrameworkConfig::on_draw_ui() {
     ImGui::TreePush(_("Configuration"));
 
     m_menu_key->draw(_("Menu Key"));
+    m_show_cursor_key->draw(_("Show Cursor Key"));
     m_remember_menu_state->draw(_("Remember Menu Open/Closed State"));
+    m_always_show_cursor->draw(_("Draw Cursor With Menu Open"));
 
     if (m_font_size->draw(_("Font Size"))) {
         auto font_size = m_font_size->value();
@@ -31,6 +33,12 @@ void REFrameworkConfig::on_draw_ui() {
     }
 
     ImGui::TreePop();
+}
+
+void REFrameworkConfig::on_frame() {
+    if (m_show_cursor_key->is_key_down_once()) {
+        m_always_show_cursor->toggle();
+    }
 }
 
 void REFrameworkConfig::on_config_load(const utility::Config& cfg) {
