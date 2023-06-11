@@ -1121,7 +1121,8 @@ void REFramework::draw_ui() {
 
     ImGui::SetNextWindowPos(ImVec2(50, 50), ImGuiCond_::ImGuiCond_Once);
     ImGui::SetNextWindowSize(ImVec2(300, 500), ImGuiCond_::ImGuiCond_Once);
-    ImGui::Begin("REFramework", &m_draw_ui);
+    bool is_open = true;
+    ImGui::Begin("REFramework", &is_open);
     ImGui::Text(_("Default Menu Key: Insert"));
     ImGui::Checkbox(_("Transparency"), &m_ui_option_transparent);
     ImGui::SameLine();

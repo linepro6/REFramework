@@ -178,6 +178,7 @@ Fugen,普贤
 Utsushi,倪泰
 Great Sword,巨剑
 Longsword,太刀
+Long sword,太刀
 Sword & Shield,单手剑
 Lance,长枪
 Charge Blade,盾斧
@@ -290,6 +291,11 @@ Rarity 12,稀有度 12
 Rarity 13,稀有度 13
 Rarity 14,稀有度 14
 Rarity 15,稀有度 15
+Rarity 16,稀有度 16
+Rarity 17,稀有度 17
+Rarity 18,稀有度 18
+Rarity 19,稀有度 19
+Rarity 20,稀有度 20
 Armor tier,防具等级
 Spent ,已使用
  out of ,点数，装备基础点数为
@@ -416,66 +422,134 @@ Village point per use,每次消耗的点数
 ,
 Anomaly Investigations Editor怪异调查编辑器,
 Anomaly Investigations Editor,怪异调查编辑器
+Quest Selection And Settings,任务选项和设置
+Edit Level,设置怪异化等级
+Edit Special Open,设置超特殊许可
+Edit Target Num,设置任务目标数
+Edit Quest Life,设置猫车次数
+Edit Time Limit,设置时间限制
+Edit Hunter Num,设置可参与人数
+Edit Time of Day,设置任务时间
+Keep Valid,保持任务合法
+Keeps edited setting within valid range if possible\nWorks ONLY when editing SINGLE setting,应用编辑的选项时尽可能地保持任务合法\n仅在编辑单项设置时有效！
+Quest Selection,任务选项
+All,全部
+Selected,已选择的
+Not Selected,未选择的
+Valid,合法的
+Invalid,非法的
+Filter,筛选
+Select All,全选
+Unselect All,取消全选
+Yes,是
+No,否
+Locked - Editing Disabled,锁定-禁用编辑
+Valid Combinations,合法的组合
+Main target follows MYSTERY rank,任务主要目标遵循怪异化等级
+Sub target follows NORMAL rank,任务次要目标遵循普通等级
+Authorization doesnt check Extra targets and Intruders at all,合法检测不检查非目标怪物和乱入怪物
+4 Target Num works from level 1,任务的主要目标从1级开始
+Normal Rank 11 Rules,合法的怪异化任务规则
+"Extra maps available from level 181(Not for all monsters): Infernal Springs, Arena, Forlorn Arena",从怪异化181级起提供额外地图（并非适用于所有怪物）：狱泉乡、斗技场、塔之秘境
+Quest cant have duplicate monsters.,任务内不能包含重复的怪物
+Quest cant have two Apex monsters.,任务内不能包含两只霸主怪物
+Apex monsters cant be intruders or extra targets.,霸主怪物不能是乱入怪物或非目标怪物
+Risen EDs can appear only as a main target.,怪异克服古龙只能作为任务主要目标
+Mod works only in the lobby with quest counter closed.,mod只能在任务面板关闭和没有承接任务时才能启用
+Quest Count:,任务数量：
+Force Authorization Pass,强制任务通过合法检测
+Editor,编辑器
+Mode,模式
+Single Quest,单人模式（若生成非法任务仅有使用mod者可以承接）
+Multiple Quests,多人模式（仅生成合法任务）
+Quest,任务
+Quests Selected:,所选任务：
+None - 0 - 0,无 - 0 - 0
+Quest Level:,任务等级：
+Map:,地图：
+Monster 1:,怪物1:
+Monster 2:,怪物2:
+Monster 3:,怪物3:
+Monster 4:,怪物4:
+Intruder:,乱入怪物：
+Target Num:,目标数量：
+Time Limit:,时间限制：
+Quest Life:,猫车次数：
+Time of Day:,任务出发时间：
+Hunter Num:,可参与人数：
+Lock:,是否锁定：
+Special Open:,超特殊许可：
+Auth Status:,任务是否合法：
+Map,地图
+Name - Mystery Rank - Normal Rank,怪物名称 - 怪异化等级 - 普通等级
+Always None below 2 Target Num on Extra Maps,在额外地图上，任务目标不少于2个
+Always None below 3 Target Num on Extra Maps,在额外地图上，任务目标不少于3个
+Always None below 4 Target Num,在额外地图上，任务目标不少于4个
+Always None above 2 Target Num,任务目标数高于2时，乱入怪物不存在
+Monster 1,怪物 1
+Monster 2,怪物 2
+Monster 3,怪物 3
+Monster 4,怪物 4
+Intruder,乱入怪物
+Time of Day,任务出发时间
+Special Open,超特殊许可
+You can open Special Quest only if Quest Level is at 300 and you already unlocked them,只有当任务等级为300并且已经完成过任务时，才能打开超特殊许可
+Quest Level,任务等级
+Target Num,目标数量
+Quest Life,猫车次数
+Time Limit,时间限制
+Hunter Num,可参与人数
+Edit Quest,编辑任务
+edit,编辑
+Are you sure?,你确定要这么做吗？
+Lock/Unlock,锁定/解锁
+Valid Combinations,合法的组合
+Dump Monsters,清除怪物
+Generator,任务生成器
+Random Quest Rank,随机任务等级
+Amount,数量
+Generate Random Quest,生成随机任务
+Delete Quests,删除任务
+delete,删除
+Deletes all quests except newest one and locked ones,删除除最新任务和锁定任务外的所有任务
+Probabilities at,各星级怪物在
+Research Level,级出现怪异化任务的概率
+Citadel,城塞高地
 Flooded Forest,水没林
 Frost Islands,冰封群岛
-Lava Caverns,熔岩洞
 Jungle,密林
-Citadel,城塞高地
+Lava Caverns,熔岩洞
 Sandy Plains,沙原
 Shrine Ruins,废神社
-Arena,斗技场
-Coral Palace,龙宫古城
-Red Stronghold,翡叶要塞
 Infernal Springs,狱泉乡
-Yawning Abyss,渊劫地狱
+Arena,斗技场
 Forlorn Arena,塔之秘境
+Default,默认
 Day,白天
 Night,夜晚
 Pass,通过
 Fail,失败
-Main Target Mystery Rank,主要目标神秘等级
-Sub Target Mystery Rank,次要目标神秘等级
-Extra Target Mystery Rank,额外目标神秘等级
-Research Level Too Low,猎人怪异化调查等级过低
-Invalid Monsters,无效的怪物
-Quest Level Too Low,任务等级过低
-Invalid Quest Conditions,无效的任务条件
-Invalid Map,无效的任务区域
 Quest Level Too High,任务等级过高
-Monster Rank Too High For Quest Level,当前怪物等级高于任务等级
-Duplicate Monsters,包含重复的怪物
-Mod works only in the lobby with quest counter closed.,编辑器只在任务面板关闭时启用
-Force Authorization Pass,强制任务通过合法检测
-Filter,筛选
-Quest,任务
-Quest Level,任务等级
-Quest Count,任务数量
-Map,任务区域
-Lock,是否锁定任务
-Name - Mystery Rank,神秘模式
-Monster 1,怪物 1
-Monster 2,怪物 2
-Monster 3,怪物 3
-Intruder,乱入怪物
-Target Num,目标数量
-Time Limit,时间限制
-Quest Life,猫车次数
-Time of Day,任务出发时间
-Auth Status,任务合法检测
-Lock/Unlock,锁定\解锁
-Valid Combinations,合法任务规则
-Random Quest Rank,随机任务等级
-Amount,生成数量
-Quest Level,任务等级
-Probabilities at 200 Research Level,各星级怪物出现200级调查任务的概率
-Hunter Num,参与人数
-Edit Quest,生成自定义任务
-Generate Random Quest,生成随机任务
-Delete Quests,删除任务
-"Invalid maps: Infernal Springs, Arena, Forlorn Arena",无效的任务区域：狱泉乡、斗技场、塔之秘境
-Quest cant have duplicate monsters.,任务不能包含重复的怪物
-Quest cant have two Apex monsters.,任务不能包含两只霸主怪物
-Apex monsters cant be intruders.,霸主怪物不能是乱入怪物
+Research Level Too Low,调查等级过低
+Invalid Monsters,非法的怪物
+Quest Level Too Low,任务等级过低
+Invalid Quest Conditions,非法的怪物组合
+Invalid Map,非法的地图
+Min Level,最低等级
+All combinations here pass Authorization but that doesnt mean that the game can actually generate those,这里的所有组合都通过了合法检测，但这并不意味着游戏实际上可以生成
+Delimiter:,模式界定：
+e.g.,举例：
+Lagombi - 105 - Citadel - 700001,白兔兽 - 105 - 城塞高地 - 700001
+Volvidon - 150 - Lava Caverns - 700002,赤甲兽 - 150 - 熔岩洞 - 700002
+Lagombi - 200 - Frost Islands - 700003,白兔兽 - 200 - 冰封群岛 - 700003
+Query: lagombi;volvidon,查询: 白兔兽；赤甲兽
+Result:,结果：
+Query: lagombi;citadel,查询: 白兔兽；城塞高地
+Searching by level is also supported,还支持按等级搜索
+"Operators: !=, >=, <=, <, >, =","玩家怪异调查等级：=, >=, <=, <, >, ="
+Query: >=150,查询： >=150
+Yes - Editing Disabled,是-禁用编辑
+stars,星级
 Rathian,雌火龙
 Anjanath,蛮颚龙
 Pukei-Pukei,毒妖鸟
@@ -541,6 +615,14 @@ Flaming Espinas,棘茶龙
 Violet Mizutsune,焰狐龙
 Lucent Nargacuga,月迅龙
 Risen Chameleos,怪异克服霞龙
+Velkhana,冰呪龙
+Risen Kushala Daora,怪异克服钢龙
+Risen Shagaru Magala,怪异克服天廻龙
+Risen Crimson Glow Valstrax,怪异克服神秘红光天慧龙
+Risen Chameleos,怪异克服霞龙
+Amatsu,岚龙
+Apex Diablos,霸主角龙
+Apex Zinogre,霸主雷狼龙
 ,
 Eternal Sale and Lottery永恒促销和抽奖,
 [Eternal Sale] Options,[永恒促销抽奖] 设置
@@ -778,7 +860,7 @@ REFramework is currently initializing...,REFramework当前正在初始化……
 This menu will close after initialization if you have the remember option enabled.,如果启用了“保存”选项，此菜单将在初始化后关闭。
 REFramework error: %s,REFramework错误: %s
 About,关于
-Author: praydog,作者：praydog / 汉化：花舞 - 踩蘑菇MOD汉化组  Ver1.1.2
+Author: praydog,作者：praydog / 汉化：花舞 - 踩蘑菇MOD汉化组  Ver1.1.5 / 反馈群：608262198
 Inspired by the Kanan project.,灵感来自Kanan项目。
 Engine information,引擎信息
 Unable to determine engine version.,无法确定引擎版本。
