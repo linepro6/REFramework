@@ -3,11 +3,12 @@
 #include <chrono>
 
 #include "Tool.hpp"
+#include "I18n.hpp"
 
 class ChainViewer : public Tool {
 public:
     std::string_view get_name() const override {
-        return "ChainViewer";
+        return _("ChainViewer");
     }
     
     std::optional<std::string> on_initialize() override;

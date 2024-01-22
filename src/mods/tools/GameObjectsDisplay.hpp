@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Tool.hpp"
+#include "I18n.hpp"
 
 class GameObjectsDisplay : public Tool {
 public:
     std::string_view get_name() const override {
-        return "GameObjectsDisplay";
+        return _("GameObjectsDisplay");
     }
     
     std::optional<std::string> on_initialize() override;

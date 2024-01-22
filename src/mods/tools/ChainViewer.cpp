@@ -74,7 +74,7 @@ void ChainViewer::on_draw_dev_ui() {
         return;
     }
 
-    if (m_enabled->draw("Enabled") && !m_enabled->value()) {
+    if (m_enabled->draw(_("Enabled")) && !m_enabled->value()) {
         // todo
     }
 }
@@ -325,11 +325,11 @@ void ChainViewer::on_frame() {
                         ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
 
                     #if TDB_VER >= 69 && !defined(MHRISE_CHAIN70)
-                        if (ImGui::TreeNode(&collider, "Collision %d %d", i, j)) {
+                        if (ImGui::TreeNode(&collider, _("Collision %d %d"), i, j)) {
                     #else
-                        if (ImGui::TreeNode(&collider, "Collision %d", i)) {
+                        if (ImGui::TreeNode(&collider, _("Collision %d"), i)) {
                     #endif
-                            auto made_joint_node = ImGui::TreeNode(&collider.joint, "Joint");
+                            auto made_joint_node = ImGui::TreeNode(&collider.joint, _("Joint"));
 
                             const auto col = ImVec4{100.0f / 255.0f, 149.0f / 255.0f, 237.0f / 255.0f, 255 / 255.0f};
 
@@ -343,7 +343,7 @@ void ChainViewer::on_frame() {
                                 ImGui::TreePop();
                             }
 
-                            made_joint_node = ImGui::TreeNode(&collider.pair_joint, "Pair Joint");
+                            made_joint_node = ImGui::TreeNode(&collider.pair_joint, _("Pair Joint"));
 
                             if (collider.pair_joint != nullptr) {
                                 ImGui::SameLine();
@@ -355,11 +355,11 @@ void ChainViewer::on_frame() {
                                 ImGui::TreePop();
                             }
 
-                            ImGui::DragFloat("Radius", (float*)&collider.radius, 0.01f, 0.0f, 0.0f);
-                            ImGui::DragInt("Flags", (int*)&collider.flags, 1, 0, 0);
+                            ImGui::DragFloat(_("Radius"), (float*)&collider.radius, 0.01f, 0.0f, 0.0f);
+                            ImGui::DragInt(_("Flags"), (int*)&collider.flags, 1, 0, 0);
 
-                            ImGui::DragFloat3("Offset", (float*)&collider.offset, 0.01f, 0.0f, 0.0f);
-                            ImGui::DragFloat3("Pair Offset", (float*)&collider.pair_offset, 0.01f, 0.0f, 0.0f);
+                            ImGui::DragFloat3(_("Offset"), (float*)&collider.offset, 0.01f, 0.0f, 0.0f);
+                            ImGui::DragFloat3(_("Pair Offset"), (float*)&collider.pair_offset, 0.01f, 0.0f, 0.0f);
                             ImGui::TreePop();
                         }
 
