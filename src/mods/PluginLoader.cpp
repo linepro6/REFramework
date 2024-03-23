@@ -167,17 +167,17 @@ REFrameworkSDKFunctions g_sdk_functions {
         return (REFrameworkManagedObjectHandle)sdk::VM::create_managed_string(utility::widen(str));
     },
     [](REFrameworkMethodHandle fn, REFPreHookFn pre_fn, REFPostHookFn post_fn, bool ignore_jmp) -> unsigned int {
-        return g_hookman.add((sdk::REMethodDefinition*)fn, [pre_fn](auto& args, auto& arg_tys) {
+        return g_hookman.add((sdk::REMethodDefinition*)fn, [pre_fn](auto& args, auto& arg_tys, uintptr_t ret_addr) {
                 if (pre_fn != nullptr) {
                     return (HookManager::PreHookResult)pre_fn((int)args.size(),
-                        (void**)args.data(), (REFrameworkTypeDefinitionHandle*)arg_tys.data());
+                        (void**)args.data(), (REFrameworkTypeDefinitionHandle*)arg_tys.data(), ret_addr);
                 } else {
                     return (HookManager::PreHookResult)REFRAMEWORK_HOOK_CALL_ORIGINAL;
                 }
             },
-            [post_fn](auto& ret_val, auto* ret_ty) {
+            [post_fn](auto& ret_val, auto* ret_ty, uintptr_t ret_addr) {
                 if (post_fn != nullptr) {
-                    post_fn((void**)&ret_val, (REFrameworkTypeDefinitionHandle)ret_ty);
+                    post_fn((void**)&ret_val, (REFrameworkTypeDefinitionHandle)ret_ty, ret_addr);
                 }
             },
             ignore_jmp);
@@ -712,7 +712,7 @@ std::optional<std::string> PluginLoader::on_initialize() {
             continue;
         }
 
-        if (required_version.patch > g_plugin_version.patch) {
+        if (required_version.patch > g_plugin_version.patch && required_version.minor == g_plugin_version.minor) {
             spdlog::warn("[PluginLoader] Plugin {} desires a newer patch version", name);
             m_plugin_load_warnings.emplace(name, "Desires a newer patch version");
         }

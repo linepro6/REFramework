@@ -64,10 +64,11 @@ if ("${CMAKE_BUILD_TYPE}" MATCHES "Release")
     string(REGEX REPLACE "/MD" "/MT" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
     string(REGEX REPLACE "/MD" "/MT" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
     string(REGEX REPLACE "/MD" "/MT" CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
-
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded")
+    
     message(NOTICE "Building in Release mode")
 endif()
+
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 include(FetchContent)
 
@@ -269,7 +270,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 	source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${imgui_SOURCES})
 
 	target_compile_definitions(imgui PUBLIC
-		"IMGUI_USER_CONFIG=\"${CMAKE_SOURCE_DIR}/src/re2-imgui/re2_imconfig.hpp\""
+		"IMGUI_USER_CONFIG=\"${CMAKE_CURRENT_SOURCE_DIR}/src/re2-imgui/re2_imconfig.hpp\""
 	)
 
 	target_include_directories(imgui PUBLIC
@@ -308,7 +309,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 	source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${imguizmo_SOURCES})
 
 	target_compile_definitions(imguizmo PUBLIC
-		"IMGUI_USER_CONFIG=\"${CMAKE_SOURCE_DIR}/src/re2-imgui/re2_imconfig.hpp\""
+		"IMGUI_USER_CONFIG=\"${CMAKE_CURRENT_SOURCE_DIR}/src/re2-imgui/re2_imconfig.hpp\""
 	)
 
 	target_include_directories(imguizmo PUBLIC
@@ -372,7 +373,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 	)
 
 	target_link_libraries(openvr INTERFACE
-		"${CMAKE_SOURCE_DIR}/dependencies/openvr/lib/win64/openvr_api.lib"
+		"${CMAKE_CURRENT_SOURCE_DIR}/dependencies/openvr/lib/win64/openvr_api.lib"
 	)
 
 	file(COPY dependencies/openvr/lib/win64/openvr_api.lib DESTINATION ${CMAKE_BINARY_DIR}/lib)
@@ -1976,6 +1977,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -2002,6 +2004,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -2053,6 +2056,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -2140,7 +2144,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
@@ -2174,6 +2178,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -2200,6 +2205,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -2251,6 +2257,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -2338,7 +2345,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
@@ -3809,6 +3816,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -3835,6 +3843,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -3886,6 +3895,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -3973,7 +3983,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
@@ -4007,6 +4017,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -4033,6 +4044,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -4084,6 +4096,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -4171,7 +4184,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
@@ -4205,6 +4218,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -4231,6 +4245,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -4282,6 +4297,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -4369,7 +4385,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
@@ -6560,6 +6576,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -6586,6 +6603,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -6637,6 +6655,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -6724,7 +6743,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
@@ -6758,6 +6777,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -6784,6 +6804,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -6835,6 +6856,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -6922,7 +6944,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
@@ -7676,6 +7698,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -7702,6 +7725,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -7753,6 +7777,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -7840,7 +7865,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
@@ -8592,6 +8617,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -8618,6 +8644,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -8669,6 +8696,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -8756,7 +8784,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
@@ -9510,6 +9538,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -9536,6 +9565,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -9587,6 +9617,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -9674,7 +9705,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO
@@ -10428,6 +10459,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/Main.cpp"
 		"src/Mods.cpp"
 		"src/REFramework.cpp"
+		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
@@ -10454,6 +10486,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D11Component.cpp"
 		"src/mods/vr/D3D12Component.cpp"
 		"src/mods/vr/OverlayComponent.cpp"
+		"src/mods/vr/d3d12/CommandContext.cpp"
 		"src/mods/vr/d3d12/ResourceCopier.cpp"
 		"src/mods/vr/d3d12/TextureContext.cpp"
 		"src/mods/vr/games/RE8VR.cpp"
@@ -10505,6 +10538,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/mods/vr/D3D12Component.hpp"
 		"src/mods/vr/OverlayComponent.hpp"
 		"src/mods/vr/d3d12/ComPtr.hpp"
+		"src/mods/vr/d3d12/CommandContext.hpp"
 		"src/mods/vr/d3d12/ResourceCopier.hpp"
 		"src/mods/vr/d3d12/TextureContext.hpp"
 		"src/mods/vr/games/RE8VR.hpp"
@@ -10592,7 +10626,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		OUTPUT_NAME
 			dinput8
 		LINK_FLAGS
-			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+			"/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 		RUNTIME_OUTPUT_DIRECTORY_RELEASE
 			"${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 		RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO

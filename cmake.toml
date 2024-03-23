@@ -24,10 +24,11 @@ if ("${CMAKE_BUILD_TYPE}" MATCHES "Release")
     string(REGEX REPLACE "/MD" "/MT" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
     string(REGEX REPLACE "/MD" "/MT" CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
     string(REGEX REPLACE "/MD" "/MT" CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
-
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded")
+    
     message(NOTICE "Building in Release mode")
 endif()
+
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 """
 
 [options]
@@ -114,7 +115,7 @@ type = "static"
 sources = ["dependencies/imgui/*.cpp"]
 include-directories = ["dependencies/imgui", "src/re2-imgui"]
 compile-definitions = [
-    "IMGUI_USER_CONFIG=\"${CMAKE_SOURCE_DIR}/src/re2-imgui/re2_imconfig.hpp\"",
+    "IMGUI_USER_CONFIG=\"${CMAKE_CURRENT_SOURCE_DIR}/src/re2-imgui/re2_imconfig.hpp\"",
 ]
 condition = "build-framework"
 
@@ -123,7 +124,7 @@ type = "static"
 sources = ["dependencies/imguizmo/*.cpp"]
 include-directories = ["dependencies/imgui", "dependencies/imguizmo", "src/re2-imgui"]
 compile-definitions = [
-    "IMGUI_USER_CONFIG=\"${CMAKE_SOURCE_DIR}/src/re2-imgui/re2_imconfig.hpp\"",
+    "IMGUI_USER_CONFIG=\"${CMAKE_CURRENT_SOURCE_DIR}/src/re2-imgui/re2_imconfig.hpp\"",
 ]
 condition = "build-framework"
 
@@ -138,7 +139,7 @@ link-libraries = ["imgui"]
 type = "interface"
 include-directories = ["dependencies/openvr/headers"]
 link-libraries = [
-    "${CMAKE_SOURCE_DIR}/dependencies/openvr/lib/win64/openvr_api.lib",
+    "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/openvr/lib/win64/openvr_api.lib",
 ]
 cmake-after = """
 file(COPY dependencies/openvr/lib/win64/openvr_api.lib DESTINATION ${CMAKE_BINARY_DIR}/lib)
@@ -232,7 +233,7 @@ link-libraries = [
 
 [template.game.properties]
 OUTPUT_NAME = "dinput8"
-LINK_FLAGS = "/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll"
+LINK_FLAGS = "/DELAYLOAD:openvr_api.dll /DELAYLOAD:openxr_loader.dll /DELAYLOAD:d3d11.dll /DELAYLOAD:d3d12.dll /DELAYLOAD:D3DCOMPILER_47.dll"
 RUNTIME_OUTPUT_DIRECTORY_RELEASE = "${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO = "${CMAKE_BINARY_DIR}/bin/${CMKR_TARGET}"
 LIBRARY_OUTPUT_DIRECTORY_RELEASE = "${CMAKE_BINARY_DIR}/lib/${CMKR_TARGET}"

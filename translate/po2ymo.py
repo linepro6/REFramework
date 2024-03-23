@@ -29,9 +29,9 @@ def po2ymohpp(lang, includefuzzy=False, encoding='utf-8', byteorder='little'):
     with open(f"{lang}_mods_text.csv", "r", encoding="utf-8-sig") as csvf:
         reader = csv.reader(csvf)
         for line in reader:
-            if len(line) != 2:
+            if len(line) < 2:
                 continue
-            source, target = line
+            source, target = line[0], line[1]
             if source and target:
                 source = source.replace("\\n", "\n").replace("\\", "")
                 target = target.replace("\\n", "\n")
