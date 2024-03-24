@@ -247,7 +247,7 @@ REFramework::REFramework(HMODULE reframework_module)
     spdlog::info("D3D12 loaded");
 #endif
 
-#if defined(MHRISE)
+#if defined(MHRISE) || defined(DD2)
     utility::load_module_from_current_directory(L"openvr_api.dll");
     utility::load_module_from_current_directory(L"openxr_loader.dll");
     LoadLibraryA("dxgi.dll");
@@ -307,6 +307,12 @@ REFramework::REFramework(HMODULE reframework_module)
     // Fixes new code added in RE4 only.
     IntegrityCheckBypass::immediate_patch_re4();
 #endif
+
+#if defined(DD2)
+    // Fixes new code added in DD2 only. Maybe >= TDB73 too. Probably will change.
+    IntegrityCheckBypass::immediate_patch_dd2();
+#endif
+
     // Seen in SF6
     IntegrityCheckBypass::remove_stack_destroyer();
     suspender.resume();
