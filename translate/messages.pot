@@ -1,0 +1,797 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-16 21:46+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/mods/Camera.cpp:26
+msgid ""
+"Make sure to tick \"Enabled\" for any of the below settings to take effect."
+msgstr ""
+
+#. // Create 4 DragFloat4's for the 4x4 matrix
+#. for (int i = 0; i < 4; i++) {
+#. auto elem = last_controller_matrix[i];
+#. ImGui::DragFloat4("##", (float*)&elem, 1.0f, -1.0f, 1.0f);
+#. }
+#: src/mods/Camera.cpp:28 src/mods/FirstPerson.cpp:98 src/mods/FreeCam.cpp:43
+#: src/mods/ManualFlashlight.cpp:30 src/mods/VR.cpp:3867 src/mods/VR.cpp:3957
+msgid "Enabled"
+msgstr ""
+
+#: src/mods/Camera.cpp:32 src/mods/FirstPerson.cpp:193
+msgid "Disable Vignette"
+msgstr ""
+
+#: src/mods/Camera.cpp:38
+msgid "Vignette Brightness"
+msgstr ""
+
+#: src/mods/Camera.cpp:47
+msgid ""
+"These below settings are separate and do not require \"Enabled\" to be "
+"ticked."
+msgstr ""
+
+#: src/mods/Camera.cpp:49
+msgid "Use Custom Global FOV"
+msgstr ""
+
+#: src/mods/Camera.cpp:50
+msgid "Global FOV"
+msgstr ""
+
+#: src/mods/Camera.hpp:60
+msgid "Camera"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:106
+msgid "Show In Cutscenes"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:111
+msgid "VR Specific Settings"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:113
+msgid "Smooth XZ Movement (VR)"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:114
+msgid "Smooth Y Movement (VR)"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:115
+msgid "Roomscale Movement (VR)"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:118
+msgid "Adjust Hand Offset"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:170
+msgid "Scale Debug"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:171
+msgid "Scale Debug 2"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:172
+msgid "Offset Debug"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:173
+msgid "VR Scale"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:175
+msgid "Controller rotation (Left)"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:176
+msgid "Controller rotation (Right)"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:177
+msgid "Controller position (Left)"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:178
+msgid "Controller position (Right)"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:180
+msgid "Controller 1"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:181
+msgid "Controller 2"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:184
+msgid "General Settings"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:186
+msgid "Disable Camera Light"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:187
+msgid "Hide Joint Mesh"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:190
+msgid "Force Rotate Joint"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:191
+msgid "Rotate Body"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:197
+msgid "Change Toggle Key"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:199
+msgid "CameraOffset"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:201
+msgid "CameraSpeed"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:202
+msgid "CameraShake"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:205
+msgid "FOVOffset"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:209
+msgid "FOVMultiplier"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:215
+msgid "CurrentFOV"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:218
+msgid "BodyRotateSpeed"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:220
+msgid "Joint"
+msgstr ""
+
+#: src/mods/FirstPerson.cpp:228
+msgid "Joints"
+msgstr ""
+
+#: src/mods/FirstPerson.hpp:29
+msgid "FirstPerson"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:48
+msgid "Lock Position"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:49
+msgid "Disable Character Movement"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:51
+msgid "Toggle Key"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:52
+msgid "Move camera up Key"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:53
+msgid "Move camera down Key"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:54
+msgid "Lock Position Toggle Key"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:55
+msgid "Disable Movement Toggle Key"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:56
+msgid "Speed modifier Fast key"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:57
+msgid "Speed modifier Slow key"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:59
+msgid "Rotation Speed"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:61
+msgid "Speed"
+msgstr ""
+
+#: src/mods/FreeCam.cpp:62
+msgid "Speed Modifier"
+msgstr ""
+
+#: src/mods/FreeCam.hpp:13
+msgid "FreeCam"
+msgstr ""
+
+#: src/mods/Graphics.cpp:24
+msgid "Ultrawide/Aspect Ratio Fix"
+msgstr ""
+
+#: src/mods/Graphics.cpp:30
+msgid "Ultrawide: Enable Vertical FOV"
+msgstr ""
+
+#: src/mods/Graphics.cpp:31
+msgid "Ultrawide: Override FOV"
+msgstr ""
+
+#: src/mods/Graphics.cpp:32
+msgid "Ultrawide: FOV Multiplier"
+msgstr ""
+
+#: src/mods/Graphics.cpp:36
+msgid "GUI Options"
+msgstr ""
+
+#: src/mods/Graphics.cpp:38
+msgid "Hide GUI"
+msgstr ""
+
+#: src/mods/Graphics.hpp:8
+msgid "Graphics"
+msgstr ""
+
+#: src/mods/Hooks.cpp:23
+msgid "Unable to get module size"
+msgstr ""
+
+#: src/mods/Hooks.cpp:43
+msgid "Performance"
+msgstr ""
+
+#: src/mods/Hooks.cpp:47
+msgid "Enable Profiling"
+msgstr ""
+
+#: src/mods/Hooks.cpp:53
+msgid "Application Entry Times"
+msgstr ""
+
+#: src/mods/Hooks.cpp:75
+#, c-format
+msgid "Total REFramework Time: %.3fms"
+msgstr ""
+
+#: src/mods/Hooks.cpp:76
+#, c-format
+msgid "Total Game Time: %.3fms"
+msgstr ""
+
+#: src/mods/Hooks.cpp:84
+#, c-format
+msgid "Game Time: %s: %.2fms"
+msgstr ""
+
+#: src/mods/Hooks.cpp:85
+#, c-format
+msgid "REFramework Pre Time: %.2fms"
+msgstr ""
+
+#: src/mods/Hooks.cpp:86
+#, c-format
+msgid "REFramework Post Time: %.2fms"
+msgstr ""
+
+#: src/mods/Hooks.cpp:87
+#, c-format
+msgid "Total Time: %.2fms"
+msgstr ""
+
+#: src/mods/Hooks.hpp:11
+msgid "PositionHooks"
+msgstr ""
+
+#: src/mods/IntegrityCheckBypass.hpp:14
+msgid "IntegrityCheckBypass"
+msgstr ""
+
+#: src/mods/ManualFlashlight.cpp:34
+msgid "Change Key"
+msgstr ""
+
+#: src/mods/ManualFlashlight.cpp:37
+msgid "Ignore Light Power On Zones"
+msgstr ""
+
+#: src/mods/ManualFlashlight.cpp:39
+#, c-format
+msgid "Light power on zones: %i\n"
+msgstr ""
+
+#: src/mods/ManualFlashlight.hpp:31
+msgid "ManualFlashlight"
+msgstr ""
+
+#: src/mods/PluginLoader.cpp:726
+msgid "Loaded plugins:"
+msgstr ""
+
+#: src/mods/PluginLoader.cpp:732
+msgid "No plugins loaded."
+msgstr ""
+
+#: src/mods/PluginLoader.cpp:737
+msgid "Errors:"
+msgstr ""
+
+#: src/mods/PluginLoader.cpp:745
+msgid "Warnings:"
+msgstr ""
+
+#: src/mods/PluginLoader.hpp:34
+msgid "PluginLoader"
+msgstr ""
+
+#: src/mods/REFrameworkConfig.cpp:15 src/mods/REFrameworkConfig.cpp:19
+msgid "Configuration"
+msgstr ""
+
+#: src/mods/REFrameworkConfig.cpp:21
+msgid "Menu Key"
+msgstr ""
+
+#: src/mods/REFrameworkConfig.cpp:22
+msgid "Remember Menu Open/Closed State"
+msgstr ""
+
+#: src/mods/REFrameworkConfig.cpp:24
+msgid "Font Size"
+msgstr ""
+
+#: src/mods/REFrameworkConfig.hpp:12
+msgid "REFrameworkConfig"
+msgstr ""
+
+#: src/mods/Scene.cpp:64
+msgid "Timescale (Toggle) Key"
+msgstr ""
+
+#: src/mods/Scene.cpp:65
+msgid "Timescale (Continuous) Key"
+msgstr ""
+
+#: src/mods/Scene.cpp:67
+msgid "Use Application Timescale"
+msgstr ""
+
+#: src/mods/Scene.cpp:75
+msgid "Timescale"
+msgstr ""
+
+#: src/mods/Scene.hpp:12
+msgid "Scene"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:354
+msgid "Script Generated UI"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:691
+msgid "Run script"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:711
+msgid "Reset scripts"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:717
+msgid "Spawn Debug Console"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:728
+msgid "Garbage Collection Stats"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:734
+#, c-format
+msgid "Megabytes in use: %.2f"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:739
+msgid "Garbage Collection Handler"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:744
+msgid "Garbage Collection Mode"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:750
+msgid "Minor GC Multiplier"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:755
+msgid "Major GC Multiplier"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:762
+msgid "Garbage Collection Type"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:768
+msgid "Garbage Collection Budget"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:775
+msgid "Log Lua Errors to Disk"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:784
+#, c-format
+msgid "Last Error Time: %.2f seconds ago"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:787
+#, c-format
+msgid "Last Script Error: %s"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:790
+msgid "No Script Errors... yet!"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:794
+msgid "Loaded scripts:"
+msgstr ""
+
+#: src/mods/ScriptRunner.cpp:800
+msgid "No scripts loaded."
+msgstr ""
+
+#: src/mods/ScriptRunner.hpp:135
+msgid "ScriptRunner"
+msgstr ""
+
+#: src/mods/VR.cpp:3848
+#, c-format
+msgid "%s not loaded: %s not found"
+msgstr ""
+
+#: src/mods/VR.cpp:3849
+#, c-format
+msgid "Please drop the %s file into the game's directory if you want to use %s"
+msgstr ""
+
+#: src/mods/VR.cpp:3851
+#, c-format
+msgid "%s not loaded: %s"
+msgstr ""
+
+#: src/mods/VR.cpp:3853
+#, c-format
+msgid "%s not loaded: Unknown error"
+msgstr ""
+
+#: src/mods/VR.cpp:3863
+msgid "No runtime loaded."
+msgstr ""
+
+#: src/mods/VR.cpp:3867
+#, c-format
+msgid "Hardware scheduling: %s"
+msgstr ""
+
+#: src/mods/VR.cpp:3867
+msgid "Disabled"
+msgstr ""
+
+#: src/mods/VR.cpp:3871
+msgid ""
+"WARNING: Hardware-accelerated GPU scheduling is enabled. This will cause the "
+"game to run slower."
+msgstr ""
+
+#: src/mods/VR.cpp:3872
+msgid ""
+"Go into your Windows Graphics settings and disable \"Hardware-accelerated "
+"GPU scheduling\""
+msgstr ""
+
+#: src/mods/VR.cpp:3878
+#, c-format
+msgid "VR Runtime: %s"
+msgstr ""
+
+#: src/mods/VR.cpp:3879
+#, c-format
+msgid "Render Resolution: %d x %d"
+msgstr ""
+
+#: src/mods/VR.cpp:3882
+msgid "Resolution can be changed in SteamVR"
+msgstr ""
+
+#: src/mods/VR.cpp:3884
+msgid "Bindings"
+msgstr ""
+
+#: src/mods/VR.cpp:3889
+msgid "Resolution Scale"
+msgstr ""
+
+#: src/mods/VR.cpp:3894
+msgid "Sync Mode"
+msgstr ""
+
+#: src/mods/VR.cpp:3894
+msgid "Early"
+msgstr ""
+
+#: src/mods/VR.cpp:3897
+msgid "Set Standing Height"
+msgstr ""
+
+#: src/mods/VR.cpp:3901
+msgid "Set Standing Origin"
+msgstr ""
+
+#: src/mods/VR.cpp:3905
+msgid "Recenter View"
+msgstr ""
+
+#: src/mods/VR.cpp:3909
+msgid "Reinitialize Runtime"
+msgstr ""
+
+#: src/mods/VR.cpp:3918
+msgid "Set Standing Origin Key"
+msgstr ""
+
+#: src/mods/VR.cpp:3919
+msgid "Recenter View Key"
+msgstr ""
+
+#: src/mods/VR.cpp:3923
+msgid "Use AFR"
+msgstr ""
+
+#: src/mods/VR.cpp:3924
+msgid "Decoupled Camera Pitch"
+msgstr ""
+
+#: src/mods/VR.cpp:3926
+msgid "Positional Tracking"
+msgstr ""
+
+#: src/mods/VR.cpp:3929
+msgid "Head Oriented Audio"
+msgstr ""
+
+#: src/mods/VR.cpp:3930
+msgid "Use Custom View Distance"
+msgstr ""
+
+#: src/mods/VR.cpp:3931
+msgid "View Distance/FarZ"
+msgstr ""
+
+#: src/mods/VR.cpp:3932
+msgid "Inactivity Timer"
+msgstr ""
+
+#: src/mods/VR.cpp:3933
+msgid "Joystick Deadzone"
+msgstr ""
+
+#: src/mods/VR.cpp:3935
+msgid "2D UI Scale"
+msgstr ""
+
+#: src/mods/VR.cpp:3936
+msgid "2D UI Distance"
+msgstr ""
+
+#: src/mods/VR.cpp:3937
+msgid "World-Space UI Scale"
+msgstr ""
+
+#: src/mods/VR.cpp:3939
+msgid "Overlay Rotation"
+msgstr ""
+
+#: src/mods/VR.cpp:3940
+msgid "Overlay Position"
+msgstr ""
+
+#: src/mods/VR.cpp:3943
+msgid "Graphical Options"
+msgstr ""
+
+#: src/mods/VR.cpp:3945
+msgid "Force Uncap FPS"
+msgstr ""
+
+#: src/mods/VR.cpp:3946
+msgid "Force Disable TAA"
+msgstr ""
+
+#: src/mods/VR.cpp:3947
+msgid "Force Disable Motion Blur"
+msgstr ""
+
+#: src/mods/VR.cpp:3948
+msgid "Force Disable V-Sync"
+msgstr ""
+
+#: src/mods/VR.cpp:3949
+msgid "Force Disable Lens Distortion"
+msgstr ""
+
+#: src/mods/VR.cpp:3950
+msgid "Force Disable Volumetrics"
+msgstr ""
+
+#: src/mods/VR.cpp:3951
+msgid "Force Disable Lens Flares"
+msgstr ""
+
+#: src/mods/VR.cpp:3952
+msgid "Force Enable Dynamic Shadows"
+msgstr ""
+
+#: src/mods/VR.cpp:3953
+msgid "Allow Engine Overlays"
+msgstr ""
+
+#: src/mods/VR.cpp:3955
+msgid "Desktop Recording Fix"
+msgstr ""
+
+#: src/mods/VR.cpp:3956
+msgid "Desktop"
+msgstr ""
+
+#: src/mods/VR.cpp:3958
+msgid "Skip Present"
+msgstr ""
+
+#: src/mods/VR.cpp:3964
+msgid "Debug info"
+msgstr ""
+
+#: src/mods/VR.cpp:3965
+msgid "Disable Projection Matrix Override"
+msgstr ""
+
+#: src/mods/VR.cpp:3966
+msgid "Disable GUI Projection Matrix Override"
+msgstr ""
+
+#: src/mods/VR.cpp:3967
+msgid "Disable View Matrix Override"
+msgstr ""
+
+#: src/mods/VR.cpp:3968
+msgid "Disable Backbuffer Size Override"
+msgstr ""
+
+#: src/mods/VR.cpp:3969
+msgid "Disable Temporal Fix"
+msgstr ""
+
+#: src/mods/VR.cpp:3970
+msgid "Disable Post Effect Fix"
+msgstr ""
+
+#: src/mods/VR.cpp:3971
+msgid "Enable Asynchronous Rendering"
+msgstr ""
+
+#: src/mods/VR.cpp:3975
+msgid "Prediction Scale"
+msgstr ""
+
+#: src/mods/VR.cpp:3977
+msgid "Raw Left"
+msgstr ""
+
+#: src/mods/VR.cpp:3978
+msgid "Raw Right"
+msgstr ""
+
+#: src/mods/VR.cpp:3983
+msgid "Avg Input Processing Delay (MS)"
+msgstr ""
+
+#: src/mods/VR.hpp:34
+msgid "VR"
+msgstr ""
+
+#: src/REFramework.cpp:907
+msgid "Default Menu Key: Insert"
+msgstr ""
+
+#: src/REFramework.cpp:908
+msgid "Transparency"
+msgstr ""
+
+#: src/REFramework.cpp:912
+msgid "Makes the UI transparent when not focused."
+msgstr ""
+
+#: src/REFramework.cpp:913
+msgid "Input Passthrough"
+msgstr ""
+
+#: src/REFramework.cpp:917
+msgid ""
+"Allows mouse and keyboard inputs to register to the game while the UI is "
+"focused."
+msgstr ""
+
+#: src/REFramework.cpp:925
+msgid "REFramework is currently initializing..."
+msgstr ""
+
+#: src/REFramework.cpp:926
+msgid ""
+"This menu will close after initialization if you have the remember option "
+"enabled."
+msgstr ""
+
+#: src/REFramework.cpp:928
+#, c-format
+msgid "REFramework error: %s"
+msgstr ""
+
+#: src/REFramework.cpp:948 src/REFramework.cpp:952
+msgid "About"
+msgstr ""
+
+#: src/REFramework.cpp:954
+msgid "Author: praydog"
+msgstr ""
+
+#: src/REFramework.cpp:955
+msgid "Inspired by the Kanan project."
+msgstr ""
+
+#: src/REFramework.cpp:1025
+msgid "Engine information"
+msgstr ""
+
+#: src/REFramework.cpp:1030 src/REFramework.cpp:1033
+msgid "Unable to determine engine version."
+msgstr ""
+
+#: src/REFramework.cpp:1270
+msgid "An unknown error has occurred."
+msgstr ""
+
+#: src/REFramework.cpp:1275
+msgid "Initialization of mods failed. Reason: {}"
+msgstr ""

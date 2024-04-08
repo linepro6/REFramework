@@ -4,12 +4,13 @@
 
 #include "sdk/ReClass.hpp"
 #include "sdk/helpers/NativeObject.hpp"
+#include "I18n.hpp"
 
 class FreeCam : public Mod {
 public:
     FreeCam() = default;
 
-    std::string_view get_name() const override { return "FreeCam"; }
+    std::string_view get_name() const override { return _("FreeCam"); }
 
     void on_config_load(const utility::Config& cfg) override;
     void on_config_save(utility::Config& cfg) override;

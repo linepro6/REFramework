@@ -42,31 +42,31 @@ void FreeCam::on_draw_ui() {
         return;
     }
 
-    if (m_enabled->draw("Enabled")) {
+    if (m_enabled->draw(_("Enabled"))) {
         m_first_time = true;
     }
 
     ImGui::SameLine();
-    m_lock_camera->draw("Lock Position");
+    m_lock_camera->draw(_("Lock Position"));
 
 #ifndef SF6
-    m_disable_movement->draw("Disable Character Movement");
+    m_disable_movement->draw(_("Disable Character Movement"));
 #endif
 
-    m_toggle_key->draw("Toggle Key");
-    m_move_up_key->draw("Move camera up Key");
-    m_move_down_key->draw("Move camera down Key");
-    m_lock_camera_key->draw("Lock Position Toggle Key");
+    m_toggle_key->draw(_("Toggle Key"));
+    m_move_up_key->draw(_("Move camera up Key"));
+    m_move_down_key->draw(_("Move camera down Key"));
+    m_lock_camera_key->draw(_("Lock Position Toggle Key"));
 #ifndef SF6
-    m_disable_movement_key->draw("Disable Movement Toggle Key");
+    m_disable_movement_key->draw(_("Disable Movement Toggle Key"));
 #endif
-    m_speed_modifier_fast_key->draw("Speed modifier Fast key");
-    m_speed_modifier_slow_key->draw("Speed modifier Slow key");
+    m_speed_modifier_fast_key->draw(_("Speed modifier Fast key"));
+    m_speed_modifier_slow_key->draw(_("Speed modifier Slow key"));
 
-    m_rotation_speed->draw("Rotation Speed");
+    m_rotation_speed->draw(_("Rotation Speed"));
 
-    m_speed->draw("Speed");
-    m_speed_modifier->draw("Speed Modifier");
+    m_speed->draw(_("Speed"));
+    m_speed_modifier->draw(_("Speed Modifier"));
 }
 
 enum class MoveDirection : uint8_t {

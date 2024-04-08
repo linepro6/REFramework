@@ -2,6 +2,7 @@
 
 #include "Mod.hpp"
 #include "utility/FunctionHook.hpp"
+#include "I18n.hpp"
 
 #include <sdk/Renderer.hpp>
 
@@ -12,7 +13,7 @@ public:
 public:
     Hooks();
 
-    std::string_view get_name() const override { return "Hooks"; };
+    std::string_view get_name() const override { return _("Hooks"); };
     std::optional<std::string> on_initialize() override;
     void on_draw_ui() override;
 

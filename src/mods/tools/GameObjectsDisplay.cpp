@@ -44,7 +44,7 @@ void GameObjectsDisplay::on_draw_dev_ui() {
         return;
     }
 
-    if (m_enabled->draw("Enabled") && !m_enabled->value()) {
+    if (m_enabled->draw(_("Enabled")) && !m_enabled->value()) {
         // todo
     }
 

@@ -1,0 +1,305 @@
+﻿REFramework,
+"Make sure to tick ""Enabled"" for any of the below settings to take effect.",勾选下面的“启用”来让设置生效。
+Enabled,启用
+Disable Vignette,禁用晕影
+Vignette Brightness,晕影亮度
+"These below settings are separate and do not require ""Enabled"" to be ticked.",这个设置会一直生效，无需点击上面的“启用”
+Use Custom Global FOV,使用自定义全局FOV视角
+Global FOV,全局FOV
+Camera,视角
+Show In Cutscenes,在剪接场景中显示
+VR Specific Settings,VR具体设置
+Smooth XZ Movement (VR),平滑XZ移动(VR)
+Smooth Y Movement (VR),平滑Y移动(VR)
+Roomscale Movement (VR),
+Adjust Hand Offset,
+Scale Debug,
+Scale Debug 2,
+Offset Debug,
+VR Scale,VR缩放
+Controller rotation (Left),控制器旋转(左)
+Controller rotation (Right),控制器旋转(右)
+Controller position (Left),控制器方向(左)
+Controller position (Right),控制器方向(右)
+Controller 1,控制器1
+Controller 2,控制器2
+General Settings,常规设置
+Disable Camera Light,禁用闪光灯
+Hide Joint Mesh,隐藏关节网
+Force Rotate Joint,强制旋转关节
+Rotate Body,旋转身体
+Change Toggle Key,更改切换键
+CameraOffset,镜头偏移
+CameraSpeed,镜头速度
+CameraShake,镜头抖动
+FOVOffset,FOV偏移
+FOVMultiplier,FOV倍增
+CurrentFOV,当前FOV
+BodyRotateSpeed,身体旋转速度
+Joint,
+Joints,
+FirstPerson,第一人称
+Lock Position,锁定视角
+Disable Character Movement,禁用角色移动
+Toggle Key,切换
+Move camera up Key,视角向上移动
+Move camera down Key,视角向下移动
+Lock Position Toggle Key,禁用位置切换键
+Disable Movement Toggle Key,禁用移动切换键
+Speed modifier Fast key,快速移动
+Speed modifier Slow key,减速移动
+Rotation Speed,旋转速度
+Speed,移动速度
+Speed Modifier,移动速度补正
+FreeCam,自由视角
+Ultrawide/Aspect Ratio Fix,超宽/纵横比修复
+Ultrawide: Enable Vertical FOV,超宽:启用垂直视野
+Ultrawide: Override FOV,超宽:覆盖FOV
+Ultrawide: FOV Multiplier,超宽:视野放大
+GUI Options,GUI设置
+Hide GUI,隐藏GUI
+Graphics,图像显示设置
+Unable to get module size,无法获取模块尺寸
+Performance,性能
+Enable Profiling,启用性能分析
+Application Entry Times,
+Total REFramework Time: %.3fms,
+Total Game Time: %.3fms,
+Game Time: %s: %.2fms,
+REFramework Pre Time: %.2fms,
+REFramework Post Time: %.2fms,
+Total Time: %.2fms,
+PositionHooks,
+IntegrityCheckBypass,
+Change Key,切换按键
+Ignore Light Power On Zones,
+Light power on zones: %i\n,
+ManualFlashlight,
+Loaded plugins:,已加载插件：
+No plugins loaded.,无已加载插件。
+Errors:,错误：
+Warnings:,警告：
+PluginLoader,插件
+Configuration,设置
+Menu Key,显示/隐藏热键
+Remember Menu Open/Closed State,界面显示/隐藏是否保存
+Font Size,字体大小
+REFrameworkConfig,REFramework设置
+Timescale (Toggle) Key,时间比例（切换）热键
+Timescale (Continuous) Key,时间比例（持续）热键
+Use Application Timescale,使用应用程序时间刻度
+Timescale,时间尺度
+Scene,场景设置
+Script Generated UI,脚本配置界面
+Run script,运行脚本
+Reset scripts,重载脚本
+Spawn Debug Console,呼出调试控制台
+Garbage Collection Stats,垃圾收集统计信息
+Megabytes in use: %.2f,已使用MB:%.2f
+Garbage Collection Handler,垃圾收集处理管理器
+Garbage Collection Mode,垃圾收集模式
+Minor GC Multiplier,次垃圾收集倍增
+Major GC Multiplier,主垃圾收集倍增
+Garbage Collection Type,垃圾收集类型
+Garbage Collection Budget,垃圾收集预算
+Log Lua Errors to Disk,将Lua错误记录到磁盘
+Last Error Time: %.2f seconds ago,上次报错时间: %.2f 秒前
+Last Script Error: %s,上一个脚本错误: %s
+No Script Errors... yet!,没有脚本错误…牛逼！
+Loaded scripts:,已加载脚本:
+No scripts loaded.,无脚本加载。
+ScriptRunner,脚本运行设置
+%s not loaded: %s not found,%s 未加载: %s 妹找着啊……
+Please drop the %s file into the game's directory if you want to use %s,请把 %s文件放入游戏目录，如果要使用 %s
+%s not loaded: %s,%s 未加载: %s
+%s not loaded: Unknown error,%s 未加载: 未知错误
+No runtime loaded.,没有运行时被加载。
+Hardware scheduling: %s,硬件调度中:%s
+Disabled,禁用
+WARNING: Hardware-accelerated GPU scheduling is enabled. This will cause the game to run slower.,警告：已启用硬件加速GPU调度。这将导致游戏运行较慢。
+"Go into your Windows Graphics settings and disable ""Hardware-accelerated GPU scheduling""",进入Windows图形设置并禁用“硬件加速GPU调度”
+VR Runtime: %s,VR运行时间: %s
+Render Resolution: %d x %d,渲染分辨率: %d x %d
+Resolution can be changed in SteamVR,分辨率可以在SteamVR中更改
+Bindings,绑定
+Resolution Scale,分辨率缩放
+Sync Mode,同步模式
+Early,
+Set Standing Height,
+Set Standing Origin,
+Recenter View,
+Reinitialize Runtime,
+Set Standing Origin Key,
+Recenter View Key,
+Use AFR,
+Decoupled Camera Pitch,
+Positional Tracking,
+Head Oriented Audio,
+Use Custom View Distance,
+View Distance/FarZ,
+Inactivity Timer,
+Joystick Deadzone,手柄死角
+2D UI Scale,2D UI缩放
+2D UI Distance,
+World-Space UI Scale,
+Overlay Rotation,
+Overlay Position,
+Graphical Options,
+Force Uncap FPS,
+Force Disable TAA,
+Force Disable Motion Blur,
+Force Disable V-Sync,
+Force Disable Lens Distortion,
+Force Disable Volumetrics,
+Force Disable Lens Flares,
+Force Enable Dynamic Shadows,
+Allow Engine Overlays,
+Desktop Recording Fix,
+Desktop,桌面
+Skip Present,
+Debug info,调试信息
+Disable Projection Matrix Override,
+Disable GUI Projection Matrix Override,
+Disable View Matrix Override,
+Disable Backbuffer Size Override,
+Disable Temporal Fix,
+Disable Post Effect Fix,
+Enable Asynchronous Rendering,
+Prediction Scale,
+Raw Left,
+Raw Right,
+Avg Input Processing Delay (MS),
+VR,VR
+Default Menu Key: Insert,默认菜单按键：Insert
+Transparency,透明
+Makes the UI transparent when not focused.,让REF在未选中时变得透明。
+Input Passthrough,UI透过
+Allows mouse and keyboard inputs to register to the game while the UI is focused.,让鼠标能够穿过REF界面点击到游戏内。
+REFramework is currently initializing...,REFramework当前正在初始化……
+This menu will close after initialization if you have the remember option enabled.,如果启用了“保存”选项，此菜单将在初始化后关闭。
+REFramework error: %s,REFramework错误: %s
+About,关于
+Author: praydog,"作者：praydog
+汉化：花舞-踩蘑菇MOD汉化组
+版本：DD2 Ver1.2
+内核：796606
+反馈群：608262198"
+Inspired by the Kanan project.,灵感来自Kanan项目。
+Engine information,引擎信息
+Unable to determine engine version.,无法确定引擎版本。
+An unknown error has occurred.,发生未知错误。
+Initialization of mods failed. Reason: {},mods初始化失败，原因: {}
+warp everywhere,
+Warp Everywhere,传送到任何地点
+Base PortCrystal,基础的返回基石
+Player PortCrystal,玩家的返回基石
+Grand Riftstone,异界石
+Inn,酒店
+WeaponShop,武器店
+ArmorShop,防具店
+PotionShop,杂货店（药店）
+ScrapShop,精品店
+Guild,职业公会
+Oxcart,牛车停靠点
+Barberie,美容店
+Brothel,娼馆
+Tarvern,酒馆
+Geyser Hamlet,温泉
+Bay Wayside Shrine,海湾神龛
+Graveyard,遗体安置所
+PlayerHouse,玩家私人房间
+Campfire,露营
+Diviner's Salon,占卜店
+Flag,特殊地点（旗帜）
+Entrance,地图转场点（入口）
+Pawn Guild,追随者公会
+Chair,长椅
+ArisenWarfarer,觉醒者
+Dungeon,洞穴（地下城）
+Vernworth Castle,维伦沃斯城堡
+Bakbattahl Cliff,巴克巴达尔奉炎殿
+City,城市
+Village,村庄
+Forgotten Riftstone,遗忘异界石
+Unknown,未知
+Fort,要塞
+,,
+PawnsSurviveBrine,追随者在水中生存
+enabled,启用
+warp to player,玩家生效
+summon pawns,召唤追随者
+,,
+NoSpaCensor,温泉无遮挡
+Female,女性
+Male,男性
+,,
+Seeker's Token Markers,显示探求心之证位置
+enabled,启用
+Show Acquired,显示已收集
+,,
+Functional Pawns,追随者更多功能
+Vocation (Loading/Restart Required),公会功能（需要加载/重新启动）
+Storage (Loading/Restart Required),旅店功能（需要加载/重新启动）
+CampOnly (Loading/Restart Required),仅营地功能（需要加载/重新启动）
+,,
+Dragonsplague Cure,治疗巨龙附体
+Enable Main Pawn Only,仅主要追随者生效
+Dragonsplague Cure Key:,治疗按键：
+Main Pawn Status,主要追随者状态
+Main Pawn Infection Level:,主要追随者感染等级
+Infect Main Pawn,感染主要追随者
+Hired Pawn Status,雇佣追随者状态
+Infection Level:,感染等级
+,,
+GainItem,获得物品
+item,物品
+count,数量
+,,
+BetterBetterltemDescription,比更好还好的物品描述
+newlinewidth,行宽（默认的就挺好）
+ignoreArmorAndWeapon,忽略武器和护甲
+removeOriginalText,删除原始文本
+Force using this language(Need reset script),强制使用此语言（需要重置脚本）
+,,
+Clock,时钟
+offset.x,X轴位置
+offset.y,Y轴位置
+color,颜色
+backgroundcolor,背景色
+zerofill,填充0
+showbackground,显示背景色
+showtimeslot,显示时间段
+useAMPM,显示AM PM
+customFormat,自定义格式
+,,
+Arisen's Almanac,Arisen的图鉴
+Open the map!,打开地图！
+Seeker's Tokens,探求心之证
+Golden Trove Beetles,金色帝王艳金龟
+Chests (S),小型宝箱
+Chests (M),中型宝箱
+Chests (L),大型宝箱
+Chests (XL),超大型宝箱
+Special Chests(S),小型特殊宝箱
+Special Chests (M),中型特殊宝箱
+Special Chests (L),大型特殊宝箱
+Save Settings,保存设置
+Show unacquired ,显示未获取
+Hide unacquired ,隐藏未获取
+,,
+Transmogify v1.1.3,幻化 v1.1.3
+Enable Transmogs,启用幻化
+Trnasmoged ltems,幻化的装备
+Item Category,装备类型
+Search Item,搜索装备
+Item List,装备列表
+Search Transmog,搜索幻化
+Transmog List,幻化列表
+Weapon,武器
+Shield,盾牌
+Head,头部
+Body,上半身
+Leg,下半身
+Cloak,斗篷
+Submit,提交
+Reset,重置

@@ -62,6 +62,7 @@ __declspec(dllexport) HRESULT WINAPI
 }
 }
 
+
 void startup_thread(HMODULE reframework_module) {
     // We will set it once here, then do it continuously
     // every now and then because it gets replaced
