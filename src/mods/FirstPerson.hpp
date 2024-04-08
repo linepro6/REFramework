@@ -5,6 +5,7 @@
 
 #include "Mod.hpp"
 #include "utility/Patch.hpp"
+#include "I18n.hpp"
 
 #if defined(RE2) || defined(RE3)
 
@@ -25,7 +26,7 @@ public:
 
     void toggle();
 
-    std::string_view get_name() const override { return "FirstPerson"; };
+    std::string_view get_name() const override { return _("FirstPerson"); };
     std::optional<std::string> on_initialize() override;
 
     void on_frame() override;

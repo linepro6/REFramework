@@ -12,19 +12,24 @@ std::optional<std::string> REFrameworkConfig::on_initialize() {
 }
 
 void REFrameworkConfig::on_draw_ui() {
-    if (!ImGui::CollapsingHeader("Configuration")) {
+    if (!ImGui::CollapsingHeader(_("Configuration"))) {
         return;
     }
 
-    ImGui::TreePush("Configuration");
+    ImGui::TreePush(_("Configuration"));
 
-    m_menu_key->draw("Menu Key");
-    m_show_cursor_key->draw("Show Cursor Key");
-    m_remember_menu_state->draw("Remember Menu Open/Closed State");
-    m_always_show_cursor->draw("Draw Cursor With Menu Open");
+    m_menu_key->draw(_("Menu Key"));
+    m_show_cursor_key->draw(_("Show Cursor Key"));
+    m_remember_menu_state->draw(_("Remember Menu Open/Closed State"));
+    m_always_show_cursor->draw(_("Draw Cursor With Menu Open"));
 
-    if (m_font_size->draw("Font Size")) {
-        g_framework->set_font_size(m_font_size->value());
+    if (m_font_size->draw(_("Font Size"))) {
+        auto font_size = m_font_size->value();
+        if (font_size > 5) {
+            g_framework->set_font_size(font_size);
+        } else {
+            g_framework->set_font_size(5);
+        }
     }
 
     ImGui::TreePop();
@@ -45,7 +50,12 @@ void REFrameworkConfig::on_config_load(const utility::Config& cfg) {
         g_framework->set_draw_ui(m_menu_open->value(), false);
     }
     
-    g_framework->set_font_size(m_font_size->value());
+    auto font_size = m_font_size->value();
+    if (font_size > 5) {
+        g_framework->set_font_size(font_size);
+    } else {
+        g_framework->set_font_size(5);
+    }
 }
 
 void REFrameworkConfig::on_config_save(utility::Config& cfg) {

@@ -15,8 +15,6 @@ extern "C" {
 #include <imgui.h>
 #include <ImGuizmo.h>
 #include <imnodes.h>
-#include "re2-imgui/af_baidu.hpp"
-#include "re2-imgui/af_faprolight.hpp"
 #include "re2-imgui/font_robotomedium.hpp"
 #include "re2-imgui/imgui_impl_dx11.h"
 #include "re2-imgui/imgui_impl_dx12.h"
@@ -38,6 +36,8 @@ extern "C" {
 #include "mods/REFrameworkConfig.hpp"
 #include "mods/IntegrityCheckBypass.hpp"
 #include "REFramework.hpp"
+#include "I18n.hpp"
+#include "I18n/font_msyh.h"
 
 namespace fs = std::filesystem;
 using namespace std::literals;
@@ -155,6 +155,8 @@ REFramework::REFramework(HMODULE reframework_module)
     }
 
     spdlog::info("REFramework entry");
+
+    yi18n::Init();
 
     const auto module_size = *utility::get_module_size(m_game_module);
 
@@ -1075,34 +1077,15 @@ void REFramework::update_fonts() {
     auto& fonts = ImGui::GetIO().Fonts;
     fonts->Clear();
 
-    // using 'reframework_pictographic.mode' file to 
-    // replace '?' to most flag in WorldObjectsViewer
-    ImFontConfig custom_icons{}; 
-    custom_icons.FontDataOwnedByAtlas = false;
-    ImFont* fsload = (INVALID_FILE_ATTRIBUTES != ::GetFileAttributesA("reframework_pictographic.mode"))
-        ? fonts->AddFontFromMemoryTTF((void*)af_baidu_ptr, af_baidu_size, (float)m_font_size, &custom_icons, fonts->GetGlyphRangesChineseFull())
-        : fonts->AddFontFromMemoryCompressedTTF(RobotoMedium_compressed_data, RobotoMedium_compressed_size, (float)m_font_size);
+    fonts->AddFontFromMemoryCompressedTTF(RobotoMedium_compressed_data, RobotoMedium_compressed_size, (float)m_font_size, nullptr, fonts->GetGlyphRangesDefault());
 
-    // https://fontawesome.com/
-    custom_icons.PixelSnapH = true;
-    custom_icons.MergeMode = true;
-    custom_icons.FontDataOwnedByAtlas = false;
-    static const ImWchar icon_ranges[] = {0xF000, 0xF976, 0}; // ICON_MIN_FA ICON_MAX_FA
-    fonts->AddFontFromMemoryTTF((void*)af_faprolight_ptr, af_faprolight_size, (float)m_font_size, &custom_icons, icon_ranges);
-
-    for (auto& font : m_additional_fonts) {
-        const ImWchar* ranges = nullptr;
-
-        if (!font.ranges.empty()) {
-            ranges = font.ranges.data();
-        }
-
-        if (fs::exists(font.filepath)) {
-            font.font = fonts->AddFontFromFileTTF(font.filepath.string().c_str(), (float)font.size, nullptr, ranges);
-        } else {
-            font.font = fsload; // fonts->AddFontFromMemoryCompressedTTF(RobotoMedium_compressed_data, RobotoMedium_compressed_size, (float)font.size, nullptr, ranges);
-        }
-    }
+    ImFontConfig config;
+    config.MergeMode = true;
+    // config.FontDataOwnedByAtlas = false;  // AddFontFromMemoryTTF Needed
+    config.PixelSnapH = true;
+    static const ImWchar fullRanges[] = {0x0020, 0xffff, 0};
+    // fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\msyh.ttc)", (float)m_font_size, &config, fonts->GetGlyphRangesChineseFull());
+    fonts->AddFontFromMemoryCompressedTTF(font_msyh_compressed_data, font_msyh_compressed_size, (float)m_font_size, &config, fullRanges);
 
     fonts->Build();
     m_wants_device_object_cleanup = true;
@@ -1179,17 +1162,17 @@ void REFramework::draw_ui() {
     ImGui::SetNextWindowSize(ImVec2(300, 500), ImGuiCond_::ImGuiCond_Once);
     bool is_open = true;
     ImGui::Begin("REFramework", &is_open);
-    ImGui::Text("Default Menu Key: Insert");
-    ImGui::Checkbox("Transparency", &m_ui_option_transparent);
+    ImGui::Text(_("Default Menu Key: Insert"));
+    ImGui::Checkbox(_("Transparency"), &m_ui_option_transparent);
     ImGui::SameLine();
     ImGui::Text("(?)");
     if (ImGui::IsItemHovered())
-        ImGui::SetTooltip("Makes the UI transparent when not focused.");
-    ImGui::Checkbox("Input Passthrough", &m_ui_passthrough);
+        ImGui::SetTooltip(_("Makes the UI transparent when not focused."));
+    ImGui::Checkbox(_("Input Passthrough"), &m_ui_passthrough);
     ImGui::SameLine();
     ImGui::Text("(?)");
     if (ImGui::IsItemHovered())
-        ImGui::SetTooltip("Allows mouse and keyboard inputs to register to the game while the UI is focused.");
+        ImGui::SetTooltip(_("Allows mouse and keyboard inputs to register to the game while the UI is focused."));
 
     // Mods:
     draw_about();
@@ -1197,10 +1180,10 @@ void REFramework::draw_ui() {
     if (m_error.empty() && m_game_data_initialized) {
         m_mods->on_draw_ui();
     } else if (!m_game_data_initialized) {
-        ImGui::TextWrapped("REFramework is currently initializing...");
-        ImGui::TextWrapped("This menu will close after initialization if you have the remember option enabled.");
+        ImGui::TextWrapped(_("REFramework is currently initializing..."));
+        ImGui::TextWrapped(_("This menu will close after initialization if you have the remember option enabled."));
     } else if (!m_error.empty()) {
-        ImGui::TextWrapped("REFramework error: %s", m_error.c_str());
+        ImGui::TextWrapped(_("REFramework error: %s"), m_error.c_str());
     }
 
     m_last_window_pos = ImGui::GetWindowPos();
@@ -1222,14 +1205,14 @@ void REFramework::draw_ui() {
 }
 
 void REFramework::draw_about() {
-    if (!ImGui::CollapsingHeader("About")) {
+    if (!ImGui::CollapsingHeader(_("About"))) {
         return;
     }
 
-    ImGui::TreePush("About");
+    ImGui::TreePush(_("About"));
 
-    ImGui::Text("Author: praydog");
-    ImGui::Text("Inspired by the Kanan project.");
+    ImGui::Text(_("Author: praydog"));
+    ImGui::Text(_("Inspired by the Kanan project."));
     ImGui::Text("https://github.com/praydog/REFramework");
     ImGui::Text("http://praydog.com");
 
@@ -1301,15 +1284,15 @@ void REFramework::draw_about() {
                 }
             }
 
-            ImGui::Text("Engine information");
+            ImGui::Text(_("Engine information"));
             ImGui::Text(" Config: %s", engine_config.c_str());
             ImGui::Text(" Version: %s", clean_version.c_str());
             ImGui::Text(" TDB Version: %i", tdb_version);
         } catch(...) {
-            ImGui::Text("Unable to determine engine version.");
+            ImGui::Text(_("Unable to determine engine version."));
         }
     } else {
-        ImGui::Text("Unable to determine engine version.");
+        ImGui::Text(_("Unable to determine engine version."));
     }
 
     ImGui::TreePop();

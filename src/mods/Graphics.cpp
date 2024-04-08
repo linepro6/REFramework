@@ -57,12 +57,12 @@ void Graphics::on_draw_ui() {
 
 #ifdef RE4
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
-    if (ImGui::TreeNode("RE4 Scope Tweaks")) {
-        m_scope_tweaks->draw("Enable Scope Tweaks");
+    if (ImGui::TreeNode(_("RE4 Scope Tweaks"))) {
+        m_scope_tweaks->draw(_("Enable Scope Tweaks"));
 
         if (m_scope_tweaks->value()) {
-            m_scope_interlaced_rendering->draw("Enable Interlaced Rendering");
-            m_scope_image_quality->draw("Scope Image Quality");
+            m_scope_interlaced_rendering->draw(_("Enable Interlaced Rendering"));
+            m_scope_image_quality->draw(_("Scope Image Quality"));
         }
 
         ImGui::TreePop();
@@ -70,26 +70,26 @@ void Graphics::on_draw_ui() {
 #endif
 
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
-    if (ImGui::TreeNode("Ultrawide/FOV Options")) {
+    if (ImGui::TreeNode(_("Ultrawide/FOV Options"))) {
         if (m_ultrawide_fix->draw("Ultrawide/FOV/Aspect Ratio Fix") && m_ultrawide_fix->value() == false) {
             do_ultrawide_fov_restore(true);
         }
 
         if (m_ultrawide_fix->value()) {
-            m_ultrawide_vertical_fov->draw("Ultrawide: Enable Vertical FOV");
-            m_ultrawide_custom_fov->draw("Ultrawide: Override FOV");
-            m_ultrawide_fov_multiplier->draw("Ultrawide: FOV Multiplier");
+            m_ultrawide_vertical_fov->draw(_("Ultrawide: Enable Vertical FOV"));
+            m_ultrawide_custom_fov->draw(_("Ultrawide: Override FOV"));
+            m_ultrawide_fov_multiplier->draw(_("Ultrawide: FOV Multiplier"));
         }
 
-        m_force_render_res_to_window->draw("Force Render Resolution to Window Size");
+        m_force_render_res_to_window->draw(_("Force Render Resolution to Window Size"));
 
         ImGui::TreePop();
     }
 
     ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
-    if (ImGui::TreeNode("GUI Options")) {
-        m_disable_gui->draw("Hide GUI");
-        m_disable_gui_key->draw("Hide GUI key");
+    if (ImGui::TreeNode(_("GUI Options"))) {
+        m_disable_gui->draw(_("Hide GUI"));
+        m_disable_gui_key->draw(_("Hide GUI key"));
         ImGui::TreePop();
     }
 }
