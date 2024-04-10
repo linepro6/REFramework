@@ -772,7 +772,7 @@ Timescale (Continuous) Key,时间比例（持续）热键,,,,,,,,,,,,,,,,,,,,,,,
 Use Application Timescale,使用应用程序时间刻度,,,,,,,,,,,,,,,,,,,,,,,
 Timescale,时间尺度,,,,,,,,,,,,,,,,,,,,,,,
 Scene,场景设置,,,,,,,,,,,,,,,,,,,,,,,
-Script Generated UI,脚本生成界面,,,,,,,,,,,,,,,,,,,,,,,
+Script Generated UI,脚本配置界面,,,,,,,,,,,,,,,,,,,,,,,
 Run script,运行脚本,,,,,,,,,,,,,,,,,,,,,,,
 Reset scripts,重载脚本,,,,,,,,,,,,,,,,,,,,,,,
 Spawn Debug Console,呼出调试控制台,,,,,,,,,,,,,,,,,,,,,,,
@@ -790,7 +790,7 @@ Last Script Error: %s,上一个脚本错误: %s,,,,,,,,,,,,,,,,,,,,,,,
 No Script Errors... yet!,没有脚本错误…牛逼！,,,,,,,,,,,,,,,,,,,,,,,
 Loaded scripts:,已加载脚本:,,,,,,,,,,,,,,,,,,,,,,,
 No scripts loaded.,无脚本加载。,,,,,,,,,,,,,,,,,,,,,,,
-ScriptRunner,脚本工具,,,,,,,,,,,,,,,,,,,,,,,
+ScriptRunner,脚本运行设置,,,,,,,,,,,,,,,,,,,,,,,
 %s not loaded: %s not found,%s 未加载: %s 妹找着啊……,,,,,,,,,,,,,,,,,,,,,,,
 Please drop the %s file into the game's directory if you want to use %s,请把 %s文件放入游戏目录，如果要使用 %s,,,,,,,,,,,,,,,,,,,,,,,
 %s not loaded: %s,%s 未加载: %s,,,,,,,,,,,,,,,,,,,,,,,
@@ -863,8 +863,8 @@ REFramework error: %s,REFramework错误: %s,,,,,,,,,,,,,,,,,,,,,,,
 About,关于,,,,,,,,,,,,,,,,,,,,,,,
 Author: praydog,"作者：praydog
 汉化：花舞-踩蘑菇MOD汉化组
-版本：MHR Ver1.2.1
-内核：8265afb
+版本：MHR Ver1.2.2
+内核：41f927b
 反馈群：608262198",,,,,,,,,,,,,,,,,,,,,,,
 Inspired by the Kanan project.,灵感来自Kanan项目。,,,,,,,,,,,,,,,,,,,,,,,
 Engine information,引擎信息,,,,,,,,,,,,,,,,,,,,,,,
