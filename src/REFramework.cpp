@@ -1329,9 +1329,9 @@ void REFramework::draw_ui() {
     ImGui::SetNextWindowPos(ImVec2(50, 50), ImGuiCond_::ImGuiCond_Once);
     ImGui::SetNextWindowSize(ImVec2(300, 500), ImGuiCond_::ImGuiCond_Once);
     
-    static const auto REF_NAME = std::format("REFramework [{}+{}-{:.8}]", REF_TAG, REF_COMMITS_PAST_TAG, REF_COMMIT_HASH);
+    // static const auto REF_NAME = std::format("REFramework [{}+{}-{:.8}]", REF_TAG, REF_COMMITS_PAST_TAG, REF_COMMIT_HASH);
     bool is_open = true;
-    ImGui::Begin(REF_NAME.c_str(), &is_open);
+    ImGui::Begin(_("!!!REFramework Title!!!"), &is_open);
     ImGui::Text(_("Default Menu Key: Insert"));
     ImGui::Checkbox(_("Transparency"), &m_ui_option_transparent);
     ImGui::SameLine();

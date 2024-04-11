@@ -48,7 +48,7 @@ void GameObjectsDisplay::on_draw_dev_ui() {
         // todo
     }
 
-    m_max_distance->draw("Max Distance for GameObjects");
+    m_max_distance->draw(_("Max Distance for GameObjects"));
 }
 
 void GameObjectsDisplay::on_frame() {

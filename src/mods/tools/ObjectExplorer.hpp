@@ -16,6 +16,7 @@
 #include "HookManager.hpp"
 
 #include <sdk/TDBVer.hpp>
+#include "I18n.hpp"
 
 #define TDB_DUMP_ALLOWED
 
@@ -126,7 +127,7 @@ public:
 public:
     ObjectExplorer();
 
-    std::string_view get_name() const override { return "ObjectExplorer"; };
+    std::string_view get_name() const override { return _("ObjectExplorer"); };
 
     void on_draw_dev_ui() override;
     void on_frame() override;

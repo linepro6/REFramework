@@ -44,18 +44,18 @@ void LooseFileLoader::on_draw_ui() {
     }
 
     if (m_attempted_hook && !m_hook_success) {
-        ImGui::TextWrapped("Failed to hook successfully. This mod will not work.");
+        ImGui::TextWrapped(_("Failed to hook successfully. This mod will not work."));
         return;
     }
 
-    if (m_enabled->draw("Enable Loose File Loader")) {
+    if (m_enabled->draw(_("Enable Loose File Loader"))) {
     }
 
     if (m_hook_success) {
-        ImGui::TextWrapped("Files encountered: %d", m_files_encountered);
-        ImGui::TextWrapped("Loose files loaded: %d", m_loose_files_loaded);
+        ImGui::TextWrapped(_("Files encountered: %d"), m_files_encountered);
+        ImGui::TextWrapped(_("Loose files loaded: %d"), m_loose_files_loaded);
 
-        if (ImGui::Button("Clear stats")) {
+        if (ImGui::Button(_("Clear stats"))) {
             m_files_encountered = 0;
             m_loose_files_loaded = 0;
 
@@ -66,12 +66,12 @@ void LooseFileLoader::on_draw_ui() {
             m_all_loose_files.clear();
         }
 
-        ImGui::Checkbox("Show recent files", &m_show_recent_files);
+        ImGui::Checkbox(_("Show recent files"), &m_show_recent_files);
 
         if (m_show_recent_files) {
             std::shared_lock _{m_mutex};
 
-            if (ImGui::TreeNode("Recent accessed files")) {
+            if (ImGui::TreeNode(_("Recent accessed files"))) {
                 for (const auto& file : m_recent_accessed_files) {
                     ImGui::TextWrapped("%s", utility::narrow(file).c_str());
                 }
@@ -79,7 +79,7 @@ void LooseFileLoader::on_draw_ui() {
                 ImGui::TreePop();
             }
 
-            if (ImGui::TreeNode("Recent loose files")) {
+            if (ImGui::TreeNode(_("Recent loose files"))) {
                 for (const auto& file : m_recent_loose_files) {
                     ImGui::TextWrapped("%s", utility::narrow(file).c_str());
                 }

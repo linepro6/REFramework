@@ -6,13 +6,14 @@
 #include <utility/FunctionHook.hpp>
 
 #include "../Mod.hpp"
+#include "I18n.hpp"
 
 class LooseFileLoader : public Mod {
 public:
     static std::shared_ptr<LooseFileLoader>& get();
 
 public:
-    std::string_view get_name() const override { return "LooseFileLoader"; }
+    std::string_view get_name() const override { return _("LooseFileLoader"); }
 
     std::optional<std::string> on_initialize() override;
     void on_config_load(const utility::Config& cfg) override;
