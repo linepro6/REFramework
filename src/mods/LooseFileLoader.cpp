@@ -48,7 +48,16 @@ void LooseFileLoader::on_draw_ui() {
         return;
     }
 
+    auto clear_existence_cache = [&]() {
+        std::unique_lock _{m_files_on_disk_mutex};
+        m_files_on_disk.clear();
+        m_seen_files.clear();
+        m_cache_hits = 0;
+        m_uncached_hits = 0;
+    };
+
     if (m_enabled->draw(_("Enable Loose File Loader"))) {
+        clear_existence_cache();
     }
 
     if (m_hook_success) {
@@ -64,6 +73,18 @@ void LooseFileLoader::on_draw_ui() {
             m_recent_loose_files.clear();
             m_all_accessed_files.clear();
             m_all_loose_files.clear();
+        }
+
+        if (ImGui::TreeNode(_("Debug"))) {
+            ImGui::Checkbox(_("Enable file cache"), &m_enable_file_cache);
+            ImGui::TextWrapped(_("Cache hits: %d"), m_cache_hits);
+            ImGui::TextWrapped(_("Uncached hits: %d"), m_uncached_hits);
+
+            if (ImGui::Button(_("Clear existence cache"))) {
+                clear_existence_cache();
+            }
+
+            ImGui::TreePop();
         }
 
         ImGui::Checkbox(_("Show recent files"), &m_show_recent_files);
@@ -175,7 +196,7 @@ void LooseFileLoader::hook() {
     m_hook_success = true;
 }
 
-bool LooseFileLoader::handle_path(const wchar_t* path) {
+bool LooseFileLoader::handle_path(const wchar_t* path, size_t hash) {
     if (path == nullptr || path[0] == L'\0') {
         return false;
     }
@@ -198,8 +219,45 @@ bool LooseFileLoader::handle_path(const wchar_t* path) {
 
     //spdlog::info("[LooseFileLoader] path_to_hash_hook called with path: {}", utility::narrow(path));
 
-    if (enabled && std::filesystem::exists(path)) {
-        if (m_show_recent_files) {
+    if (enabled) {
+        bool exists_in_cache{false};
+        bool exists_on_disk{false};
+
+        if (m_enable_file_cache) {
+            // Intended to get rid of mutex usage which can be a bottleneck
+            static thread_local std::unordered_set<size_t> files_on_disk_local{};
+            static thread_local std::unordered_set<size_t> seen_files_local{};
+
+            {
+                // No need to lock a mutex as these are thread_local
+                exists_on_disk = files_on_disk_local.contains(hash);
+                exists_in_cache = exists_on_disk || seen_files_local.contains(hash);
+            }
+
+            if (!exists_in_cache) {
+                // TODO: refine this with mixed shared and unique locks
+                // This shouldnt be a huge performance issue for now
+                std::unique_lock _{m_files_on_disk_mutex};
+
+                // Purpose of this is to only hit the disk once per unique file
+                if (m_files_on_disk.contains(hash) || std::filesystem::exists(path)) {
+                    m_files_on_disk.insert(hash); // Global
+                    files_on_disk_local.insert(hash); // Thread local
+                    exists_on_disk = true;
+                }
+
+                m_seen_files.insert(hash); // Global
+                seen_files_local.insert(hash); // Thread local
+                ++m_uncached_hits;
+            } else {
+                ++m_cache_hits;
+            }
+        } else {
+            exists_on_disk = std::filesystem::exists(path);
+            ++m_uncached_hits;
+        }
+
+        if (m_show_recent_files && exists_on_disk) {
             std::unique_lock _{m_mutex};
 
             m_all_loose_files.insert(path);
@@ -210,21 +268,36 @@ bool LooseFileLoader::handle_path(const wchar_t* path) {
             }
         }
 
-        ++g_loose_file_loader->m_loose_files_loaded;
-        return true;
+        if (exists_on_disk) {
+            ++g_loose_file_loader->m_loose_files_loaded;
+            return true;
+        }
     }
 
     return false;
 }
 
+#if TDB_VER > 67
 uint64_t LooseFileLoader::path_to_hash_hook(const wchar_t* path) {
-    // true to skip.
-    if (g_loose_file_loader->handle_path(path)) {
-        return 4294967296;
-    }
-
+#else
+uint64_t LooseFileLoader::path_to_hash_hook(void* This, const wchar_t* path) {
+#endif
     const auto og = g_loose_file_loader->m_path_to_hash_hook->get_original<decltype(path_to_hash_hook)>();
+
+#if TDB_VER > 67
     const auto result = og(path);
+#else
+    const auto result = og(This, path);
+#endif
+
+    // true to skip.
+    if (g_loose_file_loader->handle_path(path, result)) {
+#if TDB_VER > 67
+        return 4294967296;
+#else
+        return 0xFFFFFFFF;
+#endif
+    }
 
     return result;
 }

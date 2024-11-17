@@ -331,7 +331,7 @@ sol::object parse_data(lua_State* l, void* data, ::sdk::RETypeDefinition* data_t
 sol::object get_native_field(sol::object obj, ::sdk::RETypeDefinition* ty, const char* name);
 sol::object get_native_field_from_field(sol::object obj, ::sdk::RETypeDefinition* ty, ::sdk::REField* field);
 sol::object get_field_or_method(sol::object obj, const char* name);
-void set_native_field(lua_State* l, sol::object obj, ::sdk::RETypeDefinition* ty, const char* name, sol::object value);
+void set_native_field(sol::this_state s, sol::object obj, ::sdk::RETypeDefinition* ty, const char* name, sol::object value);
 
 struct ValueType {
     std::vector<uint8_t> data{};
@@ -403,7 +403,8 @@ struct ValueType {
             return sol::make_object(l, sol::nil);
         }
 
-        auto ret_val = def->invoke(real_obj, ::api::sdk::build_args(va));
+        auto vec_args = ::api::sdk::build_args(va);
+        auto ret_val = def->invoke(real_obj, std::span(vec_args));
 
         if (ret_val.exception_thrown) {
             throw sol::error("Invoke threw an exception");
@@ -933,6 +934,25 @@ void set_data(void* data, ::sdk::RETypeDefinition* data_type, sol::object& value
             full_name_hash = utility::hash(data_type->get_full_name());
         }
 
+        // Commemorating the moment I finally added support for this
+        // ....... 2 years after the Lua API was first created
+        // This allows us to pass arbitrary ValueTypes and set fields with them
+        // So we don't need to hardcode every possible ValueType, just the most important ones like Int32, Single, vec3, etc...
+        if (data != nullptr && vm_obj_type == via::clr::VMObjType::ValType && value.is<ValueType*>()) {
+            auto vt = value.as<ValueType*>();
+
+            if (vt->type != data_type) {
+                if (vt->type != nullptr && data_type != nullptr) {
+                    throw sol::error(std::format("Attempted to set ValueType of type {} to field of type {}", vt->type->get_full_name(), data_type->get_full_name()));
+                }
+
+                throw sol::error("Attempted to set ValueType to field of unknown type");
+            }
+
+            memcpy(data, vt->data.data(), vt->data.size());
+            return;
+        }
+
         switch (full_name_hash) {
         case "System.Single"_fnv:
             *(float*)data = value.as<float>();
@@ -1036,9 +1056,10 @@ void set_native_field_from_field(sol::object obj, ::sdk::RETypeDefinition* ty, :
     set_data(data, field_type, value);
 }
 
-void set_native_field(lua_State* l, sol::object obj, ::sdk::RETypeDefinition* ty, const char* name, sol::object value) {
+void set_native_field(sol::this_state s, sol::object obj, ::sdk::RETypeDefinition* ty, const char* name, sol::object value) {
     const auto field = ty->get_field(name);
     if (field == nullptr) {
+        auto l = s.lua_state();
         //throw sol::error("Attempted to set invalid REManagedObject field:" + std::string(name));
         luaL_traceback(l, l, ("Attempted to set invalid REManagedObject field:" + std::string(name)).c_str(), 1);
         std::string traceback_err = lua_tostring(l, -1);
@@ -1667,7 +1688,7 @@ void bindings::open_sdk(ScriptState* s) {
                 return;
             }
 
-            return api::sdk::set_native_field(s->lua(), sol::make_object(s->lua(), obj), utility::re_managed_object::get_type_definition(obj), name, value); 
+            return api::sdk::set_native_field(sol::this_state{s->lua()}, sol::make_object(s->lua(), obj), utility::re_managed_object::get_type_definition(obj), name, value); 
         },
         "call", [s](REManagedObject* obj, const char* name, sol::variadic_args args) {
             if (obj == nullptr) {

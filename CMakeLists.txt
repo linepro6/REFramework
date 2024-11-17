@@ -114,13 +114,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(directxtk12)
 
-message(STATUS "Fetching safetyhook (4faf792c2d66cbf06f2c942561d053aafd79006b)...")
+message(STATUS "Fetching safetyhook (b046e123dc69821f2c375161e0adef3c6d9c9db4)...")
 FetchContent_Declare(
 	safetyhook
 	GIT_REPOSITORY
 		https://github.com/cursey/safetyhook
 	GIT_TAG
-		4faf792c2d66cbf06f2c942561d053aafd79006b
+		b046e123dc69821f2c375161e0adef3c6d9c9db4
 )
 FetchContent_MakeAvailable(safetyhook)
 
@@ -134,13 +134,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(bddisasm)
 
-message(STATUS "Fetching kananlib (0bf5781a38a857f0acea3935425d50a1a5a34d3a)...")
+message(STATUS "Fetching kananlib (cca66766b139994f478ea48befd67a179b7310ab)...")
 FetchContent_Declare(
 	kananlib
 	GIT_REPOSITORY
 		https://github.com/cursey/kananlib
 	GIT_TAG
-		0bf5781a38a857f0acea3935425d50a1a5a34d3a
+		cca66766b139994f478ea48befd67a179b7310ab
 )
 FetchContent_MakeAvailable(kananlib)
 
@@ -556,6 +556,7 @@ if(REF_BUILD_RE2_SDK OR REF_BUILD_FRAMEWORK) # build-re2-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -572,6 +573,8 @@ if(REF_BUILD_RE2_SDK OR REF_BUILD_FRAMEWORK) # build-re2-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -583,6 +586,7 @@ if(REF_BUILD_RE2_SDK OR REF_BUILD_FRAMEWORK) # build-re2-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -1322,7 +1326,10 @@ if(REF_BUILD_RE2_SDK OR REF_BUILD_FRAMEWORK) # build-re2-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND RE2SDK_SOURCES
@@ -1380,6 +1387,7 @@ if(REF_BUILD_RE2_TDB66SDK OR REF_BUILD_FRAMEWORK) # build-re2tdb66-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -1396,6 +1404,8 @@ if(REF_BUILD_RE2_TDB66SDK OR REF_BUILD_FRAMEWORK) # build-re2tdb66-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -1407,6 +1417,7 @@ if(REF_BUILD_RE2_TDB66SDK OR REF_BUILD_FRAMEWORK) # build-re2tdb66-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -2146,7 +2157,10 @@ if(REF_BUILD_RE2_TDB66SDK OR REF_BUILD_FRAMEWORK) # build-re2tdb66-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND RE2_TDB66SDK_SOURCES
@@ -2208,6 +2222,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -2299,6 +2314,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -2417,6 +2433,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -2508,6 +2525,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -2623,6 +2641,7 @@ if(REF_BUILD_RE3_SDK OR REF_BUILD_FRAMEWORK) # build-re3-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -2639,6 +2658,8 @@ if(REF_BUILD_RE3_SDK OR REF_BUILD_FRAMEWORK) # build-re3-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -2650,6 +2671,7 @@ if(REF_BUILD_RE3_SDK OR REF_BUILD_FRAMEWORK) # build-re3-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -3389,7 +3411,10 @@ if(REF_BUILD_RE3_SDK OR REF_BUILD_FRAMEWORK) # build-re3-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND RE3SDK_SOURCES
@@ -3447,6 +3472,7 @@ if(REF_BUILD_RE3_TDB67SDK OR REF_BUILD_FRAMEWORK) # build-re3tdb67-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -3463,6 +3489,8 @@ if(REF_BUILD_RE3_TDB67SDK OR REF_BUILD_FRAMEWORK) # build-re3tdb67-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -3474,6 +3502,7 @@ if(REF_BUILD_RE3_TDB67SDK OR REF_BUILD_FRAMEWORK) # build-re3tdb67-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -4213,7 +4242,10 @@ if(REF_BUILD_RE3_TDB67SDK OR REF_BUILD_FRAMEWORK) # build-re3tdb67-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND RE3_TDB67SDK_SOURCES
@@ -4275,6 +4307,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -4366,6 +4399,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -4484,6 +4518,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -4575,6 +4610,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -4693,6 +4729,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -4784,6 +4821,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -4899,6 +4937,7 @@ if(REF_BUILD_RE4_SDK OR REF_BUILD_FRAMEWORK) # build-re4-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -4915,6 +4954,8 @@ if(REF_BUILD_RE4_SDK OR REF_BUILD_FRAMEWORK) # build-re4-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -4926,6 +4967,7 @@ if(REF_BUILD_RE4_SDK OR REF_BUILD_FRAMEWORK) # build-re4-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -5665,7 +5707,10 @@ if(REF_BUILD_RE4_SDK OR REF_BUILD_FRAMEWORK) # build-re4-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND RE4SDK_SOURCES
@@ -5725,6 +5770,7 @@ if(REF_BUILD_RE7_SDK OR REF_BUILD_FRAMEWORK) # build-re7-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -5741,6 +5787,8 @@ if(REF_BUILD_RE7_SDK OR REF_BUILD_FRAMEWORK) # build-re7-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -5752,6 +5800,7 @@ if(REF_BUILD_RE7_SDK OR REF_BUILD_FRAMEWORK) # build-re7-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -6491,7 +6540,10 @@ if(REF_BUILD_RE7_SDK OR REF_BUILD_FRAMEWORK) # build-re7-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND RE7SDK_SOURCES
@@ -6549,6 +6601,7 @@ if(REF_BUILD_RE7_TDB49SDK OR REF_BUILD_FRAMEWORK) # build-re7tdb49-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -6565,6 +6618,8 @@ if(REF_BUILD_RE7_TDB49SDK OR REF_BUILD_FRAMEWORK) # build-re7tdb49-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -6576,6 +6631,7 @@ if(REF_BUILD_RE7_TDB49SDK OR REF_BUILD_FRAMEWORK) # build-re7tdb49-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -7315,7 +7371,10 @@ if(REF_BUILD_RE7_TDB49SDK OR REF_BUILD_FRAMEWORK) # build-re7tdb49-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND RE7_TDB49SDK_SOURCES
@@ -7377,6 +7436,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -7468,6 +7528,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -7586,6 +7647,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -7677,6 +7739,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -7792,6 +7855,7 @@ if(REF_BUILD_RE8_SDK OR REF_BUILD_FRAMEWORK) # build-re8-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -7808,6 +7872,8 @@ if(REF_BUILD_RE8_SDK OR REF_BUILD_FRAMEWORK) # build-re8-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -7819,6 +7885,7 @@ if(REF_BUILD_RE8_SDK OR REF_BUILD_FRAMEWORK) # build-re8-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -8558,7 +8625,10 @@ if(REF_BUILD_RE8_SDK OR REF_BUILD_FRAMEWORK) # build-re8-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND RE8SDK_SOURCES
@@ -8621,6 +8691,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -8712,6 +8783,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -8827,6 +8899,7 @@ if(REF_BUILD_DMC5_SDK OR REF_BUILD_FRAMEWORK) # build-dmc5-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -8843,6 +8916,8 @@ if(REF_BUILD_DMC5_SDK OR REF_BUILD_FRAMEWORK) # build-dmc5-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -8854,6 +8929,7 @@ if(REF_BUILD_DMC5_SDK OR REF_BUILD_FRAMEWORK) # build-dmc5-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -9593,7 +9669,10 @@ if(REF_BUILD_DMC5_SDK OR REF_BUILD_FRAMEWORK) # build-dmc5-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND DMC5SDK_SOURCES
@@ -9654,6 +9733,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -9745,6 +9825,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -9860,6 +9941,7 @@ if(REF_BUILD_MHRISE_SDK OR REF_BUILD_FRAMEWORK) # build-mhrise-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -9876,6 +9958,8 @@ if(REF_BUILD_MHRISE_SDK OR REF_BUILD_FRAMEWORK) # build-mhrise-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -9887,6 +9971,7 @@ if(REF_BUILD_MHRISE_SDK OR REF_BUILD_FRAMEWORK) # build-mhrise-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -10626,7 +10711,10 @@ if(REF_BUILD_MHRISE_SDK OR REF_BUILD_FRAMEWORK) # build-mhrise-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND MHRISESDK_SOURCES
@@ -10689,6 +10777,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -10780,6 +10869,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -10895,6 +10985,7 @@ if(REF_BUILD_SF6_SDK OR REF_BUILD_FRAMEWORK) # build-sf6-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -10911,6 +11002,8 @@ if(REF_BUILD_SF6_SDK OR REF_BUILD_FRAMEWORK) # build-sf6-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -10922,6 +11015,7 @@ if(REF_BUILD_SF6_SDK OR REF_BUILD_FRAMEWORK) # build-sf6-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -11661,7 +11755,10 @@ if(REF_BUILD_SF6_SDK OR REF_BUILD_FRAMEWORK) # build-sf6-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND SF6SDK_SOURCES
@@ -11724,6 +11821,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -11815,6 +11913,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"
@@ -11930,6 +12029,7 @@ if(REF_BUILD_DD2_SDK OR REF_BUILD_FRAMEWORK) # build-dd2-sdk
 		"shared/sdk/MurmurHash.cpp"
 		"shared/sdk/REArray.cpp"
 		"shared/sdk/REContext.cpp"
+		"shared/sdk/REGameObject.cpp"
 		"shared/sdk/REGlobals.cpp"
 		"shared/sdk/REManagedObject.cpp"
 		"shared/sdk/RETransform.cpp"
@@ -11946,6 +12046,8 @@ if(REF_BUILD_DD2_SDK OR REF_BUILD_FRAMEWORK) # build-dd2-sdk
 		"shared/sdk/SystemArray.cpp"
 		"shared/sdk/helpers/NativeObject.cpp"
 		"shared/sdk/renderer/RenderResource.cpp"
+		"shared/sdk/resources/MasterMaterialResource.cpp"
+		"shared/sdk/resources/ShaderResource.cpp"
 		"shared/sdk/Application.hpp"
 		"shared/sdk/Enums_Internal.hpp"
 		"shared/sdk/GUIPrimitiveSystem.hpp"
@@ -11957,6 +12059,7 @@ if(REF_BUILD_DD2_SDK OR REF_BUILD_FRAMEWORK) # build-dd2-sdk
 		"shared/sdk/REArray.hpp"
 		"shared/sdk/REComponent.hpp"
 		"shared/sdk/REContext.hpp"
+		"shared/sdk/REGameObject.hpp"
 		"shared/sdk/REGlobals.hpp"
 		"shared/sdk/REManagedObject.hpp"
 		"shared/sdk/REMath.hpp"
@@ -12696,7 +12799,10 @@ if(REF_BUILD_DD2_SDK OR REF_BUILD_FRAMEWORK) # build-dd2-sdk
 		"shared/sdk/regenny/sf6/via/typeinfo/TypeInfo.hpp"
 		"shared/sdk/regenny/sf6/via/vec3.hpp"
 		"shared/sdk/regenny/sf6/via/vec4.hpp"
+		"shared/sdk/renderer/PipelineState.hpp"
 		"shared/sdk/renderer/RenderResource.hpp"
+		"shared/sdk/resources/MasterMaterialResource.hpp"
+		"shared/sdk/resources/ShaderResource.hpp"
 	)
 
 	list(APPEND DD2SDK_SOURCES
@@ -12759,6 +12865,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/REFramework.cpp"
 		"src/WindowFilter.cpp"
 		"src/WindowsMessageHook.cpp"
+		"src/cimgui/cimgui.cpp"
 		"src/mods/APIProxy.cpp"
 		"src/mods/Camera.cpp"
 		"src/mods/DeveloperTools.cpp"
@@ -12850,6 +12957,7 @@ if(REF_BUILD_FRAMEWORK AND CMAKE_SIZEOF_VOID_P EQUAL 8) # build-framework
 		"src/re2-imgui/re2_imconfig.hpp"
 		"src/utility/ImGui.hpp"
 		"src/I18n/font_msyh.h"
+		"src/cimgui/cimgui.h"
 		"src/re2-imgui/af_fadef.h"
 		"src/re2-imgui/imgui_impl_dx11.h"
 		"src/re2-imgui/imgui_impl_dx12.h"

@@ -13,6 +13,7 @@
 #include "sdk/SF6Utility.hpp"
 
 #include "utility/String.hpp"
+#include <utility/ScopeGuard.hpp>
 
 #include "Mods.hpp"
 
@@ -64,16 +65,16 @@ uint32_t get_id() {
     return std::this_thread::get_id()._Get_underlying_id();
 }
 
-sol::object get_hook_storage(sol::this_state s, size_t hash) {
+sol::object get_hook_storage(sol::this_state s) {
     auto sol_state = sol::state_view{s};
     auto state = sol_state.registry()["state"].get<ScriptState*>();
-    auto result = state->get_hook_storage(get_hash());
+    auto result = state->get_hook_storage();
 
-    if (!result.has_value()) {
+    if (!result.valid()) {
         return sol::make_object(s, sol::lua_nil);
     }
 
-    return sol::make_object(s, result.value());
+    return sol::make_object(s, result);
 }
 }
 
@@ -120,7 +121,7 @@ ScriptState::ScriptState(const ScriptState::GarbageCollectionData& gc_data,bool 
     m_is_main_state = is_main_state;
     m_lua.registry()["state"] = this;
     m_lua.open_libraries(sol::lib::base, sol::lib::package, sol::lib::string, sol::lib::math, sol::lib::table, sol::lib::bit32,
-        sol::lib::utf8, sol::lib::os, sol::lib::coroutine);
+        sol::lib::utf8, sol::lib::os, sol::lib::coroutine, sol::lib::debug);
 
     // Disable garbage collection. We will manually do it at the end of each frame.
     gc_data_changed(gc_data);
@@ -668,9 +669,13 @@ void ScriptState::install_hooks() {
                     return;
                 }
 
+                const auto thash = std::hash<std::thread::id>{}(std::this_thread::get_id());
+                utility::ScopeGuard sg{[state, thash] { state->pop_hook_storage(thash); }};
+
                 try {
+                    state->m_current_hook_storage = state->get_hook_storage_internal(thash);
+
                     if (post_cb.is<sol::nil_t>()) {
-                        state->pop_hook_storage(std::hash<std::thread::id>{}(std::this_thread::get_id()));
                         return;
                     }
 
@@ -681,7 +686,6 @@ void ScriptState::install_hooks() {
                     }
 
                     ret_val = (uintptr_t)script_result.get<void*>();
-                    state->pop_hook_storage(std::hash<std::thread::id>{}(std::this_thread::get_id()));
                 } catch (const std::exception& e) {
                     ScriptRunner::get()->spew_error(e.what());
                 } catch (...) {
@@ -780,6 +784,8 @@ void ScriptRunner::on_config_save(utility::Config& cfg) {
 }
 
 void ScriptRunner::hook_battle_rule() {
+    // Removed for now as it seems to cause some weird issues with matchmaking
+#if 0
     if (m_attempted_hook_battle_rule) {
         return;
     }
@@ -825,6 +831,7 @@ void ScriptRunner::hook_battle_rule() {
             return HookManager::PreHookResult::CALL_ORIGINAL;
         },
         [this](uintptr_t& ret_val, sdk::RETypeDefinition* ret_ty, uintptr_t ret_addr) -> void {
+            // DONT set this, it probably breaks something now
             auto bt = this->get_last_battle_type();
 
             if (bt.has_value()) {
@@ -832,9 +839,62 @@ void ScriptRunner::hook_battle_rule() {
             }
         });
     }
+#endif
 }
 
 void ScriptRunner::on_frame() {
+    if (!m_scene_okay) try {
+        if (!m_checked_scene_once) {
+            m_checked_scene_once = true;
+            m_scene_check_time = std::chrono::system_clock::now();
+        }
+
+        // Just bail out of this if 5 seconds have passed and we still haven't found the scene or scene manager.
+        if (std::chrono::system_clock::now() - m_scene_check_time > std::chrono::seconds(5)) {
+            m_scene_okay = true;
+            spdlog::warn("[ScriptRunner] Scene or scene manager not found after 5 seconds. Loading scripts anyways...");
+            return;
+        }
+
+        const auto scene_manager_t = sdk::find_type_definition("via.SceneManager");
+        if (scene_manager_t == nullptr) {
+            return;
+        }
+
+        const auto get_CurrentScene = scene_manager_t->get_method("get_CurrentScene");
+
+        if (get_CurrentScene == nullptr) {
+            return;
+        }
+
+        const auto scene_manager = sdk::get_native_singleton("via.SceneManager");
+
+        if (scene_manager == nullptr) {
+            return;
+        }
+
+        const auto context = sdk::get_thread_context();
+        
+        if (context == nullptr) {
+            return;
+        }
+        
+        const auto scene = get_CurrentScene->call_safe<void*>(context, scene_manager);
+
+        if (scene == nullptr) {
+            return;
+        }
+
+        m_scene_okay = true;
+        spdlog::info("[ScriptRunner] Scene and scene manager found. Loading scripts...");
+    } catch (const std::exception& e) {
+        spdlog::error("[ScriptRunner] Error while checking for scene: {}", e.what());
+        return;
+    } catch (...) {
+        spdlog::error("[ScriptRunner] Unknown error while checking for scene.");
+        return;
+    }
+
     std::scoped_lock _{m_access_mutex};
 
     hook_battle_rule();

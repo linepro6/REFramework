@@ -302,6 +302,11 @@ void IntegrityCheckBypass::disable_update_timers(std::string_view name) const {
 void IntegrityCheckBypass::ignore_application_entries() {
     Hooks::get()->ignore_application_entry(0x76b8100bec7c12c3);
     Hooks::get()->ignore_application_entry(0x9f63c0fc4eea6626);
+
+#if TDB_VER >= 73
+    Hooks::get()->ignore_application_entry(0x00c0ab9309584734);
+    Hooks::get()->ignore_application_entry(0xa474f1d3a294e6a4);
+#endif
 }
 
 void IntegrityCheckBypass::immediate_patch_re8() {
@@ -524,7 +529,29 @@ void IntegrityCheckBypass::immediate_patch_dd2() {
 
         spdlog::info("[IntegrityCheckBypass]: Patched conditional_jmp! (DD2)");
     } else {
-        spdlog::error("[IntegrityCheckBypass]: Could not find conditional_jmp for DD2.");
+        spdlog::error("[IntegrityCheckBypass]: Could not find conditional_jmp for DD2, attempting fallback.");
+
+        const auto create_blas_fn = utility::find_function_from_string_ref(game, "createBLAS");
+
+        if (create_blas_fn) {
+            const auto and_eax_07_instr = utility::find_pattern_in_path((uint8_t*)*create_blas_fn, 100, false, "83 E0 07");
+            
+            if (and_eax_07_instr) {
+                // Find next conditional jmp and patch it.
+                const auto conditional_jmp = utility::scan_mnemonic(and_eax_07_instr->addr + and_eax_07_instr->instrux.Length, 10, "JNZ");
+
+                if (conditional_jmp) {
+                    // Jnz->Jmp
+                    static auto dd2patch = Patch::create(*conditional_jmp, { 0xEB }, true);
+
+                    spdlog::info("[IntegrityCheckBypass]: Patched conditional_jmp! (DD2)");
+                } else {
+                    spdlog::error("[IntegrityCheckBypass]: Could not find conditional_jmp for DD2.");
+                }
+            }
+        } else {
+            spdlog::error("[IntegrityCheckBypass]: Could not find createBLAS!");
+        }
     }
 
     const auto second_conditional_jmp_block = utility::scan(game, "49 3B D0 75 ? ? 8B ? ? ? ? ? ? 8B ? ? ? ? ? ? 8B ? ? 8B ? ? ? ? ?");

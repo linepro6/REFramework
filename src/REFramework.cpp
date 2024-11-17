@@ -47,6 +47,16 @@ using namespace std::literals;
 std::unique_ptr<REFramework> g_framework{};
 
 void REFramework::hook_monitor() {
+    if (!m_hook_monitor_mutex.try_lock()) {
+        // If this happens then we can assume execution is going as planned
+        // so we can just reset the times so we dont break something
+        m_last_present_time = std::chrono::steady_clock::now() + std::chrono::seconds(5);
+        m_last_chance_time = std::chrono::steady_clock::now() + std::chrono::seconds(1);
+        m_has_last_chance = true;
+    } else {
+        m_hook_monitor_mutex.unlock();
+    }
+
     std::scoped_lock _{ m_hook_monitor_mutex };
 
     if (g_framework == nullptr) {
@@ -188,7 +198,15 @@ try {
     if (NotificationReason == LDR_DLL_NOTIFICATION_REASON_LOADED) {
         if (NotificationData->Loaded.BaseDllName != nullptr && NotificationData->Loaded.BaseDllName->Buffer != nullptr) {
             std::wstring base_dll_name = NotificationData->Loaded.BaseDllName->Buffer;
+            std::wstring lower_base_dll_name = base_dll_name;
+            std::transform(lower_base_dll_name.begin(), lower_base_dll_name.end(), lower_base_dll_name.begin(), ::towlower);
             spdlog::info("LdrRegisterDllNotification: Loaded: {}", utility::narrow(base_dll_name));
+
+            if (lower_base_dll_name.find(L"sl.dlss_g.dll") != std::wstring::npos) {
+                spdlog::info("LdrRegisterDllNotification: Detected DLSS DLL loaded");
+
+                D3D12Hook::hook_streamline((HMODULE)NotificationData->Loaded.DllBase);
+            }
         }
 
         if (g_current_game_path && NotificationData->Loaded.FullDllName != nullptr && NotificationData->Loaded.FullDllName->Buffer != nullptr) {
@@ -231,6 +249,13 @@ REFramework::REFramework(HMODULE reframework_module)
     spdlog::info("REFramework entry");
 
     yi18n::Init();
+    spdlog::info("Commit hash: {}", REF_COMMIT_HASH);
+    spdlog::info("Tag: {}", REF_TAG);
+    spdlog::info("Commits past tag: {}", REF_COMMITS_PAST_TAG);
+    spdlog::info("Branch: {}", REF_BRANCH);
+    spdlog::info("Total commits: {}", REF_TOTAL_COMMITS);
+    spdlog::info("Build date: {}", REF_BUILD_DATE);
+    spdlog::info("Build time: {}", REF_BUILD_TIME);
 
     const auto module_size = *utility::get_module_size(m_game_module);
 
@@ -486,21 +511,134 @@ REFramework::REFramework(HMODULE reframework_module)
     suspender.resume();
 #endif
 
-    // Hooking D3D12 initially because we need to retrieve the command queue before the first frame then switch to D3D11 if it failed later
-    // on
-    // addendum: now we don't need to do that, we just grab the command queue offset from the swapchain we create
-    /*if (!hook_d3d12()) {
-        spdlog::error("Failed to hook D3D12 for initial test.");
-    }*/
+    // Load the plugins early right after executable unpacking
+    PluginLoader::get()->early_init();
+
+    // Wait for TDB and render device to be initialized before allowing D3D hooking
+    const auto start_time = std::chrono::high_resolution_clock::now();
+
+    while (true) {
+        try {
+            if (sdk::VM::get() != nullptr) {
+                break;
+            }
+        } catch(...) {
+        }
+
+        if (std::chrono::high_resolution_clock::now() - start_time > std::chrono::seconds(30)) {
+            spdlog::error("Timed out waiting for VM to initialize.");
+            throw std::runtime_error("Timed out waiting for VM to initialize.");
+        }
+
+        //std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::yield();
+    }
+
+    spdlog::info("VM initialized, waiting for renderer to initialize...");
+    sdk::RETypeDefinition* renderer_t = nullptr;
+    sdk::renderer::Renderer* renderer = nullptr;
+    bool found_renderer = false;
+
+    while (true) try {
+        const auto tdb = sdk::RETypeDB::get();
+
+        if (tdb == nullptr) {
+            spdlog::error("TypeDB not found");
+            break;
+        }
+
+        // We have to manually look through the types because get_FullName
+        // will crash if we call it this early, which is used in get_type(name)
+        if (renderer_t == nullptr) {
+            for (auto i = 0; i < tdb->get_num_types(); ++i) {
+                const auto t = tdb->get_type(i);
+
+                if (t == nullptr || t->get_name() == nullptr || t->get_namespace() == nullptr) {
+                    continue;
+                }
+
+                if (std::string_view{t->get_name()} == "Renderer" && std::string_view{t->get_namespace()} == "via.render") {
+                    spdlog::info("Renderer type found manually");
+                    renderer_t = t;
+                    break;
+                }
+            }
+        }
+
+        if (renderer_t == nullptr) {
+            spdlog::error("Renderer type not found");
+            break;
+        }
+
+        const auto renderer_has_instance = renderer_t->get_method("hasInstance");
+
+        if (renderer_has_instance == nullptr) {
+            spdlog::error("Renderer::hasInstance not found");
+            break;
+        }
+
+        if (renderer_has_instance->get_function() == nullptr) {
+            continue;
+        }
+
+        const auto has_instance = renderer_has_instance->call<bool>(nullptr, nullptr); // static
+
+        if (!has_instance) {
+            std::this_thread::yield();
+            continue;
+        }
+
+        renderer = sdk::renderer::get_renderer();
+
+        if (renderer != nullptr) {
+            found_renderer = true;
+            break;
+        }
+
+        spdlog::info("waiting for renderer");
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    } catch(...) {
+        spdlog::warn("Exception occurred while waiting for renderer");
+        continue;
+    }
+    
+    spdlog::info("Found renderer, waiting for first frame...");
+
+    bool valid_render_frame = false;
+
+    while (found_renderer) try {
+        const auto render_frame = renderer->get_render_frame();
+
+        if (!render_frame.has_value()) {
+            spdlog::warn("Render frame property not found");
+            break;
+        }
+
+        if (*render_frame > 0) {
+            spdlog::info("Render frame: {}", *render_frame);
+            valid_render_frame = true;
+            break;
+        }
+
+        std::this_thread::yield();
+    } catch(...) {
+        spdlog::warn("Exception occurred while waiting for render frame");
+        break;
+    }
+
+    // If all is good, we can immediately hook D3D12 very early
+    // else, defer to the hook monitor if anything in the chain failed
+    if (valid_render_frame) {
+        // We can guaranteed hook at this point
+        std::scoped_lock _{m_hook_monitor_mutex};
+        hook_d3d12();
+    }
 
     std::scoped_lock _{m_hook_monitor_mutex};
 
     m_last_present_time = std::chrono::steady_clock::now();
     m_last_message_time = std::chrono::steady_clock::now();
     m_d3d_monitor_thread = std::make_unique<std::jthread>([this](std::stop_token stop_token) {
-        // Load the plugins early right after executable unpacking
-        PluginLoader::get()->early_init();
-
         while (!stop_token.stop_requested() && !m_terminating) {
             this->hook_monitor();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -1401,9 +1539,10 @@ void REFramework::draw_about() {
             std::string text;
         };
 
-        static std::array<License, 15> licenses{
+        static std::array<License, 16> licenses{
             License{ "glm", license::glm },
             License{ "imgui", license::imgui },
+            License{ "cimgui", license::cimgui },
             License{ "minhook", license::minhook },
             License{ "spdlog", license::spdlog },
             License{ "robotomedium", license::roboto },
@@ -1771,6 +1910,13 @@ bool REFramework::initialize_game_data() {
                 }
 
                 spdlog::error("Initialization of mods failed. Reason: {}", m_error);
+            }
+
+            // Need to clean up local objects as this is our own thread, not under control by the engine
+            if (auto context = sdk::get_thread_context(); context != nullptr) try {
+                context->local_frame_gc();
+            } catch(...) {
+                spdlog::error("Failed to run local frame GC.");
             }
 
             m_game_data_initialized = true;
