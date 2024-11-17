@@ -1,4 +1,4 @@
-from translate.storage import po
+# from translate.storage import po
 from io import BytesIO
 import csv
 from pathlib import Path
