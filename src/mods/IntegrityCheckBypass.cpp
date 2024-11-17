@@ -302,6 +302,11 @@ void IntegrityCheckBypass::disable_update_timers(std::string_view name) const {
 void IntegrityCheckBypass::ignore_application_entries() {
     Hooks::get()->ignore_application_entry(0x76b8100bec7c12c3);
     Hooks::get()->ignore_application_entry(0x9f63c0fc4eea6626);
+
+#if TDB_VER >= 73
+    Hooks::get()->ignore_application_entry(0x00c0ab9309584734);
+    Hooks::get()->ignore_application_entry(0xa474f1d3a294e6a4);
+#endif
 }
 
 void IntegrityCheckBypass::immediate_patch_re8() {
@@ -524,7 +529,29 @@ void IntegrityCheckBypass::immediate_patch_dd2() {
 
         spdlog::info("[IntegrityCheckBypass]: Patched conditional_jmp! (DD2)");
     } else {
-        spdlog::error("[IntegrityCheckBypass]: Could not find conditional_jmp for DD2.");
+        spdlog::error("[IntegrityCheckBypass]: Could not find conditional_jmp for DD2, attempting fallback.");
+
+        const auto create_blas_fn = utility::find_function_from_string_ref(game, "createBLAS");
+
+        if (create_blas_fn) {
+            const auto and_eax_07_instr = utility::find_pattern_in_path((uint8_t*)*create_blas_fn, 100, false, "83 E0 07");
+            
+            if (and_eax_07_instr) {
+                // Find next conditional jmp and patch it.
+                const auto conditional_jmp = utility::scan_mnemonic(and_eax_07_instr->addr + and_eax_07_instr->instrux.Length, 10, "JNZ");
+
+                if (conditional_jmp) {
+                    // Jnz->Jmp
+                    static auto dd2patch = Patch::create(*conditional_jmp, { 0xEB }, true);
+
+                    spdlog::info("[IntegrityCheckBypass]: Patched conditional_jmp! (DD2)");
+                } else {
+                    spdlog::error("[IntegrityCheckBypass]: Could not find conditional_jmp for DD2.");
+                }
+            }
+        } else {
+            spdlog::error("[IntegrityCheckBypass]: Could not find createBLAS!");
+        }
     }
 
     const auto second_conditional_jmp_block = utility::scan(game, "49 3B D0 75 ? ? 8B ? ? ? ? ? ? 8B ? ? ? ? ? ? 8B ? ? 8B ? ? ? ? ?");
@@ -539,6 +566,31 @@ void IntegrityCheckBypass::immediate_patch_dd2() {
         spdlog::info("[IntegrityCheckBypass]: Patched second_conditional_jmp! (DD2)");
     } else {
         spdlog::error("[IntegrityCheckBypass]: Could not find second_conditional_jmp for DD2.");
+    }
+
+    const auto natives_str_addr = utility::scan(game, "00 00 2F 00 6E 00 61 00 74 00 69 00 76 00 65 00 73 00 2F 00 00 00");
+
+    // the purpose of this is to re-enable loose file loading
+    // the game explicitly looks for this string in the path and
+    // causes load failures if it finds it
+    if (natives_str_addr) {
+        spdlog::info("[IntegrityCheckBypass]: Found /natives/ string for DD2. Patching...");
+
+        wchar_t* natives_str = (wchar_t*)(*natives_str_addr + 2);
+        DWORD old_protect{};
+        VirtualProtect(natives_str, 10 * sizeof(wchar_t), PAGE_EXECUTE_READWRITE, &old_protect);
+
+        spdlog::info("[IntegrityCheckBypass]: /natives/ string: {}", utility::narrow(natives_str));
+
+        // replace string with a completely invalid string that cannot be a valid path
+        natives_str[0] = L'?'; // /
+
+        DWORD old2{};
+        VirtualProtect(natives_str, 10 * sizeof(wchar_t), old_protect, &old2);
+
+        spdlog::info("[IntegrityCheckBypass]: Patched /natives/ string for DD2.");
+    } else {
+        spdlog::error("[IntegrityCheckBypass]: Could not find /natives/ string for DD2.");
     }
 }
 
@@ -612,7 +664,7 @@ void IntegrityCheckBypass::fix_virtual_protect() try {
     setup_pristine_syscall(); // Called earlier in DllMain
 
     // Hook VirtualProtect
-    s_virtual_protect_hook = std::make_unique<FunctionHook>(VirtualProtect, (uintptr_t)virtual_protect_hook);
+    s_virtual_protect_hook = std::make_unique<FunctionHookMinHook>(VirtualProtect, (uintptr_t)virtual_protect_hook);
     if (!s_virtual_protect_hook->create()) {
         spdlog::error("[IntegrityCheckBypass]: Could not hook VirtualProtect!");
         return;
@@ -709,4 +761,65 @@ BOOL WINAPI IntegrityCheckBypass::virtual_protect_hook(LPVOID lpAddress, SIZE_T 
 } catch(...) {
     spdlog::error("[IntegrityCheckBypass]: VirtualProtect hook failed! falling back to original");
     return s_virtual_protect_hook->get_original<decltype(virtual_protect_hook)>()(lpAddress, dwSize, flNewProtect, lpflOldProtect);
+}
+
+void IntegrityCheckBypass::hook_add_vectored_exception_handler() {
+#if TDB_VER >= 73
+    spdlog::info("[IntegrityCheckBypass]: Hooking AddVectoredExceptionHandler...");
+
+    s_add_vectored_exception_handler_hook = std::make_unique<FunctionHookMinHook>(AddVectoredExceptionHandler, (uintptr_t)add_vectored_exception_handler_hook);
+    if (!s_add_vectored_exception_handler_hook->create()) {
+        spdlog::error("[IntegrityCheckBypass]: Could not hook AddVectoredExceptionHandler!");
+        return;
+    }
+
+    spdlog::info("[IntegrityCheckBypass]: Hooked AddVectoredExceptionHandler!");
+#endif
+}
+
+PVOID WINAPI IntegrityCheckBypass::add_vectored_exception_handler_hook(ULONG FirstHandler, PVECTORED_EXCEPTION_HANDLER VectoredHandler) {
+    s_veh_called = true;
+
+    if (!s_veh_allowed) {
+        const auto retaddr = (uintptr_t)_ReturnAddress();
+        const auto module_within = utility::get_module_within(retaddr);
+
+        if (module_within) {
+            const auto module_path = utility::get_module_pathw(*module_within);
+            bool is_allowed = false;
+
+            if (module_path) {
+                if (module_path->find(L"vehdebug") != std::wstring::npos) {
+                    is_allowed = true;
+                }
+
+                if (module_path->find(L"coreclr") != std::wstring::npos) {
+                    is_allowed = true;
+                }
+
+                if (module_path->find(L"dinput8") != std::wstring::npos) {
+                    is_allowed = true;
+                }
+            }
+
+            if (is_allowed || *module_within == REFramework::get_reframework_module()) 
+            {
+                if (module_path) {
+                    spdlog::info("[IntegrityCheckBypass]: VEH allowed for {}", utility::narrow(*module_path));
+                } else {
+                    spdlog::info("[IntegrityCheckBypass]: VEH allowed");
+                }
+
+                return s_add_vectored_exception_handler_hook->get_original<decltype(add_vectored_exception_handler_hook)>()(FirstHandler, VectoredHandler);
+            }
+        }
+        
+        spdlog::warn("[IntegrityCheckBypass]: VEH not allowed, returning nullptr");
+        allow_veh(); // VEH past this point should be okay.
+        return (void*)VectoredHandler; // some bs address so it doesnt detect it as a nullptr
+    }
+
+    spdlog::info("[IntegrityCheckBypass]: VEH allowed");
+
+    return s_add_vectored_exception_handler_hook->get_original<decltype(add_vectored_exception_handler_hook)>()(FirstHandler, VectoredHandler);
 }

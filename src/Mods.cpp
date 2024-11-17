@@ -14,6 +14,7 @@
 #include "mods/Scene.hpp"
 #include "mods/ScriptRunner.hpp"
 #include "mods/VR.hpp"
+#include "mods/LooseFileLoader.hpp"
 #include "mods/vr/games/RE8VR.hpp"
 
 #include "Mods.hpp"
@@ -27,6 +28,7 @@ Mods::Mods() {
 
 #ifndef BAREBONES
     m_mods.emplace_back(Hooks::get());
+    m_mods.emplace_back(LooseFileLoader::get());
 
     m_mods.emplace_back(VR::get());
 
@@ -42,7 +44,7 @@ Mods::Mods() {
 
     // All games!!!!
     m_mods.emplace_back(std::make_unique<Camera>());
-    m_mods.emplace_back(std::make_unique<Graphics>());
+    m_mods.emplace_back(Graphics::get());
 
 #if defined(RE2) || defined(RE3) || defined(RE8)
     m_mods.emplace_back(std::make_unique<ManualFlashlight>());

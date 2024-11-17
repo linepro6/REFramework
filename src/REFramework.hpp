@@ -28,7 +28,8 @@ public:
     REFramework(HMODULE reframework_module);
     virtual ~REFramework();
 
-    auto get_reframework_module() const { return m_reframework_module; }
+    static auto get_reframework_module() { return s_reframework_module; }
+    static void set_reframework_module(HMODULE module) { s_reframework_module = module; }
 
     bool is_valid() const { return m_valid; }
 
@@ -44,6 +45,7 @@ public:
     Address get_module() const { return m_game_module; }
 
     bool is_ready() const { return m_initialized && m_game_data_initialized; }
+    bool is_ui_focused() const { return m_is_ui_focused; }
 
     void run_imgui_frame(bool from_present);
 
@@ -142,9 +144,11 @@ private:
     void draw_ui();
     void draw_about();
 
+public:
     bool hook_d3d11();
     bool hook_d3d12();
 
+private:
     bool initialize();
     bool initialize_game_data();
     bool initialize_windows_message_hook();
@@ -153,7 +157,7 @@ private:
 
     void call_on_frame();
 
-    HMODULE m_reframework_module{};
+    static inline HMODULE s_reframework_module{};
 
     bool m_first_frame{true};
     bool m_first_frame_d3d_initialize{true};
